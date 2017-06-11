@@ -1,0 +1,729 @@
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:02,641   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E5%B9%B3', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:02,658   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%B9%BD%E5%B7%9E/1049370', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:02,665   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E7%87%95%E4%BA%AC/85350', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:02,725   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%A6%96%E9%83%BD/26194', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:02,781   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E7%9B%B4%E8%BE%96%E5%B8%82', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:02,866   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8D%8E%E5%8C%97/1145', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:02,870   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E4%B8%9C%E5%9F%8E%E5%8C%BA/21851', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:02,985   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8D%8E%E5%8C%97%E5%B9%B3%E5%8E%9F', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:03,041   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E8%AF%9D', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:03,177   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%A4%A9%E5%AE%89%E9%97%A8%E5%B9%BF%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:03,188   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%95%85%E5%AE%AB', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:03,195   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%A2%90%E5%92%8C%E5%9B%AD', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:03,279   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E9%A6%96%E9%83%BD%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:03,310   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%98%8E%E5%8D%81%E4%B8%89%E9%99%B5/303105', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:03,357   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%85%AB%E8%BE%BE%E5%B2%AD%E9%95%BF%E5%9F%8E', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:03,411   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8D%97%E8%8B%91%E6%9C%BA%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:03,433   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E7%AB%99/18844', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:03,568   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99/4401944', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:03,578   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8C%97%E7%AB%99', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:03,579   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8D%97%E7%AB%99/5908768', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:03,742   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%9C%88%E5%AD%A3', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:03,788   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E5%A4%A7', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:03,804   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%9B%BD%E6%A7%90', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:03,906   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E8%94%A1%E5%A5%87', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:03,960   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%99%88%E5%90%89%E5%AE%81', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:25,968   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%B9%BD%E5%B7%9E/1049370', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,010   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E7%87%95%E4%BA%AC/85350', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:26,028   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E5%B9%B3', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:26,056   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%A6%96%E9%83%BD/26194', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,104   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E7%9B%B4%E8%BE%96%E5%B8%82', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:26,162   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8D%8E%E5%8C%97/1145', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:26,170   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E4%B8%9C%E5%9F%8E%E5%8C%BA/21851', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,229   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8D%8E%E5%8C%97%E5%B9%B3%E5%8E%9F', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:26,295   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E8%AF%9D', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:26,415   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%A4%A9%E5%AE%89%E9%97%A8%E5%B9%BF%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:26,448   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%A2%90%E5%92%8C%E5%9B%AD', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,473   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%95%85%E5%AE%AB', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:26,561   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%98%8E%E5%8D%81%E4%B8%89%E9%99%B5/303105', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,564   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E9%A6%96%E9%83%BD%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:26,610   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%85%AB%E8%BE%BE%E5%B2%AD%E9%95%BF%E5%9F%8E', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,647   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E7%AB%99/18844', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:26,675   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8D%97%E8%8B%91%E6%9C%BA%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:26,700   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99/4401944', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,728   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8D%97%E7%AB%99/5908768', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:26,770   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8C%97%E7%AB%99', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:26,835   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%9B%BD%E6%A7%90', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,897   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%9C%88%E5%AD%A3', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:49:26,903   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E8%94%A1%E5%A5%87', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:49:26,970   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%99%88%E5%90%89%E5%AE%81', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:49:26,983   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E5%A4%A7', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:84)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:25,327   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E5%B9%B3', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:52:25,343   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%B9%BD%E5%B7%9E/1049370', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:52:25,351   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E7%87%95%E4%BA%AC/85350', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:25,436   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%A6%96%E9%83%BD/26194', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:52:25,459   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E7%9B%B4%E8%BE%96%E5%B8%82', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:52:25,490   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8D%8E%E5%8C%97/1145', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:25,551   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E4%B8%9C%E5%9F%8E%E5%8C%BA/21851', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:52:25,576   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8D%8E%E5%8C%97%E5%B9%B3%E5%8E%9F', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:52:25,746   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E8%AF%9D', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:52:25,783   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%95%85%E5%AE%AB', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:25,805   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%A4%A9%E5%AE%89%E9%97%A8%E5%B9%BF%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:52:25,888   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%A2%90%E5%92%8C%E5%9B%AD', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:25,919   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%98%8E%E5%8D%81%E4%B8%89%E9%99%B5/303105', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:52:25,935   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%85%AB%E8%BE%BE%E5%B2%AD%E9%95%BF%E5%9F%8E', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:52:25,972   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E9%A6%96%E9%83%BD%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:26,023   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8D%97%E8%8B%91%E6%9C%BA%E5%9C%BA', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:52:26,025   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E7%AB%99/18844', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:52:26,102   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E8%A5%BF%E7%AB%99/4401944', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:26,119   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8D%97%E7%AB%99/5908768', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:52:26,148   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E4%BA%AC%E5%8C%97%E7%AB%99', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:52:26,267   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%9B%BD%E6%A7%90', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:26,294   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E6%9C%88%E5%AD%A3', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 14:52:26,351   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E8%94%A1%E5%A5%87', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-3]  2017-06-09 14:52:26,358   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E5%8C%97%E5%A4%A7', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 14:52:26,368   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/item/%E9%99%88%E5%90%89%E5%AE%81', method='null', extras={statusCode=200}, priority=0} error
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at com.crawler.Baike.process(Baike.java:81)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-09 18:54:08,977   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/search/word?word=%E5%8C%97%E4%BA%AC%E5%B8%82', method='null', extras={statusCode=200}, priority=7} error
+java.lang.IllegalArgumentException: Unsupported function string(.)
+	at us.codecraft.xsoup.xevaluator.XPathParser.consumeOperatorFunction(XPathParser.java:296)
+	at us.codecraft.xsoup.xevaluator.XPathParser.findElements(XPathParser.java:157)
+	at us.codecraft.xsoup.xevaluator.XPathParser.parse(XPathParser.java:76)
+	at us.codecraft.xsoup.xevaluator.XPathParser.parse(XPathParser.java:408)
+	at us.codecraft.xsoup.Xsoup.compile(Xsoup.java:25)
+	at us.codecraft.webmagic.selector.XpathSelector.<init>(XpathSelector.java:21)
+	at us.codecraft.webmagic.selector.Selectors.xpath(Selectors.java:32)
+	at us.codecraft.webmagic.selector.HtmlNode.xpath(HtmlNode.java:42)
+	at com.crawler.Baike.process(Baike.java:72)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-2]  2017-06-09 18:54:08,986   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/search/word?word=%E5%8D%97%E4%BA%AC', method='null', extras={statusCode=200}, priority=7} error
+java.lang.IllegalArgumentException: Unsupported function string(.)
+	at us.codecraft.xsoup.xevaluator.XPathParser.consumeOperatorFunction(XPathParser.java:296)
+	at us.codecraft.xsoup.xevaluator.XPathParser.findElements(XPathParser.java:157)
+	at us.codecraft.xsoup.xevaluator.XPathParser.parse(XPathParser.java:76)
+	at us.codecraft.xsoup.xevaluator.XPathParser.parse(XPathParser.java:408)
+	at us.codecraft.xsoup.Xsoup.compile(Xsoup.java:25)
+	at us.codecraft.webmagic.selector.XpathSelector.<init>(XpathSelector.java:21)
+	at us.codecraft.webmagic.selector.Selectors.xpath(Selectors.java:32)
+	at us.codecraft.webmagic.selector.HtmlNode.xpath(HtmlNode.java:42)
+	at com.crawler.Baike.process(Baike.java:72)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-11 17:44:17,949   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/search/word?word=%E6%9C%B1%E8%87%AA%E6%B8%85', method='null', extras={statusCode=200}, priority=7} error
+java.lang.UnsupportedOperationException: XPath can not apply to plain text. Please check whether you use a previous xpath with attribute select (/@href etc).
+	at us.codecraft.webmagic.selector.PlainText.xpath(PlainText.java:32)
+	at com.crawler.Baike.process(Baike.java:72)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-06-11 17:44:51,643   us.codecraft.webmagic.Spider::process request Request{url='https://wapbaike.baidu.com/search/word?word=%E6%9C%B1%E8%87%AA%E6%B8%85', method='null', extras={statusCode=200}, priority=7} error
+java.lang.UnsupportedOperationException: XPath can not apply to plain text. Please check whether you use a previous xpath with attribute select (/@href etc).
+	at us.codecraft.webmagic.selector.PlainText.xpath(PlainText.java:32)
+	at com.crawler.Baike.process(Baike.java:72)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)

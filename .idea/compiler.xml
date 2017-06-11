@@ -10,7 +10,7 @@
         <module name="webgraph" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="enpwork" target="1.8" />
       <module name="webdata" target="1.8" />
       <module name="webgraph" target="1.8" />
