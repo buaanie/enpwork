@@ -12,13 +12,9 @@ import us.codecraft.webmagic.scheduler.PriorityScheduler;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static com.utils.StirngUtil.lastSplitSlice;
-import static com.utils.StirngUtil.tidyHTMLText;
+import static com.utils.StirngUtil.*;
 
 /**
  * Created by ACT-NJ on 2017/6/8.
@@ -30,7 +26,7 @@ public class Baike implements PageProcessor{
     // view id --> http://baike.baidu.com/view/445.htm
     // id: data-newlemmaid
     public static final String Baike_URL  = "https://wapbaike.baidu.com/search/word?word=";
-    private final String urlRegex = "</?a[^>]*>";
+    private final String URL_Regex = "</?a[^>]*>";
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     public static void main(String[] args) {
         String[] words = new String[]{"朱自清"};
@@ -66,16 +62,18 @@ public class Baike implements PageProcessor{
         Map map = new HashMap<String, String>();
         for(int i =infoSize;i>0;i--){
             String infoTilte = page.getHtml().xpath("//*[@id='J-basicInfo']/ul/li["+i+"]/div[@class='info-title']/tidyText()").toString().trim();
-            String infoContent = page.getHtml().xpath("//*[@id='J-basicInfo']/ul/li["+i+"]/div[@class='info-content']/html()").toString().replaceAll("\n","").replaceAll(urlRegex,"#").trim();
+            String infoContent = page.getHtml().xpath("//*[@id='J-basicInfo']/ul/li["+i+"]/div[@class='info-content']/html()").toString().replaceAll("\n","").replaceAll(URL_Regex,"#").trim();
             map.put(infoTilte, tidyHTMLText(infoContent));
         }
         if(nextItems.size()>0 && page.getRequest().getPriority()>4){
             page.addTargetRequests(nextItems,page.getRequest().getPriority()-1);
         }
-        ItemSubject item = new ItemSubject(title,lemmaid,summary,map);
+        ItemSubject item = new ItemSubject(title,lemmaid,tidyHTMLText(summary),map);
         if(page.getUrl().toString().contains("=") && !title.equals(URLDecoder.decode(page.getUrl().toString().split("=")[1]))) {
             item.setSynonym(URLDecoder.decode(page.getUrl().toString().split("=")[1]));
         }
+        List<String> relatedIDs = page.getHtml().xpath("//*[@id='J-basicInfo']/ul//a/@data-lemmaid").all();
+        item.setRelative(idList2Set(relatedIDs));
         int n = 0;
         if(( n= page.getHtml().xpath("//*[@id='J-polysemant-content']/ul/li").all().size())>0) {
             List<String> list = new ArrayList<>();

@@ -17,6 +17,9 @@ public class ItemSubject {
     private List<String> polysemant;     //多义项
     private Map<String,String> infos;  //infobox
     private Set<String> relative;
+    public ItemSubject(){
+
+    }
     public ItemSubject(String title,String id,String summary,Map infos){
         this.title  = title;
         this.summary = summary;
@@ -60,7 +63,7 @@ public class ItemSubject {
         this.relative = relative;
     }
     public String toString(){
-        String item = "title:"+title+" ,id:"+id+" ,summary:"+summary;
+        String item = "title:"+title+" ,id:"+id+" ,summary:"+summary +" ,synonym:"+synonym +" ,relative:"+relative.size();
         String info ="";
         try {
             ObjectMapper mapper = new ObjectMapper();
