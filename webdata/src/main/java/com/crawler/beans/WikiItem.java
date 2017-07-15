@@ -1,7 +1,6 @@
-package com.model;
+package com.crawler.beans;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jettison.json.JSONObject;
 
 import java.io.IOException;
 import java.util.*;
@@ -9,7 +8,7 @@ import java.util.*;
 /**
  * Created by ACT-NJ on 2017/6/8.
  */
-public class ItemSubject {
+public class WikiItem {
     private String title;       //词条名
     private String summary;       //简介
     private String id;       //词条ID
@@ -17,10 +16,10 @@ public class ItemSubject {
     private List<String> polysemant;     //多义项
     private Map<String,String> infos;  //infobox
     private Set<String> relative;
-    public ItemSubject(){
+    public WikiItem(){
 
     }
-    public ItemSubject(String title,String id,String summary,Map infos){
+    public WikiItem(String title, String id, String summary, Map infos){
         this.title  = title;
         this.summary = summary;
         this.id = id;

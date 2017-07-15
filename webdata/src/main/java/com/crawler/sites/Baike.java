@@ -1,6 +1,8 @@
-package com.crawler;
+package com.crawler.sites;
 
-import com.model.ItemSubject;
+import com.crawler.utils.ItemPipeLine;
+import com.crawler.beans.WikiItem;
+import com.crawler.utils.ItemType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import us.codecraft.webmagic.Page;
@@ -14,7 +16,8 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.*;
 
-import static com.utils.StirngUtil.*;
+import static com.crawler.utils.StirngUtil.*;
+
 
 /**
  * Created by ACT-NJ on 2017/6/8.
@@ -25,25 +28,26 @@ public class Baike implements PageProcessor{
     // item word --> http://wapbaike.baidu.com/item/北京
     // view id --> http://baike.baidu.com/view/445.htm
     // id: data-newlemmaid
-    public static final String Baike_URL  = "https://wapbaike.baidu.com/search/word?word=";
+    public static final String Baike_URL  = "https://wapbaike.baidu.com/search/word?word=%s";
     private final String URL_Regex = "</?a[^>]*>";
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     public static void main(String[] args) {
+        Baike bk = new Baike();
         String[] words = new String[]{"朱自清"};
-        getWordCrawler(words);
+        bk.getWordCrawler(words);
     }
 
     /**
      * 输入待查关键字（如实体名），进行爬取
      * @param queryWords
      */
-    public static void getWordCrawler(String... queryWords){
+    public void getWordCrawler(String... queryWords){
         List<Request> urls = new ArrayList<>();
         for (String queryWord : queryWords) {
-            Request r  = new Request(Baike_URL + URLEncoder.encode(queryWord)).setPriority(7);//putExtra("_level",0)
+            Request r  = new Request(String.format(Baike_URL,URLEncoder.encode(queryWord))).setPriority(7);//putExtra("_level",0)
             urls.add(r);
         }
-        Spider baike = Spider.create((new Baike())).startRequest(urls).setScheduler(new PriorityScheduler()).addPipeline(new FilePipiLine()).thread(3);
+        Spider baike = Spider.create((new Baike())).startRequest(urls).setScheduler(new PriorityScheduler()).addPipeline(new ItemPipeLine(ItemType.WikiItem)).thread(3);
         baike.run();
     }
 
@@ -68,7 +72,7 @@ public class Baike implements PageProcessor{
         if(nextItems.size()>0 && page.getRequest().getPriority()>4){
             page.addTargetRequests(nextItems,page.getRequest().getPriority()-1);
         }
-        ItemSubject item = new ItemSubject(title,lemmaid,tidyHTMLText(summary),map);
+        WikiItem item = new WikiItem(title,lemmaid,tidyHTMLText(summary),map);
         if(page.getUrl().toString().contains("=") && !title.equals(URLDecoder.decode(page.getUrl().toString().split("=")[1]))) {
             item.setSynonym(URLDecoder.decode(page.getUrl().toString().split("=")[1]));
         }
@@ -85,7 +89,7 @@ public class Baike implements PageProcessor{
             }
             item.setPolysemant(list);
         }
-        page.putField("item",item);
+        page.putField(ItemType.WikiItem,item);
 
     }
 

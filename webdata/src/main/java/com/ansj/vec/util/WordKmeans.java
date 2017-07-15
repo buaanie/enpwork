@@ -23,7 +23,7 @@ public class WordKmeans {
     public static void main(String[] args) throws IOException {
         Word2VEC vec = new Word2VEC();
         vec.loadGoogleModel("vectors.bin");
-        System.out.println("load model ok!");
+        System.out.println("load beans ok!");
         WordKmeans wordKmeans = new WordKmeans(vec.getWordMap(), 50, 50);
         Classes[] explain = wordKmeans.explain();
 

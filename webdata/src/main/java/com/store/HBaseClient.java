@@ -1,4 +1,4 @@
-package com.utils;
+package com.store;
 
 import java.io.IOException;
 

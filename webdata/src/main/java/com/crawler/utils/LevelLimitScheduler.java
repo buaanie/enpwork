@@ -1,4 +1,4 @@
-package com.crawler;
+package com.crawler.utils;
 
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Task;

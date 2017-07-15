@@ -1,4 +1,4 @@
-package com.utils;
+package com.store;
 
 import org.apache.log4j.Logger;
 import org.elasticsearch.client.transport.TransportClient;

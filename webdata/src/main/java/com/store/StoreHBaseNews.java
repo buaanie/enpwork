@@ -1,10 +1,10 @@
-package com.model;
+package com.store;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.utils.HBaseClient;
+import com.crawler.beans.NewsItem;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
@@ -61,7 +61,7 @@ public class StoreHBaseNews {
             }
         });
 	}
-	public synchronized void storeNews(NewsSubject newsSubject){
+	public synchronized void storeNews(NewsItem newsSubject){
 		try {
 			Put put = new Put(Bytes.toBytes(newsSubject.getId()));
 			put.add(Bytes.toBytes("info"), Bytes.toBytes("title"), Bytes.toBytes(newsSubject.getTitle()));			
@@ -97,7 +97,7 @@ public class StoreHBaseNews {
 		@SuppressWarnings("resource")
 		HBaseAdmin admin = new HBaseAdmin(conf);  
         if (admin.tableExists(tableName)) {
-            System.out.println("表已经存在！");  
+            System.out.println("表已经存在！");
         } else {  
         	TableName tablename = TableName.valueOf(tableName);
         	HTableDescriptor tableDesc = new HTableDescriptor(tablename);  

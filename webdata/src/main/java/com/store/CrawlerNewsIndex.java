@@ -1,9 +1,9 @@
-package com.utils;
+package com.store;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.model.NewsSubject;
+import com.crawler.beans.NewsItem;
 import org.apache.log4j.Logger;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
@@ -25,7 +25,7 @@ public class CrawlerNewsIndex {
 	private TransportClient client;
 	private ESClient esClient;
 	private String index = "tjnews";
-	private List<NewsSubject> newsList = new ArrayList<NewsSubject>();
+	private List<NewsItem> newsList = new ArrayList<NewsItem>();
     //添加一个日志器
     private Logger logger;
     public CrawlerNewsIndex() {
@@ -45,10 +45,10 @@ public class CrawlerNewsIndex {
             }
         } );
 	}
-	public synchronized void insertAllIndex(NewsSubject anews) throws Exception{
+	public synchronized void insertAllIndex(NewsItem anews) throws Exception{
 		insertES(anews);
 	}
-	private synchronized void insertES(NewsSubject news){
+	private synchronized void insertES(NewsItem news){
 		if(newsList.size() <= 50){
 			newsList.add(news);
 		}
@@ -110,9 +110,9 @@ public class CrawlerNewsIndex {
 			System.out.println("=======");
 		}
 	}
-	private synchronized void insertIndexBulk(List<NewsSubject> newsList2) throws Exception {
+	private synchronized void insertIndexBulk(List<NewsItem> newsList2) throws Exception {
 		BulkRequestBuilder bqb = client.prepareBulk();	
-		for (NewsSubject news : newsList2) {
+		for (NewsItem news : newsList2) {
 			GetResponse test = client.prepareGet(index, "msg", news.getId()).execute().actionGet();
 			if(!test.isExists()){
 				XContentBuilder contentBuilder = XContentFactory.jsonBuilder()
