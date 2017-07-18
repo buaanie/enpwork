@@ -22,16 +22,17 @@ import static com.crawler.utils.StirngUtil.*;
  * Created by ACT-NJ on 2017/6/12.
  */
 public class CNR implements PageProcessor{
-    public static  final String LIST_REGEX = "http://kuaixun\\.cnr\\.cn/\\?n=\\d+"; //新闻列表页面 index\.html
-    public static  final String NEWS_REGEX = "http://www\\.cnr\\.cn/.*\\.shtml"; //新闻列表页面
+    private static final String url = "http://kuaixun.cnr.cn/?n=%d";
+    private final String LIST_REGEX = "http://kuaixun\\.cnr\\.cn/\\?n=\\d+"; //新闻列表页面 index\.html
+    private final String NEWS_REGEX = "http://www\\.cnr\\.cn/.*\\.shtml"; //新闻列表页面
     private Site site = Site.me().setDomain("http://www.cnr.cn/").setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000)
             .setUserAgent(UA2).setUseGzip(true).setUseGzip(true);
 
     public static void main(String[] args) {
         List<String> start = new ArrayList<>();
 //        start.add("http://www.cnr.cn/newscenter/native/city/20170713/t20170713_523848598.shtml");
-//        for(int i =1;i<10;i++)
-//            start.add("http://kuaixun.cnr.cn/?n="+i);
+        for(int i =1;i<10;i++)
+            start.add(String.format(url,i));
         Spider cnr = Spider.create(new CNR()).startUrls(start).setScheduler(new PriorityScheduler()).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);
         cnr.run();
     }

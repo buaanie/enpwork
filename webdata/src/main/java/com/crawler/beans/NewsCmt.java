@@ -1,7 +1,13 @@
 package com.crawler.beans;
 
+import org.codehaus.jackson.map.ObjectMapper;
+
+import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by ACT-NJ on 2017/7/14.
@@ -9,6 +15,7 @@ import java.util.Date;
 public class NewsCmt {
     private String content;     //评论内容
     private long milliseTime;     //评论时间
+    private String stringTime;	    //发布时间
     private String id;          //评论id
     private String target;      //评论文章的id
     private String pid;         //评论上一级id
@@ -34,6 +41,14 @@ public class NewsCmt {
         this.milliseTime = time;
         this.content = content;
     }
+    public NewsCmt(String id, String target, String uid, String upNum, String time, String content){
+        this.id = id;
+        this.target = target;
+        this.uid = uid;
+        this.upNum = upNum;
+        this.stringTime = time;
+        this.content = content;
+    }
     public void setPid(String pid){
         this.pid = pid;
     }
@@ -47,10 +62,11 @@ public class NewsCmt {
         return new Date(milliseTime);
     }
     public String getStringTime(){
-        try {
-            return getDateTime().toLocaleString();
-        } catch (ParseException e) {
-            return "";
+        if(stringTime==null){
+            DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+            return sdf.format(new Date(milliseTime));
+        }else{
+            return stringTime;
         }
     }
     public String getContent() {
@@ -58,7 +74,13 @@ public class NewsCmt {
     }
 
     public String toString(){
-        return "评论：{" + "id= "+ id+ " 回复='" + content +
-                "', 时间='" + getStringTime()+"'}";
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String info = mapper.writeValueAsString(this);
+            return info;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "error------------>";
     }
 }

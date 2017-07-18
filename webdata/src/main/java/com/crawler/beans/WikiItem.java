@@ -66,7 +66,7 @@ public class WikiItem {
         String info ="";
         try {
             ObjectMapper mapper = new ObjectMapper();
-            info = mapper.writeValueAsString(infos);
+            info = mapper.writeValueAsString(this.infos);
         } catch (IOException e) {
             e.printStackTrace();
         }

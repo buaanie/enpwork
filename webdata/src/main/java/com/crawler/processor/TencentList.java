@@ -12,18 +12,18 @@ import java.util.List;
 /**
  * Created by ACT-NJ on 2017/7/12.
  */
-public class TencentListProcessor implements SubPageProcessor{
+public class TencentList implements SubPageProcessor{
 
     @Override
     public MatchOther processPage(Page page) {
-        String jsonp = page.getRawText();
-        Json jsonobject = new Json(jsonp);
+        System.out.println(page.getUrl());
+        Json jsonobject = new Json(page.getRawText());
         List<String> list = jsonobject.jsonPath("$.data.article_info[*]").all();
         for (String s : list) {
             JSONObject temp = JSON.parseObject(s);
-            Request r = new Request(temp.getString("url"));
             if(temp.getString("column").contains("图片"))
                 continue;
+            Request r = new Request(temp.getString("url"));
             r.putExtra("column",(temp.getString("column")));
             r.putExtra("time",(temp.getString("time")));
             r.putExtra("title",(temp.getString("title")));

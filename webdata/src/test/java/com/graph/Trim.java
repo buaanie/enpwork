@@ -13,8 +13,14 @@ import java.util.regex.Pattern;
  */
 public class Trim {
     public static void main(String[] args) {
-        String s = "https://coral.qq.com/article/%s/comment?commentid=%s&tag=&reqnum=20";
-        System.out.println(String.format(s,"1233","ww"));
+        String s ="http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/%s/comments/newList?offset=50&limit=40&headLimit=3&tailLimit=1&ibc=newswap";
+        Matcher m = Pattern.compile("offset=(\\d+)").matcher(s);
+        if(m.find())
+            System.out.println(m.group(1));
+//        String s = "http://3g.163.com/news/article/CPIRSAQQ0001899N.html";
+//        System.out.println(s.matches("http://3g\\.163\\.com/news/\\S+"));
+//        String s = "https://coral.qq.com/article/%s/comment?commentid=%s&tag=&reqnum=20";
+//        System.out.println(String.format(s,"1233","ww"));
 
 //        String s = "【环球时报-环球网报道 记者 白云怡】:2017年日，一则“中国游客在泰国国际机场内吸食大麻，安保人员放任不管”的消息在泰国脸书上引发网友热烈讨论，发帖人Netchanok Mingkwan女士称，她在泰国曼谷素万那普国际机场D8候机区域的吸烟室，看到一个中国旅游团的大爷，把大麻放在一个经过改装，戳有气孔的塑料瓶子上点燃并吸食，搞得里面乌烟瘴气，她质疑中国游客如何将大麻带入泰国境内。";
 ////        Pattern p = Pattern.compile("[\\s|\\S]+）");

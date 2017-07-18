@@ -21,12 +21,11 @@ public class ItemPipeLine implements Pipeline{
     @Override
     public void process(ResultItems resultItems, Task task) {
         switch (pageType){
-
             case ItemType.NewsItem:
                 if(resultItems.get(ItemType.NewsItem)!=null)
                 {
                     NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);
-                    System.out.println(news.toString());
+                    System.out.println(news.toStringJson());
                 };break;
             case ItemType.WikiItem:
                 if(resultItems.get(ItemType.WikiItem)!=null && resultItems.get(ItemType.WikiItem) instanceof WikiItem)

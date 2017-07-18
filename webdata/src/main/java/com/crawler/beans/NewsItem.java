@@ -35,10 +35,10 @@ public class NewsItem {
      * @param time
      * @param source
      * @param type
-     * @param desc
+     * @param desp
      * @param keywords
      */
-	public NewsItem(String id, String url, String title, String content, String time, String source, String type, String desc, String keywords)
+	public NewsItem(String id, String url, String title, String content, String time, String source, String type, String desp, String keywords)
 	{
 		this.id = id;
 		this.url = url;
@@ -47,7 +47,7 @@ public class NewsItem {
 		this.content = content.matches("\\s*")? title:content;
 		this.source = source;
 		this.type = type;
-		this.description = desc;
+		this.description = desp;
 		this.keywords = keywords;
 	}
     public String getSource() {
@@ -91,18 +91,16 @@ public class NewsItem {
         return keywords;
     }
     public String toString(){
-    	return "新闻：{" + "id= "+ id+ " 标题='" + title +
+    	return "新闻：{" + "id= '"+ id+ "' 标题='" + title +
     	    "', 时间='" + stringTime + "', 链接='" + url +
     	    "', 来源='" + source + "', 内容='" + content + "'}";
     	}
     public String toStringJson(){
         try {
             ObjectMapper mapper = new ObjectMapper();
-            String info = mapper.writeValueAsString(this.clone());
+            String info = mapper.writeValueAsString(this);
             return info;
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
         return "error------------>";

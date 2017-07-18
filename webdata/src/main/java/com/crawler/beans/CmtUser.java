@@ -8,14 +8,14 @@ public class CmtUser {
     private String nickname;
     private String region;
     private String gender;
-    private String head;
-    public CmtUser(String uid, String name, String region, String gender, String head)
+    private String avatar;
+    public CmtUser(String uid, String name, String region, String gender, String avatar)
     {
         this.uid = uid;
         this.nickname = name;
         this.region = region.equals("::")?"-":region;
         this.gender = gender;
-        this.head = head;
+        this.avatar = avatar;
     }
     public String getUid(){
         return uid;
@@ -29,7 +29,7 @@ public class CmtUser {
     public String getGender(){
         return gender;
     }
-    public String getHead(){
-        return head;
+    public String getvatar(){
+        return avatar;
     }
 }

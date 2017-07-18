@@ -1,6 +1,7 @@
 package com.crawler.processor;
 
 import com.crawler.beans.NewsItem;
+import com.crawler.utils.ItemType;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.handler.SubPageProcessor;
@@ -13,7 +14,7 @@ import static com.crawler.utils.StirngUtil.filtJournal;
 /**
  * Created by ACT-NJ on 2017/7/13.
  */
-public class TencentInfoProcessor implements SubPageProcessor{
+public class TencentInfo implements SubPageProcessor{
 
     @Override
     public MatchOther processPage(Page page) {
@@ -24,7 +25,7 @@ public class TencentInfoProcessor implements SubPageProcessor{
         String description = title;
         String keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString().split(",",2)[1];
         String source = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_article']//span[@class='a_source']/allText()").toString().trim();
-        String id = "TCT"+url.replaceAll("[^\\d]","");
+        String id = "TCT-"+url.replaceAll("[^\\d]","");
         List<Selectable> contents = page.getHtml().xpath("//*[@id='Cnt-Main-Article-QQ']/p[@class='text']").nodes();
         StringBuffer sb = new StringBuffer();
         Boolean fp = true;
@@ -40,10 +41,9 @@ public class TencentInfoProcessor implements SubPageProcessor{
         }
         String content = sb.toString();
         NewsItem news = new NewsItem(id,url,title,content,time,source,type,description,keywords);
-        System.out.println(content);
         String cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']/div/div[1]/div[2]/script[2]").regex("cmt_id = (\\d+);").toString();
-        news.setComment("tct"+cmt_id);        //电脑 http://coral.qq.com/cmt_id  手机http://xw.qq.com/c/coral/cmt_id
-        page.putField("news",news);
+        news.setComment("tct-"+cmt_id);        //电脑 http://coral.qq.com/cmt_id  手机http://xw.qq.com/c/coral/cmt_id
+        page.putField(ItemType.NewsItem,news);
         return MatchOther.NO;
     }
 

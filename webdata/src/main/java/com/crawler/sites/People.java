@@ -22,13 +22,14 @@ import static com.crawler.utils.StirngUtil.*;
  * Created by ACT-NJ on 2017/6/20.
  */
 public class People implements PageProcessor{
-    public static  final String IGNORE_PAGE = "http://(media|game|tv|pic)\\.people\\.com\\.cn/n1/\\d{4}/\\d{4}/\\S+";
+    private static final String url = "http://news.people.com.cn/210801/211150/index.js?_=%s";
+    private final String IGNORE_PAGE = "http://(media|game|tv|pic)\\.people\\.com\\.cn/n1/\\d{4}/\\d{4}/\\S+";
     private Site site = Site.me().setDomain("http://news.people.com.cn/").setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000)
             .setUserAgent("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)").setCharset("GBK").setUseGzip(true);
 
     public static void main(String[] args) {
         Date today = new Date();
-        String  startURL = "http://news.people.com.cn/210801/211150/index.js?_="+today.getTime();
+        String  startURL = String.format(url,today.getTime());
         Spider people = Spider.create(new People()).addUrl(startURL).setScheduler(new PriorityScheduler()).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);
         people.run();
     }

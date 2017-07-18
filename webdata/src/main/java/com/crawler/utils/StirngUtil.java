@@ -1,5 +1,7 @@
 package com.crawler.utils;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,18 +42,6 @@ public class StirngUtil {
         int length = rawText.split(regex).length;
         return rawText.split(regex)[length-1];
     }
-    /**
-     * 取得String切分之后的第一段
-     * @param rawText
-     * @param regex
-     * @return 切分后的第一段文本
-     */
-    public static String firstSplitSlice(String rawText,String regex){
-        if(rawText.contains(regex))
-            return rawText.split(regex)[0];
-        else
-            return rawText;
-    }
 
     /**
      * 去掉重复的id，返回set
@@ -80,5 +70,18 @@ public class StirngUtil {
         else if(p.split(" ").length>1)
             p = p.split(" ",2)[1];
         return p;
+    }
+    public static String filtPhoto(String p){
+        p = p.replaceAll("\n","");
+        String spHead = "<div class=\"spinfo\"[^>].*>";
+        String photoHead = "<div class=[\"photo|video\"]+>.*?</a|p>";
+        p = p.replaceAll(spHead,"").replaceAll(photoHead,"").replaceAll(labelRegex,"");
+        return p;
+    }
+    public static JSONObject parseJsonp(String jsonp){
+        int startIndex = jsonp.indexOf("(");
+        int endIndex = jsonp.lastIndexOf(")");
+        String json = jsonp.substring(startIndex+1, endIndex);
+        return JSONObject.parseObject(json);
     }
 }
