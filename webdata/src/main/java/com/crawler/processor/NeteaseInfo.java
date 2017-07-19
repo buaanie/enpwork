@@ -32,7 +32,6 @@ public class NeteaseInfo implements SubPageProcessor{
 //        }
         String id = page.getRequest().getExtra("id").toString();
         String title  = page.getRequest().getExtra("title").toString();
-        String description = title;
         List<Selectable> contents = page.getHtml().xpath("//*[@id='endText']/p").nodes();
         StringBuffer sb = new StringBuffer();
         for (Selectable content : contents) {
@@ -48,9 +47,10 @@ public class NeteaseInfo implements SubPageProcessor{
         String time  = page.getRequest().getExtra("time").toString();
         String type =  page.getRequest().getExtra("type").toString();
         String keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString().split(",",2)[1];
-        NewsItem news = new NewsItem("NTS-"+id,url,title,content,time,source,type,description,keywords);
-        String cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']/div/div[1]/div[2]/script[2]").regex("cmt_id = (\\d+);").toString();
-        news.setComment("nts-"+cmt_id);        //电脑 http://coral.qq.com/cmt_id  手机http://xw.qq.com/c/coral/cmt_id
+        NewsItem news = new NewsItem("NTS-"+id,url,title,content,time,source,type,title,keywords);
+        //电脑 http://comment.news.163.com/news2_bbs/cmt_id.html
+        //手机 http://3g.163.com/touch/comment.html?docid=cmt_id
+        news.setComment("nts-"+id);
         page.putField(ItemType.NewsItem,news);
         return MatchOther.NO;
     }

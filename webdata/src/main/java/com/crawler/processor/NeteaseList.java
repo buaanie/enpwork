@@ -20,20 +20,20 @@ public class NeteaseList implements SubPageProcessor {
     private final String mark_url ="http://news.163.com/%s";
     @Override
     public MatchOther processPage(Page page) {
-        JSONObject jsonObject = parseJsonp(page.getRawText());
+        JSONObject jsonObject = parseJsonp(page.getRawText(),"(");
         JSONArray jsonArray = jsonObject.getJSONArray(page.getRequest().getExtra("identity").toString());
         for (Object o : jsonArray) {
             JSONObject temp = (JSONObject) o;
             if(temp.containsKey("skipType"))
                 continue;
 //            Request r = new Request(String.format(req_url,temp.getString("docid")));
-            Request r = new Request(String.format(mark_url,temp.getString("url").replace("http://3g.163.com/news/","")));
+            String tail = temp.getString("url").replace("http://3g.163.com/news/","");
+            Request r = new Request(String.format(mark_url,tail));
             r.putExtra("type",page.getRequest().getExtra("type"));
             r.putExtra("id",temp.getString("docid"));
             r.putExtra("source",temp.getString("source"));
             r.putExtra("time",temp.getString("ptime"));
             r.putExtra("title",temp.getString("title"));
-//            r.putExtra("url",String.format(mark_url,temp.getString("url").replace("http://3g.163.com/news/","")));
             page.addTargetRequest(r);
         }
         page.setSkip(true); //无需保存

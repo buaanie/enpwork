@@ -10,6 +10,7 @@ import us.codecraft.webmagic.selector.Selectable;
 import java.util.List;
 
 import static com.crawler.utils.StirngUtil.filtJournal;
+import static com.crawler.utils.StirngUtil.lastSplitSlice;
 
 /**
  * Created by ACT-NJ on 2017/7/13.
@@ -40,9 +41,15 @@ public class TencentInfo implements SubPageProcessor{
                 }
         }
         String content = sb.toString();
+        if(content.matches("\\s+"))
+            return MatchOther.NO;
         NewsItem news = new NewsItem(id,url,title,content,time,source,type,description,keywords);
-        String cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']/div/div[1]/div[2]/script[2]").regex("cmt_id = (\\d+);").toString();
-        news.setComment("tct-"+cmt_id);        //电脑 http://coral.qq.com/cmt_id  手机http://xw.qq.com/c/coral/cmt_id
+        String cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_articleFt']/script[2]").regex("cmt_id = (\\d+);").toString();
+        if(cmt_id==null || cmt_id.equals(""))
+            cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_articleFt']/script[1]").regex("cmt_id = (\\d+);").toString();
+        // 电脑 http://coral.qq.com/cmt_id
+        // 手机http://xw.qq.com/c/coral/cmt_id
+        news.setComment("tct"+cmt_id);
         page.putField(ItemType.NewsItem,news);
         return MatchOther.NO;
     }

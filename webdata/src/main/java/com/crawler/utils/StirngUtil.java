@@ -1,6 +1,7 @@
 package com.crawler.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -78,9 +79,18 @@ public class StirngUtil {
         p = p.replaceAll(spHead,"").replaceAll(photoHead,"").replaceAll(labelRegex,"");
         return p;
     }
-    public static JSONObject parseJsonp(String jsonp){
-        int startIndex = jsonp.indexOf("(");
-        int endIndex = jsonp.lastIndexOf(")");
+    public static JSONObject parseJsonp(String jsonp,String mark){
+        jsonp = jsonp.replaceAll("\n","");
+        int startIndex = 0,endIndex = 0;
+        switch (mark){
+            case "(":
+                startIndex = jsonp.indexOf("(");endIndex = jsonp.lastIndexOf(")");
+                break;
+            case "{":
+                startIndex = jsonp.indexOf("{")-1;endIndex = jsonp.lastIndexOf("}")+1;
+                break;
+            default:break;
+        }
         String json = jsonp.substring(startIndex+1, endIndex);
         return JSONObject.parseObject(json);
     }

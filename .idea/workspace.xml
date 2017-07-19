@@ -5,51 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07fda774-7a06-4d00-823d-33b3c78dea27" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseCmt.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseNews.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/test/java/com/graph/WebTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/FilePipiLine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/LevelLimitScheduler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/processor/TencentInfoProcessor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/processor/TencentListProcessor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/model/CmtUserSubject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/model/CommentSubject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/model/ItemSubject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/model/NewsSubject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/utils/CrawlerNewsIndex$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/utils/CrawlerNewsIndex.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/utils/ESClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/utils/HBaseClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/webdata/target/classes/com/utils/StirngUtil.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/ansj/ner/GetEventInfo.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/ansj/ner/GetEventInfo.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/ansj/vec/util/WordKmeans.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/ansj/vec/util/WordKmeans.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/Baike.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/Baike.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/CNR.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/CNR.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/People.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/People.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/TencentCmt.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/TencentCmt.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/TencentNews.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/TencentNews.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/store/StoreHBaseNews$1.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/store/StoreHBaseNews$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/store/StoreHBaseNews.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/store/StoreHBaseNews.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/store/StoreNews.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/store/StoreNews.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/SinaInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/SinaList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/SinaCmt.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/SinaNews.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/processor/NeteaseList.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/crawler/processor/NeteaseList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/NeteaseCmt.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/crawler/sites/NeteaseCmt.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/classes/com/crawler/utils/StirngUtil.class" afterPath="$PROJECT_DIR$/webdata/target/classes/com/crawler/utils/StirngUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/test-classes/com/graph/Trim.class" afterPath="$PROJECT_DIR$/webdata/target/test-classes/com/graph/Trim.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/target/test-classes/com/graph/WebTest.class" afterPath="$PROJECT_DIR$/webdata/target/test-classes/com/graph/WebTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/data.log" afterPath="$PROJECT_DIR$/log/data.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/CmtUser.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/CmtUser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsCmt.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsCmt.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsItem.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/WikiItem.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/WikiItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/CNR.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/CNR.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/People.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/People.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentCmt.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentCmt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentNews.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentNews.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/ItemPipeLine.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/ItemPipeLine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseInfo.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseList.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfo.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseCmt.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseCmt.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/StirngUtil.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/StirngUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/test/java/com/graph/AppTest.java" afterPath="$PROJECT_DIR$/webdata/src/test/java/com/graph/AppTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/test/java/com/graph/Trim.java" afterPath="$PROJECT_DIR$/webdata/src/test/java/com/graph/Trim.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfoProcessor.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentListProcessor.java" afterPath="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webdata/src/test/java/com/graph/WebTest.java" afterPath="$PROJECT_DIR$/webdata/src/test/java/com/graph/WebTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -65,11 +39,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="NeteaseNews.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseNews.java">
+      <file leaf-file-name="SinaInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/SinaInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="28" column="39" lean-forward="true" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+            <state relative-caret-position="353">
+              <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,46 +51,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CNR.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/CNR.java">
+      <file leaf-file-name="SinaList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/SinaList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="34" column="41" lean-forward="false" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NeteaseCmt.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseCmt.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="47" column="54" lean-forward="true" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+            <state relative-caret-position="290">
+              <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4322#4323#0" expanded="true" />
-                <element signature="e#4349#4350#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Trim.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webdata/src/test/java/com/graph/Trim.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="18" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webdata/src/test/java/com/graph/WebTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -124,23 +66,43 @@
       <file leaf-file-name="NeteaseInfo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="715">
-              <caret line="61" column="1" lean-forward="true" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
+            <state relative-caret-position="328">
+              <caret line="50" column="48" lean-forward="false" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TencentInfo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="50" column="44" lean-forward="true" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SinaNews.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/SinaNews.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="25" column="48" lean-forward="true" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2678#2679#0" expanded="true" />
-                <element signature="e#2757#2758#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NeteaseList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseList.java">
+      <file leaf-file-name="NeteaseNews.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseNews.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="180">
+              <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,7 +110,7 @@
       <file leaf-file-name="TencentCmt.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentCmt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="20">
               <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -160,19 +122,35 @@
       <file leaf-file-name="TencentNews.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentNews.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+            <state relative-caret-position="339">
+              <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StirngUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/StirngUtil.java">
+      <file leaf-file-name="SinaCmt.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/SinaCmt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="160">
+              <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#342#343#0" expanded="true" />
+                <element signature="e#369#370#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NeteaseCmt.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseCmt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="39" column="13" lean-forward="true" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -190,8 +168,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>别名</find>
-      <find>{</find>
       <find>sys</find>
       <find>天安门广场</find>
       <find>getRe</find>
@@ -220,6 +196,8 @@
       <find>temp.getJSONObject(&quot;userinfo&quot;)</find>
       <find>comments</find>
       <find>page</find>
+      <find>currentTimeMillis</find>
+      <find>substring</find>
     </findStrings>
     <replaceStrings>
       <replace>Regex</replace>
@@ -227,6 +205,7 @@
       <replace>user</replace>
     </replaceStrings>
     <dirStrings>
+      <dir>D:\Jworkspace\enpwork\webdata\src\main\java\com\crawler\processor</dir>
       <dir>D:\Jworkspace\enpwork\webdata\src\main\java\com\crawler</dir>
     </dirStrings>
   </component>
@@ -241,10 +220,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/ansj/ner/GetEventInfo.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/Baike.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/model/ItemSubject.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/store/StoreNews.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/SubPageProcessor.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/ttt.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/TencentSubPageProcessor.java" />
@@ -273,25 +248,29 @@
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/ItemType.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/Baike.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfoProcessor.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsItem.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsCmt.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/WikiItem.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/CNR.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/People.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfo.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/CmtUser.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentList.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/ItemPipeLine.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/StirngUtil.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseInfo.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentNews.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseNews.java" />
-        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseList.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentCmt.java" />
         <option value="$PROJECT_DIR$/webdata/src/test/java/com/graph/test.java" />
         <option value="$PROJECT_DIR$/webdata/src/test/java/com/graph/WebTest.java" />
-        <option value="$PROJECT_DIR$/webdata/src/test/java/com/graph/Trim.java" />
         <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseCmt.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseNews.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/StirngUtil.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/SinaNews.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseList.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/SinaList.java" />
+        <option value="$PROJECT_DIR$/webdata/src/test/java/com/graph/Trim.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsItem.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseInfo.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfo.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/SinaInfo.java" />
+        <option value="$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/SinaCmt.java" />
       </list>
     </option>
   </component>
@@ -314,8 +293,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="971" />
-    <option name="width" value="1596" />
+    <option name="x" value="1079" />
+    <option name="width" value="1488" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -633,6 +612,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.43564355" />
     <property name="last_opened_file_path" value="E:/Github/JD_Simple" />
+    <property name="SearchEverywhereHistoryKey" value="sout&#9;PSI&#9;JAVA://com.sun.tools.doclets.formats.html.SourceToHTMLConverter" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -666,7 +646,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.NeteaseCmt">
+  <component name="RunManager" selected="Application.Trim">
     <configuration default="false" name="Trim" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -675,26 +655,6 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="com.graph.Trim" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="webdata" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="TencentNews" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.crawler.processor.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.crawler.sites.TencentNews" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -755,6 +715,26 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="com.crawler.sites.NeteaseCmt" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="webdata" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="SinaNews" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.crawler.sites.SinaNews" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1156,18 +1136,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Trim" />
-      <item index="1" class="java.lang.String" itemvalue="Application.TencentNews" />
-      <item index="2" class="java.lang.String" itemvalue="Application.WebTest" />
-      <item index="3" class="java.lang.String" itemvalue="Application.NeteaseNews" />
-      <item index="4" class="java.lang.String" itemvalue="Application.NeteaseCmt" />
+      <item index="1" class="java.lang.String" itemvalue="Application.WebTest" />
+      <item index="2" class="java.lang.String" itemvalue="Application.NeteaseNews" />
+      <item index="3" class="java.lang.String" itemvalue="Application.NeteaseCmt" />
+      <item index="4" class="java.lang.String" itemvalue="Application.SinaNews" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.NeteaseCmt" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Trim" />
-        <item index="2" class="java.lang.String" itemvalue="Application.WebTest" />
-        <item index="3" class="java.lang.String" itemvalue="Application.NeteaseNews" />
-        <item index="4" class="java.lang.String" itemvalue="Application.TencentNews" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Trim" />
+        <item index="1" class="java.lang.String" itemvalue="Application.SinaNews" />
+        <item index="2" class="java.lang.String" itemvalue="Application.NeteaseCmt" />
+        <item index="3" class="java.lang.String" itemvalue="Application.WebTest" />
+        <item index="4" class="java.lang.String" itemvalue="Application.NeteaseNews" />
       </list>
     </recent_temporary>
   </component>
@@ -1195,12 +1175,12 @@
       <workItem from="1497948109988" duration="12167000" />
       <workItem from="1498375425543" duration="7269000" />
       <workItem from="1499668302712" duration="76043000" />
-      <workItem from="1500189424510" duration="60079000" />
+      <workItem from="1500189424510" duration="78470000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260878000" />
+    <option name="totallyTimeSpent" value="279269000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1212,8 +1192,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="971" y="0" width="1596" height="1047" extended-state="1" />
-    <editor active="true" />
+    <frame x="1079" y="0" width="1488" height="1047" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1234,10 +1213,10 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37787515" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37458926" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20833333" sideWeight="0.6619217" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25350142" sideWeight="0.6619217" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17377399" sideWeight="0.3380783" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33187294" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1298,37 +1277,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/ansj/ner/GetEventInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="38" column="44" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/store.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webgraph/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/store/StoreHBaseNews.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/store/StoreNews.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1517,14 +1465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="92" column="29" lean-forward="true" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/WikiItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -1549,67 +1489,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentList.java">
+    <entry file="file://$PROJECT_DIR$/webdata/src/test/java/com/graph/WebTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+        <state relative-caret-position="296">
+          <caret line="26" column="75" lean-forward="true" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/ItemPipeLine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        <state relative-caret-position="350">
+          <caret line="41" column="24" lean-forward="true" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
           <folding>
-            <element signature="e#483#484#0" expanded="false" />
-            <element signature="e#519#520#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="715">
-          <caret line="61" column="1" lean-forward="true" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2678#2679#0" expanded="true" />
-            <element signature="e#2757#2758#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/StirngUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseNews.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="28" column="39" lean-forward="true" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#519#520#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1622,33 +1516,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/test/java/com/graph/WebTest.java">
+    <entry file="jar://C:/Program Files/Java/jdk/lib/tools.jar!/com/sun/tools/doclets/formats/html/SourceToHTMLConverter.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+        <state relative-caret-position="120">
+          <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="28" column="58" lean-forward="true" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/utils/StirngUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="44" column="27" lean-forward="false" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
+          <folding>
+            <element signature="e#1716#1717#0" expanded="true" />
+            <element signature="e#1799#1800#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/beans/NewsItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webdata/src/test/java/com/graph/Trim.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="18" selection-end-column="43" />
+        <state relative-caret-position="400">
+          <caret line="28" column="25" lean-forward="false" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentNews.java">
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/NeteaseInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="33" column="31" lean-forward="true" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+        <state relative-caret-position="328">
+          <caret line="50" column="48" lean-forward="false" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/SinaInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/SinaList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/processor/TencentInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="50" column="44" lean-forward="true" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/SinaNews.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="25" column="48" lean-forward="true" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseNews.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentCmt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="20">
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1656,14 +1633,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/TencentNews.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/NeteaseCmt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="47" column="54" lean-forward="true" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+        <state relative-caret-position="260">
+          <caret line="39" column="13" lean-forward="true" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4322#4323#0" expanded="true" />
-            <element signature="e#4349#4350#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webdata/src/main/java/com/crawler/sites/SinaCmt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#369#370#0" expanded="true" />
           </folding>
         </state>
       </provider>

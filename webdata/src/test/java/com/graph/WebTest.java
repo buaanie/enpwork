@@ -7,6 +7,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,16 +21,11 @@ public class WebTest {
             HttpResponse response = HttpClients.createDefault().execute(re);
             if(response.getStatusLine().getStatusCode()==200) {
                 String s = EntityUtils.toString(response.getEntity(),"GBK");
-                JSONObject jsonObject = JSONObject.parseObject(s);
-                String st = jsonObject.getString("commentIds");
-                System.out.println(st);
-                Pattern pattern = Pattern.compile("\"(.+?)\"");
-                Matcher matcher = pattern.matcher(st);
-                while(matcher.find()){
-                    String level = matcher.group(1);
-                    if(level.split(",").length<2)
-                        continue;
-                    System.out.println(level);
+                JSONObject jsonObject = JSONObject.parseObject(s).getJSONObject("comments");
+                Iterator<String> iter = jsonObject.keySet().iterator();
+                while(iter.hasNext()){
+                    JSONObject temp = jsonObject.getJSONObject(iter.next());
+                    System.out.println(temp.getString("commentId"));
                 }
             }
             } catch (IOException e) {

@@ -3129,3 +3129,141 @@ com.alibaba.fastjson.JSONException: syntax error, expect [, actual {, pos 0
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
+[ERROR]  [pool-1-thread-1]  2017-07-19 09:34:59,035   us.codecraft.webmagic.Spider::process request Request{url='http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/CPI6A4LQ000187VE/comments/newList?offset=30&limit=40&headLimit=3&tailLimit=1&ibc=newswap', method='null', extras={id=CPI6A4LQ000187VE, statusCode=200}, priority=0} error
+java.lang.NullPointerException
+	at java.util.regex.Matcher.getTextLength(Matcher.java:1283)
+	at java.util.regex.Matcher.reset(Matcher.java:309)
+	at java.util.regex.Matcher.<init>(Matcher.java:229)
+	at java.util.regex.Pattern.matcher(Pattern.java:1093)
+	at com.crawler.sites.NeteaseCmt.process(NeteaseCmt.java:70)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:18:42,756   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:18:42,965   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500466721', method='null', extras={statusCode=200}, priority=0} error
+com.alibaba.fastjson.JSONException: syntax error, pos 3, json : 
+	serverSeconds : 1500466722,
+	last_time : 1500466721,
+	path : [],
+	count : -1,
+    offset_page : 0,
+    offset_num : 0,
+	list : []
+
+	at com.alibaba.fastjson.parser.DefaultJSONParser.parse(DefaultJSONParser.java:1368)
+	at com.alibaba.fastjson.parser.DefaultJSONParser.parse(DefaultJSONParser.java:1275)
+	at com.alibaba.fastjson.JSON.parse(JSON.java:137)
+	at com.alibaba.fastjson.JSON.parse(JSON.java:128)
+	at com.alibaba.fastjson.JSON.parseObject(JSON.java:201)
+	at com.crawler.utils.StirngUtil.parseJsonp(StirngUtil.java:93)
+	at com.crawler.processor.SinaList.processPage(SinaList.java:21)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:19:50,438   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:19:50,446   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500466789', method='null', extras={statusCode=200}, priority=0} error
+java.lang.StringIndexOutOfBoundsException: String index out of range: 148
+	at java.lang.String.substring(String.java:1951)
+	at com.crawler.utils.StirngUtil.parseJsonp(StirngUtil.java:92)
+	at com.crawler.processor.SinaList.processPage(SinaList.java:21)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:20:27,228   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:20:27,249   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500466826', method='null', extras={statusCode=200}, priority=0} error
+java.lang.StringIndexOutOfBoundsException: String index out of range: 148
+	at java.lang.String.substring(String.java:1951)
+	at com.crawler.utils.StirngUtil.parseJsonp(StirngUtil.java:93)
+	at com.crawler.processor.SinaList.processPage(SinaList.java:21)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:20:51,913   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:20:51,923   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500466851', method='null', extras={statusCode=200}, priority=0} error
+java.lang.StringIndexOutOfBoundsException: String index out of range: 148
+	at java.lang.String.substring(String.java:1951)
+	at com.crawler.utils.StirngUtil.parseJsonp(StirngUtil.java:94)
+	at com.crawler.processor.SinaList.processPage(SinaList.java:21)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:22:10,565   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:22:10,573   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500466929', method='null', extras={statusCode=200}, priority=0} error
+java.lang.StringIndexOutOfBoundsException: String index out of range: 148
+	at java.lang.String.substring(String.java:1951)
+	at com.crawler.utils.StirngUtil.parseJsonp(StirngUtil.java:94)
+	at com.crawler.processor.SinaList.processPage(SinaList.java:21)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:22:55,844   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:22:55,864   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500466975', method='null', extras={statusCode=200}, priority=0} error
+java.lang.StringIndexOutOfBoundsException: String index out of range: 148
+	at java.lang.String.substring(String.java:1951)
+	at com.crawler.utils.StirngUtil.parseJsonp(StirngUtil.java:94)
+	at com.crawler.processor.SinaList.processPage(SinaList.java:21)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:26:13,778   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:26:13,790   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500467173', method='null', extras={statusCode=200}, priority=0} error
+java.lang.NullPointerException
+	at com.crawler.processor.SinaList.processPage(SinaList.java:22)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:28:05,220   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:28:05,237   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500467284', method='null', extras={statusCode=200}, priority=0} error
+java.lang.NullPointerException
+	at com.crawler.processor.SinaList.processPage(SinaList.java:22)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:28:19,638   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[ERROR]  [pool-1-thread-1]  2017-07-19 20:28:19,652   us.codecraft.webmagic.Spider::process request Request{url='http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=1&last_time=1500467299', method='null', extras={statusCode=200}, priority=0} error
+java.lang.NullPointerException
+	at com.crawler.processor.SinaList.processPage(SinaList.java:22)
+	at us.codecraft.webmagic.handler.CompositePageProcessor.process(CompositePageProcessor.java:27)
+	at us.codecraft.webmagic.Spider.processRequest(Spider.java:416)
+	at us.codecraft.webmagic.Spider$1.run(Spider.java:321)
+	at us.codecraft.webmagic.thread.CountableThreadPool$1.run(CountableThreadPool.java:74)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[WARN]  [pool-1-thread-1]  2017-07-19 20:29:02,707   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()
+[WARN]  [pool-1-thread-1]  2017-07-19 20:29:49,721   us.codecraft.webmagic.downloader.HttpClientDownloader::Charset autodetect failed, use UTF-8 as charset. Please specify charset in Site.setCharset()

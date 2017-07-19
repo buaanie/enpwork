@@ -36,6 +36,7 @@ public class NeteaseCmt implements PageProcessor{
         Spider net_cmt = Spider.create(new NeteaseCmt()).addRequest(new Request(cmt_url).putExtra("id",news_id)).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
         net_cmt.run();
     }
+
     @Override
     public void process(Page page) {
         Json json = new Json(page.getRawText());
@@ -43,12 +44,12 @@ public class NeteaseCmt implements PageProcessor{
         if(cmt_num==0)
             return;
         String target_id = page.getRequest().getExtra("id").toString();
-        JSONArray comments = JSONArray.parseArray(json.jsonPath("$.comments").toString());
-        Iterator<Object> iter = comments.iterator();
+        JSONObject comments = JSONObject.parseObject(json.jsonPath("$.comments").toString());
+        Iterator<String> iter = comments.keySet().iterator();
         List<CmtUser> cmtuserList = new ArrayList<>();
         HashMap<String,NewsCmt> commentsSet = new HashMap<>();
         while(iter.hasNext()){
-            JSONObject temp = (JSONObject) iter.next();
+            JSONObject temp = comments.getJSONObject(iter.next());
             String cmt_id = "nts-"+temp.getString("commentId");
             Long time = temp.getLong("createTime");
             String content = temp.getString("content");
@@ -85,11 +86,10 @@ public class NeteaseCmt implements PageProcessor{
         page.putField(ItemType.CmtUser,cmtuserList);
         page.putField(ItemType.NewsCmt,commentsList);
 
-        Boolean hasNext = false;
         Matcher m = Pattern.compile("offset=(\\d+)").matcher(page.getUrl().toString());
         if(m.find()){
             int offset = Integer.valueOf(m.group(1));
-            if(offset<cmt_num){
+            if(offset+30<cmt_num){
                 String page_next = String.format(api_url,target_id,offset+30);
                 page.addTargetRequest(new Request(page_next).putExtra("id",target_id));
             }

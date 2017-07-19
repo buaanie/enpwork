@@ -8,15 +8,19 @@ import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.crawler.utils.StirngUtil.lastSplitSlice;
+
 /**
  * Created by ACT-NJ on 2017/6/8.
  */
 public class Trim {
     public static void main(String[] args) {
-        String s ="http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/%s/comments/newList?offset=50&limit=40&headLimit=3&tailLimit=1&ibc=newswap";
-        Matcher m = Pattern.compile("offset=(\\d+)").matcher(s);
-        if(m.find())
-            System.out.println(m.group(1));
+        String s ="http://news.sina.com.cn/s/wh/2017-07-19/doc-ifyihmmm7541366.shtml";
+        System.out.println(lastSplitSlice(s,"-").replace(".shtml",""));
+//        String s ="http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/%s/comments/newList?offset=50&limit=40&headLimit=3&tailLimit=1&ibc=newswap";
+//        Matcher m = Pattern.compile("offset=(\\d+)").matcher(s);
+//        if(m.find())
+//            System.out.println(m.group(1));
 //        String s = "http://3g.163.com/news/article/CPIRSAQQ0001899N.html";
 //        System.out.println(s.matches("http://3g\\.163\\.com/news/\\S+"));
 //        String s = "https://coral.qq.com/article/%s/comment?commentid=%s&tag=&reqnum=20";

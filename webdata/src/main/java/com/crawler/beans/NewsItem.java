@@ -20,7 +20,7 @@ public class NewsItem {
 	private String source;		    //新闻来源，原始来源
 	private String type;		    //新闻类型，如国内、国际、教育、新闻 etc
 	private String keywords;		//新闻类型
-    private String comment_url;     //新闻评论页面
+    private String cmt_id;     //新闻评论页面ID
 
 	public NewsItem(){
 		
@@ -81,11 +81,11 @@ public class NewsItem {
     public void setKeyWords(String words) {
 	    this.keywords = words;
     }
-    public void setComment(String url){
-	    this.comment_url= url;
+    public void setComment(String cmtid){
+	    this.cmt_id= cmtid;
     }
     public String getCommentUrl(){
-        return this.comment_url;
+        return this.cmt_id;
     }
     public String getKeywords() {
         return keywords;
