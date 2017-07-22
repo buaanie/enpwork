@@ -16,11 +16,10 @@ public class TencentList implements SubPageProcessor{
 
     @Override
     public MatchOther processPage(Page page) {
-        System.out.println(page.getUrl());
         Json jsonobject = new Json(page.getRawText());
         List<String> list = jsonobject.jsonPath("$.data.article_info[*]").all();
         for (String s : list) {
-            JSONObject temp = JSON.parseObject(s);
+            JSONObject temp = JSONObject.parseObject(s);
             if(temp.getString("column").contains("图片"))
                 continue;
             Request r = new Request(temp.getString("url"));

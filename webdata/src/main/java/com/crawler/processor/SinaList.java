@@ -28,11 +28,21 @@ public class SinaList implements SubPageProcessor {
             Request r = new Request(temp.getString("url"));
             r.putExtra("title",temp.getString("title"));
             r.putExtra("time",temp.getString("time"));
-            r.putExtra("type",temp.getJSONObject("channel").getString("title"));
+            r.putExtra("type",getType(temp.getJSONObject("channel").getString("id")));
             page.addTargetRequest(r);
         }
         page.setSkip(true); //无需保存
         return MatchOther.NO;
+    }
+
+    private String getType(String input){
+        switch (input){
+            case "90":return "国内-gn";
+            case "91":return "国际-gj";
+            case "92":return "社会-sh";
+            case "93":return "军事-jc";
+            default: return "国内-gn";
+        }
     }
 
     @Override

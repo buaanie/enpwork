@@ -18,8 +18,8 @@ public class NewsCmt {
     private String stringTime;	    //发布时间
     private String id;          //评论id
     private String target;      //评论文章的id
-    private String pid;         //评论上一级id
-    private String rid;
+    private String pid = "0";         //评论上一级id
+    private String rid = "0";
     private String uid;         //评论人id
     private String upNum;       //评论被点赞数
 

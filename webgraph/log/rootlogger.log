@@ -1,1 +1,0 @@
-[WARN]  [qtp992136656-17]  2017-05-31 21:28:06,869   org.springframework.web.servlet.PageNotFound::No mapping found for HTTP request with URI [/static/src/css/test.css] in DispatcherServlet with name 'springMVC'

@@ -81,10 +81,10 @@ public class NewsItem {
     public void setKeyWords(String words) {
 	    this.keywords = words;
     }
-    public void setComment(String cmtid){
+    public void setCmtID(String cmtid){
 	    this.cmt_id= cmtid;
     }
-    public String getCommentUrl(){
+    public String getCmtID(){
         return this.cmt_id;
     }
     public String getKeywords() {

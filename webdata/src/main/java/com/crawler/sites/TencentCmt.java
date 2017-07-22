@@ -30,17 +30,21 @@ import static com.crawler.utils.StirngUtil.UA2;
 public class TencentCmt implements PageProcessor{
     private static final String tct_cmt = "https://coral.qq.com/article/%s/comment?commentid=%s&tag=&reqnum=40";
     public static void main(String[] args) {
-        String cmt_url = String.format(tct_cmt,"2029093517","0");
-        Spider ten_cmt = Spider.create(new TencentCmt()).addUrl(cmt_url).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
+        String id = "TCT-2029093517";
+        String cmt_url = String.format(tct_cmt,id.split("-")[1],"0");
+        Spider ten_cmt = Spider.create(new TencentCmt()).addRequest(new Request(cmt_url).putExtra("id",id)).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
         ten_cmt.run();
     }
     @Override
     public void process(Page page) {
         Json json = new Json(page.getRawText());
         int cmt_num = Integer.valueOf(json.jsonPath("$.data.total").toString());
-        if(cmt_num==0)
+        if(cmt_num==0) {
+            page.setSkip(true);
             return;
-        String target_id = json.jsonPath("$.data.targetid").toString();
+        }
+//        String target_id = json.jsonPath("$.data.targetid").toString();
+        String target_id = page.getRequest().getExtra("id").toString();
         Boolean hasNext = Boolean.valueOf(json.jsonPath("$.data.hasnext").toString());//用于判断是否还有分页
         String last_id = json.jsonPath("$.data.last").toString();//记录最后一条评论id，用于拼接下一分页
         JSONArray comments = JSONArray.parseArray(json.jsonPath("$.data.commentid").toString());
@@ -49,7 +53,7 @@ public class TencentCmt implements PageProcessor{
         List<CmtUser> cmtuserList = new ArrayList<>();
         while(iter.hasNext()){
             JSONObject temp = (JSONObject) iter.next();
-            String cmt_id = "tct-"+temp.getString("id");
+            String cmt_id = temp.getString("id");
             String root_id = temp.getString("rootid");
             String parent_id = temp.getString("parent");
             Long time = temp.getLong("time");
@@ -60,9 +64,9 @@ public class TencentCmt implements PageProcessor{
             String user_region = temp.getJSONObject("userinfo").getString("region");
             String user_gender = temp.getJSONObject("userinfo").getString("gender"); //1：男  2：女
             String user_avatar = temp.getJSONObject("userinfo").getString("head");
-            NewsCmt comment = new NewsCmt(cmt_id,target_id,user_id,up,time,content);
-            comment.setPid(parent_id);
-            comment.setRid(root_id);
+            NewsCmt comment = new NewsCmt("tct-"+cmt_id,target_id,user_id,up,time,content);
+            comment.setPid("tct-"+parent_id);
+            comment.setRid("tct-"+root_id);
             CmtUser user = new CmtUser(user_id,user_nick,user_region,user_gender,user_avatar);
             commentsList.add(comment);
             cmtuserList.add(user);

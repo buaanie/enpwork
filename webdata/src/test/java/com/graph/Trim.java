@@ -2,12 +2,17 @@ package com.graph;
 
 import org.apache.hadoop.hbase.util.Bytes;
 
+import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.crawler.utils.StirngUtil.TIME_REGEX;
 import static com.crawler.utils.StirngUtil.lastSplitSlice;
 
 /**
@@ -15,8 +20,19 @@ import static com.crawler.utils.StirngUtil.lastSplitSlice;
  */
 public class Trim {
     public static void main(String[] args) {
-        String s ="http://news.sina.com.cn/s/wh/2017-07-19/doc-ifyihmmm7541366.shtml";
-        System.out.println(lastSplitSlice(s,"-").replace(".shtml",""));
+        String s =  "wb_verified=0&wb_screen_name=杨大洁子&wb_cmnt_type=comment_status&wb_user_id=5351052638&wb_description=&wb_parent=&wb_profile_img=http%3A%2F%2Ftvax3.sinaimg.cn%2Fcrop.0.0.664.664.50%2F005Q8teCly8fh0tpj3718j30ig0igq40.jpg&wb_time=2017-07-21 15:55:29&wb_comment_id=4131977760631219&area=上海";
+        String regex = "http\\S+\\.jpg";
+        Matcher m = Pattern.compile(regex).matcher(s);
+        if(m.find())
+            System.out.println(URLDecoder.decode(m.group(0)));
+//        String s = "2017-07-21 10:13:57";
+//        try {
+//            System.out.println(new SimpleDateFormat ("yyyy-MM-dd HH:mm", Locale.CHINA).parse(s).getTime());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        String s ="http://news.sina.com.cn/s/wh/2017-07-19/doc-ifyihmmm7541366.shtml";
+//        System.out.println(lastSplitSlice(s,"-").replace(".shtml",""));
 //        String s ="http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/%s/comments/newList?offset=50&limit=40&headLimit=3&tailLimit=1&ibc=newswap";
 //        Matcher m = Pattern.compile("offset=(\\d+)").matcher(s);
 //        if(m.find())

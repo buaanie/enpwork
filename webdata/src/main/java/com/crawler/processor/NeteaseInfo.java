@@ -9,8 +9,6 @@ import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.List;
 
-import static com.crawler.utils.StirngUtil.*;
-
 /**
  * Created by ACT-NJ on 2017/7/17.
  */
@@ -40,8 +38,10 @@ public class NeteaseInfo implements SubPageProcessor{
             }
         }
         String content = sb.toString();
-        if(content.matches("\\s+"))
+        if(content.matches("\\s+")) {
+            page.setSkip(true);
             return MatchOther.NO;
+        }
         String url = page.getUrl().toString();
         String source  = page.getRequest().getExtra("source").toString();
         String time  = page.getRequest().getExtra("time").toString();
@@ -50,7 +50,7 @@ public class NeteaseInfo implements SubPageProcessor{
         NewsItem news = new NewsItem("NTS-"+id,url,title,content,time,source,type,title,keywords);
         //电脑 http://comment.news.163.com/news2_bbs/cmt_id.html
         //手机 http://3g.163.com/touch/comment.html?docid=cmt_id
-        news.setComment("nts-"+id);
+        news.setCmtID("nts-"+id);
         page.putField(ItemType.NewsItem,news);
         return MatchOther.NO;
     }

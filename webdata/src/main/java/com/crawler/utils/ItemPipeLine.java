@@ -22,6 +22,7 @@ public class ItemPipeLine implements Pipeline{
     public void process(ResultItems resultItems, Task task) {
         switch (pageType){
             case ItemType.NewsItem:
+                System.out.println("888888");
                 if(resultItems.get(ItemType.NewsItem)!=null)
                 {
                     NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);

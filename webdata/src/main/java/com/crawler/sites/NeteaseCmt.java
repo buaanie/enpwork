@@ -31,9 +31,9 @@ public class NeteaseCmt implements PageProcessor{
     private static final String api_url = "http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/%s/comments/newList?offset=%d&limit=40&headLimit=3&tailLimit=1&ibc=newswap";
 
     public static void main(String[] args) {
-        String  news_id = "CPI6A4LQ000187VE";
-        String cmt_url = String.format(api_url,news_id,0);
-        Spider net_cmt = Spider.create(new NeteaseCmt()).addRequest(new Request(cmt_url).putExtra("id",news_id)).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
+        String  news_id = "NTS-CPI6A4LQ000187VE";
+        Request cmt_req = new Request(String.format(api_url,news_id.split("-")[1],0)).putExtra("id",news_id);
+        Spider net_cmt = Spider.create(new NeteaseCmt()).addRequest(cmt_req).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
         net_cmt.run();
     }
 
@@ -41,8 +41,10 @@ public class NeteaseCmt implements PageProcessor{
     public void process(Page page) {
         Json json = new Json(page.getRawText());
         int cmt_num = Integer.valueOf(json.jsonPath("$.newListSize").toString());
-        if(cmt_num==0)
+        if(cmt_num==0) {
+            page.setSkip(true);
             return;
+        }
         String target_id = page.getRequest().getExtra("id").toString();
         JSONObject comments = JSONObject.parseObject(json.jsonPath("$.comments").toString());
         Iterator<String> iter = comments.keySet().iterator();
@@ -50,7 +52,7 @@ public class NeteaseCmt implements PageProcessor{
         HashMap<String,NewsCmt> commentsSet = new HashMap<>();
         while(iter.hasNext()){
             JSONObject temp = comments.getJSONObject(iter.next());
-            String cmt_id = "nts-"+temp.getString("commentId");
+            String cmt_id = temp.getString("commentId");
             Long time = temp.getLong("createTime");
             String content = temp.getString("content");
             String up = temp.getString("vote");
@@ -60,7 +62,7 @@ public class NeteaseCmt implements PageProcessor{
             String user_region = _user.getString("location");
             String user_gender = "-";
             String user_avatar = _user.getString("avatar");
-            NewsCmt comment = new NewsCmt(cmt_id,target_id,user_id,up,time,content);
+            NewsCmt comment = new NewsCmt("nts-"+cmt_id,target_id,user_id,up,time,content);
             CmtUser user = new CmtUser(user_id,user_nick,user_region,user_gender,user_avatar);
             commentsSet.put(cmt_id,comment);
             cmtuserList.add(user);
@@ -75,8 +77,8 @@ public class NeteaseCmt implements PageProcessor{
             if(ids.length<2)
                 continue;
             for(int i = 1;i<ids.length;i++){
-                commentsSet.get(ids[i]).setPid(ids[i-1]);
-                commentsSet.get(ids[i]).setRid(ids[0]);
+                commentsSet.get(ids[i]).setPid("nts-"+ids[i-1]);
+                commentsSet.get(ids[i]).setRid("nts-"+ids[0]);
             }
         }
         List<NewsCmt> commentsList = new ArrayList<>();
