@@ -4,6 +4,7 @@ import com.crawler.beans.CmtUser;
 import com.crawler.beans.NewsCmt;
 import com.crawler.beans.NewsItem;
 import com.crawler.beans.WikiItem;
+import com.store.StoreNews;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
  */
 public class ItemPipeLine implements Pipeline{
     private  String pageType = null;
+    private static StoreNews news = new StoreNews();
     public ItemPipeLine(String type){
         this.pageType = type;
     }
@@ -22,10 +24,10 @@ public class ItemPipeLine implements Pipeline{
     public void process(ResultItems resultItems, Task task) {
         switch (pageType){
             case ItemType.NewsItem:
-                System.out.println("888888");
                 if(resultItems.get(ItemType.NewsItem)!=null)
                 {
                     NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);
+
                     System.out.println(news.toStringJson());
                 };break;
             case ItemType.WikiItem:
@@ -39,7 +41,6 @@ public class ItemPipeLine implements Pipeline{
                 {
                     ArrayList comments = (ArrayList<NewsCmt>) resultItems.get(ItemType.NewsCmt);
                     ArrayList users = (ArrayList<CmtUser>) resultItems.get(ItemType.CmtUser);
-                    System.out.println(comments.size()+"    "+ users.size());
                 };break;
             default:
                 System.out.println("sorry");;break;

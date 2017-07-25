@@ -25,7 +25,7 @@ public class People implements PageProcessor{
     private static final String url = "http://news.people.com.cn/210801/211150/index.js?_=%s";
     private final String IGNORE_PAGE = "http://(media|game|tv|pic)\\.people\\.com\\.cn/n1/\\d{4}/\\d{4}/\\S+";
     private Site site = Site.me().setDomain("http://news.people.com.cn/").setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000)
-            .setUserAgent("Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)").setCharset("GBK").setUseGzip(true);
+            .setUserAgent(UA2).setCharset("GBK").setUseGzip(true);
 
     public static void main(String[] args) {
         Date today = new Date();

@@ -1,0 +1,1 @@
+(nohup ./auto_start 1>/dev/null &)

@@ -27,7 +27,7 @@ public class GetEventInfo {
     private TransportClient esClient;
     private Logger logger;
     public GetEventInfo(){
-        esClient = new ESClient().getESClient();
+        esClient = ESClient.getInstance();
         logger = LoggerFactory.getLogger(this.getClass());
     }
     public List<String> filterEvent(Date from, Date to){

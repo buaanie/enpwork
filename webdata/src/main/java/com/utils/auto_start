@@ -1,0 +1,19 @@
+#!/bin/sh
+LOGDIR=crawlerLog
+
+start()
+{
+	procnum=`ps aux|grep java |grep -v grep |wc -l`;
+	if test $procnum -lt 1
+	then
+		echo "`date`	slaveworker is down." 1>>$LOGDIR/slaveworker.log;
+		./newsCrawler2.sh
+		echo "start slaveworker   " 1>>$LOGDIR/slaveworker.log;
+	fi
+}
+
+while test 1
+do
+	start
+	sleep 8h;	
+done

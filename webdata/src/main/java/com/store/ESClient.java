@@ -21,16 +21,17 @@ import java.util.Properties;
  * Created by ACT-NJ on 2017/5/31.
  */
 public class ESClient {
-    public static TransportClient client;
-    private static Logger logger;
+    private static ESClient conn = new ESClient();
+    private TransportClient client;
+    private Logger logger;
 
-    public ESClient() {
+    private ESClient() {
         logger = Logger.getLogger(this.getClass());
         buildESClient();
     }
 
-    public TransportClient getESClient() {
-        return client;
+    public static TransportClient getInstance() {
+        return conn.client;
     }
 
     private void buildESClient() {
@@ -46,7 +47,9 @@ public class ESClient {
                 int port = Integer.valueOf(properties.getProperty("port", "9300"));
                 String hosts = properties.getProperty("hosts", "127.0.0.1");
                 for (String host : hosts.split(",")) {
+                    System.out.println(host);
                     client.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName(host), port));
+                    System.out.println("---------");
                 }
                 logger.info("----><----- connect to ES ----><-----");
             } catch (IOException e) {

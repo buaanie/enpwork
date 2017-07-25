@@ -11,15 +11,16 @@ import org.apache.hadoop.hbase.client.HTable;
 import org.apache.log4j.Logger;
 
 public class HBaseClient {
-	private static  Configuration conf;
-	private static HConnection conn;
-	private static Logger logger;
-	public HBaseClient(){
+	private static HBaseClient hbase = new HBaseClient();
+	private Configuration conf;
+	private HConnection conn;
+	private Logger logger;
+	private HBaseClient(){
 		logger =Logger.getLogger(this.getClass());
 		buildHBaseClient();
 	}
-	public HTable getTable(String tableName) throws IOException{
-		return (HTable) conn.getTable(tableName);
+	public static HTable getTable(String tableName) throws IOException{
+		return (HTable) hbase.conn.getTable(tableName);
 	}
 
 	private void buildHBaseClient() {

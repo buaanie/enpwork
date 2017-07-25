@@ -11,19 +11,19 @@ import java.util.Locale;
 
 
 public class NewsItem {
-	private String title;           //新闻标题
-	private String description;		//新闻简介，简述，可用首段代替
-	private String content;		    //新闻内容
-	private String stringTime;	    //发布时间
-	private String id;			    //新闻ID
-	private String url;			    //新闻链接
-	private String source;		    //新闻来源，原始来源
-	private String type;		    //新闻类型，如国内、国际、教育、新闻 etc
-	private String keywords;		//新闻类型
+
+    private String title;           //新闻标题
+    private String description;		//新闻简介，简述，可用首段代替
+    private String content;		    //新闻内容
+    private String stringTime;	    //发布时间
+    private String id;			    //新闻ID
+    private String url;			    //新闻链接
+    private String source;		    //新闻来源，原始来源
+    private String type;		    //新闻类型，如国内、国际、教育、新闻 etc
+    private String keywords;		//新闻类型
     private String cmt_id;     //新闻评论页面ID
 
 	public NewsItem(){
-		
 	}
 
     /**
@@ -50,14 +50,24 @@ public class NewsItem {
 		this.description = desp;
 		this.keywords = keywords;
 	}
-    public String getSource() {
-        return source;
-    }
+
     public String getTitle() {
         return title;
     }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getSource() {
+        return source;
+    }
+    public void setSource(String source) {
+        this.source = source;
+    }
     public String getType() {
         return type;
+    }
+    public void setType(String type) {
+        this.type = type;
     }
     public Date getDateTime() throws ParseException {
     	DateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd HH:mm", Locale.CHINA);
@@ -66,17 +76,35 @@ public class NewsItem {
     public String getStringTime() {
         return stringTime;
     }
+    public void setStringTime(String stringTime) {
+        this.stringTime = stringTime;
+    }
     public String getId() {
         return id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
     public String getURL() {
         return url;
     }
+    public void setUrl(String url) {
+        this.url = url;
+    }
     public String getContent() {
         return content;
     }
+    public void setContent(String content) {
+        this.content = content;
+    }
     public String getDesp() {
         return description;
+    }
+    public void setDesp(String description) {
+        this.description = description;
+    }
+    public String getKeywords() {
+        return keywords;
     }
     public void setKeyWords(String words) {
 	    this.keywords = words;
@@ -86,9 +114,6 @@ public class NewsItem {
     }
     public String getCmtID(){
         return this.cmt_id;
-    }
-    public String getKeywords() {
-        return keywords;
     }
     public String toString(){
     	return "新闻：{" + "id= '"+ id+ "' 标题='" + title +
