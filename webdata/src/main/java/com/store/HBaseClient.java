@@ -15,10 +15,12 @@ public class HBaseClient {
 	private Configuration conf;
 	private HConnection conn;
 	private Logger logger;
+
 	private HBaseClient(){
 		logger =Logger.getLogger(this.getClass());
 		buildHBaseClient();
 	}
+
 	public static HTable getTable(String tableName) throws IOException{
 		return (HTable) hbase.conn.getTable(tableName);
 	}

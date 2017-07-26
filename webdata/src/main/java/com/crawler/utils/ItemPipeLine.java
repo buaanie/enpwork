@@ -16,9 +16,10 @@ import java.util.ArrayList;
  */
 public class ItemPipeLine implements Pipeline{
     private  String pageType = null;
-    private static StoreNews news = new StoreNews();
+    private StoreNews newsStore;
     public ItemPipeLine(String type){
         this.pageType = type;
+        newsStore = new StoreNews();
     }
     @Override
     public void process(ResultItems resultItems, Task task) {
@@ -27,7 +28,7 @@ public class ItemPipeLine implements Pipeline{
                 if(resultItems.get(ItemType.NewsItem)!=null)
                 {
                     NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);
-
+                    newsStore.storeNews(news);
                     System.out.println(news.toStringJson());
                 };break;
             case ItemType.WikiItem:

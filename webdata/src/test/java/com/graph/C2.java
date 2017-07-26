@@ -5,15 +5,15 @@ package com.graph;
  */
 public class C2 {
     private static C2 c = new C2();
-    private int b=0;
-    private C1 a;
+    private C1 c1;
     private C2(){
-        a = new C1();
-        b++;
-        System.out.println(a.a);
-        System.out.println(b+"  ---");
+        init();
     }
-    public static C2 getC(){
-        return c;
+    public static String getC2(String s){
+        return c.c1.res(s);
+    }
+    private void init() {
+        c1= new C1();
+        System.out.println("?????");
     }
 }

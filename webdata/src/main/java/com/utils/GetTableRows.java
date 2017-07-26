@@ -30,7 +30,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 public class GetTableRows {
 	private HTable table;
 	public GetTableRows() throws IOException {
-		table = new HBaseClient().getTable("carsInfo");
+		table = HBaseClient.getTable("carsInfo");
 	}
 	public static void main(String[] args) {
 		try {

@@ -21,15 +21,19 @@ import org.apache.log4j.Logger;
 
 public class CrawlerAllHBase {
 	private HTable newsInfo;
+	private HTable newsCmt;
 	private List<Put> newsList;
+	private List<Put> cmtsList;
 	private Logger logger;
 	public CrawlerAllHBase(){
 		try {
-			newsInfo = new HBaseClient().getTable("tjnews");
+			newsInfo = HBaseClient.getTable("nnews");
+			newsCmt = HBaseClient.getTable("ncmt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	    newsList = new ArrayList<Put>();
+	    cmtsList = new ArrayList<Put>();
 	    logger =  Logger.getLogger(this.getClass());
 	    registerShutdownHook();
 	}
