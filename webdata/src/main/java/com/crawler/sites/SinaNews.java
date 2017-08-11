@@ -4,6 +4,7 @@ import com.crawler.processor.SinaInfo;
 import com.crawler.processor.SinaList;
 import com.crawler.utils.ItemPipeLine;
 import com.crawler.utils.ItemType;
+import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.handler.CompositePageProcessor;
@@ -20,11 +21,15 @@ public class SinaNews {
     private static String url = "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=%d&last_time=%s";
     private static Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000).setUserAgent(UA1);
     public static void main(String[] args) {
+        new SinaNews().run();
+    }
+    public void run(){
         CompositePageProcessor sinaProcessor = new CompositePageProcessor(site);
         sinaProcessor.setSubPageProcessors(new SinaInfo(),new SinaList());
         String now = String.valueOf(System.currentTimeMillis()/1000 - 2*60*60);
         String start = String.format(url,1,now);
-        Spider netease = Spider.create(sinaProcessor).addUrl(start).addPipeline(new ItemPipeLine(ItemType.NewsItem));
-        netease.run();
+        Request r = new Request(start).setCharset("GBK");
+        Spider netease = Spider.create(sinaProcessor).addRequest(r).thread(4);
+        netease.start();
     }
 }

@@ -22,17 +22,21 @@ import static com.crawler.utils.StirngUtil.UA1;
  * 手机版军事频道 http://3g.163.com/touch/reconstruct/article/list/BAI67OGGwangning/0-10.html
  */
 public class NeteaseNews{
-    private static String[] list = {"BCR1UC1Qwangning-社会","BD29LPUBwangning-国内","BD29MJTVwangning-国际","BAI67OGGwangning-军事"};
-    private static String url = "http://3g.163.com/touch/reconstruct/article/list/%s/%d-40.html";
-    private static Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000)
+    private String[] list = {"BCR1UC1Qwangning-社会","BD29LPUBwangning-国内","BD29MJTVwangning-国际","BAI67OGGwangning-军事"};
+    private  String url = "http://3g.163.com/touch/reconstruct/article/list/%s/%d-40.html";
+    private Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000)
             .setUserAgent(UA1);
     public static void main(String[] args) {
+        new NeteaseNews().run();
+    }
+    public void run(){
+        System.out.println("net");
         CompositePageProcessor ntesProcessor = new CompositePageProcessor(site);
         ntesProcessor.setSubPageProcessors(new NeteaseInfo(),new NeteaseList());
-        Spider netease = Spider.create(ntesProcessor).addRequest(getStartUrls()).addPipeline(new ItemPipeLine(ItemType.NewsItem));
-        netease.run();
+        Spider netease = Spider.create(ntesProcessor).addRequest(getStartUrls()).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
+        netease.start();
     }
-    public static Request[] getStartUrls(){
+    public Request[] getStartUrls(){
         List<Request> res = new ArrayList<>();
         for (String s : list) {
             for(int i=0;i<40;i=i+40){

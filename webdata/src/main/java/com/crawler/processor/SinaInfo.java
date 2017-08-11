@@ -26,7 +26,7 @@ public class SinaInfo implements SubPageProcessor {
         String type = types.split("-")[0];
         String title = page.getRequest().getExtra("title").toString();
         Long _time = Long.valueOf(page.getRequest().getExtra("time").toString());
-        String time = sdf.format(new Date(_time));
+        String time = sdf.format(new Date(_time*1000));
         String keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
         String source = page.getHtml().xpath("//head/meta[@name='mediaid']/@content").toString();
         String id = page.getHtml().xpath("//head/meta[@name='publishid']/@content").toString();
@@ -42,7 +42,7 @@ public class SinaInfo implements SubPageProcessor {
             page.setSkip(true);
             return MatchOther.NO;
         }
-        NewsItem news = new NewsItem("SIN-"+id,url,title,content,time,source,type,title,keywords);
+        NewsItem news = new NewsItem("sin-"+id,url,title,content,time,source,type,title,keywords);
         //电脑 http://comment5.news.sina.com.cn/comment/skin/default.html?channel= gj &newsid=comos-id
         //手机 http://cmnt.sina.cn/index?product=comos&index=cmt_id&tj_ch=news
         news.setCmtID("sin-"+id+"-"+types.split("-")[1]);

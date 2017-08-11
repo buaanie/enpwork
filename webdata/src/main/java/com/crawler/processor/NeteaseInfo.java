@@ -46,8 +46,14 @@ public class NeteaseInfo implements SubPageProcessor{
         String source  = page.getRequest().getExtra("source").toString();
         String time  = page.getRequest().getExtra("time").toString();
         String type =  page.getRequest().getExtra("type").toString();
-        String keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString().split(",",2)[1];
-        NewsItem news = new NewsItem("NTS-"+id,url,title,content,time,source,type,title,keywords);
+        String keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
+        if(keywords!=null){
+            keywords = keywords.split(",",2)[1];
+        }else{
+            page.setSkip(true);
+            return MatchOther.NO;
+        }
+        NewsItem news = new NewsItem("nts-"+id,url,title,content,time,source,type,title,keywords);
         //电脑 http://comment.news.163.com/news2_bbs/cmt_id.html
         //手机 http://3g.163.com/touch/comment.html?docid=cmt_id
         news.setCmtID("nts-"+id);

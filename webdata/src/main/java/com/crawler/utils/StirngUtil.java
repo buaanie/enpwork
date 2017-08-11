@@ -30,7 +30,7 @@ public class StirngUtil {
      * @return 去掉各类标签之后的文本
      */
     public static String tidyHTMLText(String rawText){
-        String res = rawText.replaceAll(labelRegex,"").replaceAll(noteRegex,"").replaceAll(specialRegex,"").replace(" ","");
+        String res = rawText.replaceAll(labelRegex,"").replaceAll(noteRegex,"").replaceAll(specialRegex," ").trim();
         return res;
     }
     /**

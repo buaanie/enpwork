@@ -34,13 +34,17 @@ public class TencentNews implements PageProcessor{
             .setUserAgent(UA1);
 
     public static void main(String[] args) {
+        new TencentNews().run();
+    }
+    public void run(){
+        System.out.println("ten");
         String ms = String.valueOf(System.currentTimeMillis());
         String date = sdf.format(new Date());
         String url1 = String.format(tct_news,date,"1",ms);
         subPageProcessors.add(new TencentInfo());
         subPageProcessors.add(new TencentList());
-        Spider tencent = Spider.create(new TencentNews()).addUrl(url1).addPipeline(new ItemPipeLine(ItemType.NewsItem));
-        tencent.run();
+        Spider tencent = Spider.create(new TencentNews()).addUrl(url1).thread(4).addPipeline(new ItemPipeLine(ItemType.NewsItem));
+        tencent.start();
     }
     @Override
     public void process(Page page) {

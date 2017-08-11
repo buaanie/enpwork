@@ -14,16 +14,19 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 
-public class CrawlerAllIndex {
+public class CrawlerIndex {
+	private static CrawlerIndex crawlerIndex = new CrawlerIndex();
 	private TransportClient client;
-	private String index = "tjnews";
 	private List<NewsItem> newsList = new ArrayList<NewsItem>();
     //添加一个日志器
     private Logger logger;
-    public CrawlerAllIndex() {
+    private CrawlerIndex() {
     	client = ESClient.getInstance();
-    	logger =  Logger.getLogger(this.getClass());
+    	logger = Logger.getLogger(this.getClass());
     	registerShutdownHook();
+	}
+	public static CrawlerIndex getIndex(){
+    	return crawlerIndex;
 	}
 	private void registerShutdownHook() {
 		// TODO Auto-generated method stub
@@ -43,11 +46,11 @@ public class CrawlerAllIndex {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		SearchResponse response = client.prepareSearch(index).setSize(0).execute().actionGet();
-		logger.info(index+" -----><----------  "+ response.getHits().getTotalHits());
+//		SearchResponse response = client.prepareSearch(index).setSize(0).execute().actionGet();
+//		logger.info(index+" -----><----------  "+ response.getHits().getTotalHits());
 //		System.out.println(response.getHits().getTotalHits());
-//		if(client!=null || client.connectedNodes().size()>0)
-//			client.close();
+		if(client!=null || client.connectedNodes().size()>0)
+			client.close();
 	}
 
 	public synchronized void insertNews(NewsItem anews) throws Exception{
@@ -68,6 +71,7 @@ public class CrawlerAllIndex {
 		}
 	}
 	private void insertIndexBulk(List<NewsItem> newsList) throws Exception {
+		String index = " ";
 		BulkRequestBuilder bqb = client.prepareBulk();	
 		for (NewsItem news : newsList) {
 			GetResponse test = client.prepareGet(index, "msg", news.getId()).execute().actionGet();

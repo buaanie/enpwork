@@ -6,13 +6,15 @@ package com.graph;
 public class C2 {
     private static C2 c = new C2();
     private C1 c1;
+    public int a = 0;
     private C2(){
         init();
     }
-    public static String getC2(String s){
-        return c.c1.res(s);
+    public static C2 getC2(){
+        return c;
     }
     private void init() {
+        a++;
         c1= new C1();
         System.out.println("?????");
     }

@@ -19,7 +19,7 @@ public class QuickStartServer {
 
     public static final String CONTEXT = "/";
     private static final String DEFAULT_WEBAPP_PATH = "src/main/webapp";
-    public static final int PORT = 8087;
+    public static final int PORT = 8086;
     public static final String[]
             TLD_JAR_NAMES =
             new String[]{"spring-webmvc", "shiro-web", "springside-core", "rapid", "jstl"};

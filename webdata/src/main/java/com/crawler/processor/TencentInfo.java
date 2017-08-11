@@ -27,7 +27,7 @@ public class TencentInfo implements SubPageProcessor{
         String source = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_article']//span[@class='a_source']/allText()").toString();
         if(source==null || source.matches("\\s+"))
             source = page.getHtml().xpath("//*[@id='C-Main-Article-QQ']//div[@class='tit-bar']//span[@bosszone='jgname']/text()").toString();;
-        String id = "TCT-"+url.replaceAll("[^\\d]","");
+        String id = url.replaceAll("[^\\d]","");
         List<Selectable> contents = page.getHtml().xpath("//*[@id='Cnt-Main-Article-QQ']/p[@class='text']").nodes();
         StringBuffer sb = new StringBuffer();
         Boolean fp = true;
@@ -46,7 +46,7 @@ public class TencentInfo implements SubPageProcessor{
             page.setSkip(true);
             return MatchOther.NO;
         }
-        NewsItem news = new NewsItem(id,url,title,content,time,source.trim(),type,description,keywords);
+        NewsItem news = new NewsItem("tct-"+id,url,title,content,time,source.trim(),type,description,keywords);
         String cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_articleFt']/script[2]").regex("cmt_id = (\\d+);").toString();
         if(cmt_id==null || cmt_id.equals(""))
             cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_articleFt']/script[1]").regex("cmt_id = (\\d+);").toString();

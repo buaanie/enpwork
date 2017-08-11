@@ -19,23 +19,37 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.log4j.Logger;
 
 
-public class CrawlerAllHBase {
+public class CrawlerHBase {
+	private static CrawlerHBase crawlerHBase = new CrawlerHBase();
 	private HTable newsInfo;
 	private HTable newsCmt;
+	private HTable cmtUser;
 	private List<Put> newsList;
 	private List<Put> cmtsList;
+	private List<Put> userList;
 	private Logger logger;
-	public CrawlerAllHBase(){
-		try {
-			newsInfo = HBaseClient.getTable("nnews");
-			newsCmt = HBaseClient.getTable("ncmt");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	    newsList = new ArrayList<Put>();
-	    cmtsList = new ArrayList<Put>();
+	private CrawlerHBase(){
 	    logger =  Logger.getLogger(this.getClass());
 	    registerShutdownHook();
+	}
+	public static CrawlerHBase getHBase(int i){
+		try {
+			switch (i) {
+				case 1:
+					crawlerHBase.newsInfo = HBaseClient.getTable("nnews");
+					crawlerHBase.newsList = new ArrayList<Put>();
+					break;
+				case 2:
+					crawlerHBase.newsCmt = HBaseClient.getTable("ncmt");
+					crawlerHBase.cmtsList = new ArrayList<Put>();
+					crawlerHBase.cmtUser = HBaseClient.getTable("nuser");
+					crawlerHBase.userList = new ArrayList<Put>();
+					break;
+			}
+			} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return crawlerHBase;
 	}
 	public void close(){
     	try {
@@ -48,6 +62,14 @@ public class CrawlerAllHBase {
     		if(newsInfo!=null){
     			newsInfo.close();
     		}
+			if (cmtsList != null && cmtsList.size() != 0) {
+				newsCmt.put(cmtsList);
+				newsCmt.flushCommits();
+				cmtsList.clear();
+			}
+			if(newsCmt!=null){
+				newsCmt.close();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

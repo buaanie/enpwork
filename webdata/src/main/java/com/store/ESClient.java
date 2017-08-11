@@ -47,9 +47,7 @@ public class ESClient {
                 int port = Integer.valueOf(properties.getProperty("port", "9300"));
                 String hosts = properties.getProperty("hosts", "127.0.0.1");
                 for (String host : hosts.split(",")) {
-                    System.out.println(host);
                     client.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName(host), port));
-                    System.out.println("---------");
                 }
                 logger.info("----><----- connect to ES ----><-----");
             } catch (IOException e) {
@@ -71,24 +69,72 @@ public class ESClient {
     public static void main(String[] args) {
         ESClient es = new ESClient();
         //具体配置请在具体方法中填写
-        es.createIndex("hello");
+        es.createIndex("nnewsindex");
     }
 
     public void createIndex(String indexName) {
         deleteIndex(indexName);
         //创建索引
-        client.admin().indices().prepareCreate(indexName).execute().actionGet();//.setAliases("")
+        /**可以在setting中指定该index特有的analyzer等配置，而无需在es的yml中进行总体配置。
+         "analysis": {
+            "filter": {
+                "my_filter": {
+                    "type": "ik",
+                    "tokenize": "whitespace"
+                }
+            },
+         //Analyzer 一般由三部分构成，character filters（字符过滤）、tokenizers（分词）、token filters（词单元过滤）
+         //-> https://www.elastic.co/guide/cn/elasticsearch/guide/current/custom-analyzers.html
+            "analyzer": {
+                "my_analyzer": {
+                    "type":"dic_ansj", <--这里指定ansj=
+                    "stopwords":"stopKey", <--需要在ansj配置中指定stopKey的位置
+                    "filter": ["my_filter"],
+                    "tokenizer": "ik"
+                }
+            }
+         }
+        **/
+        String template = "\"analysis\": {" +
+                "  \"analyzer\": {" +
+                "    \"id_analyzer\": {" +
+                "      \"tokenizer\": \"id_tokenizer\"" +
+                "    },    " +
+                "    \"word_analyzer\": {" +
+                "      \"tokenizer\": \"word_tokenizer\"" +
+                "    }" +
+                "  }," +
+                "  \"tokenizer\": {" +
+                "    \"id_tokenizer\": {" +
+                "      \"type\": \"pattern\"," +
+                "      \"pattern\": \",\"" +
+                "    }," +
+                "    \"word_tokenizer\": {" +
+                "      \"type\": \"pattern\"," +
+                "      \"pattern\": \"\\s|,|，\"" +
+                "    }" +
+                "  }" +
+                "}";
+        client.admin().indices().prepareCreate(indexName).setSettings(Settings.builder().loadFromSource(template).put("index.number_of_shards",10).put("index.refresh_interval","10s")).execute().actionGet();//.setAliases("")
         //创建索引结构
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder()
                     .startObject()
                     .startObject("msg")
 //	                    .startObject("_source").field("enabled", false).endObject() excludes
-                    .startObject("_source").field("includes", "a1", "a2").endObject()
+//                    .startObject("_source").field("includes", "title", "time","type").endObject()
+                    .startObject("_source").field("excludes", "content", "source").endObject()
                     .startObject("properties")
-                    .startObject("a1").field("type", "string").field("index", "not_analyzed").endObject()
-                    .startObject("a2").field("type", "string").field("index", "analyzed").field("analyzer", "ik").endObject()
-                    .startObject("a3").field("type", "string").field("index", "analyzed").field("analyzer", "ik").endObject()
+                    .startObject("time").field("type", "date").field("format","yyy-MM-dd HH:mm:ss||yyy-MM-dd HH:mm||yyyy-MM-dd||epoch_millis").field("index", "not_analyzed").endObject()
+                    .startObject("title").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+                    .startObject("desp").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+                    .startObject("content").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+                    .startObject("news_id").field("type", "string").field("index", "analyzed").field("analyzer", "id_analyzer").endObject()
+                    .startObject("url").field("type", "string").field("index", "not_analyzed").endObject()
+                    .startObject("news_type").field("type", "string").field("index", "not_analyzed").endObject()
+                    .startObject("source").field("type", "string").field("index", "not_analyzed").endObject()
+                    .startObject("keywords").field("type", "string").field("index", "analyzed").field("analyzer", "word_analyzer").endObject()
+                    .startObject("cmt_id").field("type", "string").field("index", "not_analyzed").endObject()
                     .endObject()
                     .endObject()
                     .endObject();
@@ -131,4 +177,5 @@ public class ESClient {
             System.out.println("删除成功");
         }
     }
+
 }

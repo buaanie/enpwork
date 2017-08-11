@@ -3,6 +3,7 @@ package com.graph;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.net.URLDecoder;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -20,11 +21,21 @@ import static com.crawler.utils.StirngUtil.lastSplitSlice;
  */
 public class Trim {
     public static void main(String[] args) {
-        String s =  "wb_verified=0&wb_screen_name=杨大洁子&wb_cmnt_type=comment_status&wb_user_id=5351052638&wb_description=&wb_parent=&wb_profile_img=http%3A%2F%2Ftvax3.sinaimg.cn%2Fcrop.0.0.664.664.50%2F005Q8teCly8fh0tpj3718j30ig0igq40.jpg&wb_time=2017-07-21 15:55:29&wb_comment_id=4131977760631219&area=上海";
-        String regex = "http\\S+\\.jpg";
-        Matcher m = Pattern.compile(regex).matcher(s);
-        if(m.find())
-            System.out.println(URLDecoder.decode(m.group(0)));
+        int n =133242354;
+        System.out.println(n%8);
+        System.out.println(7&n);
+//        String s = "2017-08-07 19:56:46";
+//        DateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd HH:mm", Locale.CHINA);
+//        try {
+//            System.out.println(sdf.parse(s));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        String s =  "wb_verified=0&wb_screen_name=杨大洁子&wb_cmnt_type=comment_status&wb_user_id=5351052638&wb_description=&wb_parent=&wb_profile_img=http%3A%2F%2Ftvax3.sinaimg.cn%2Fcrop.0.0.664.664.50%2F005Q8teCly8fh0tpj3718j30ig0igq40.jpg&wb_time=2017-07-21 15:55:29&wb_comment_id=4131977760631219&area=上海";
+//        String regex = "http\\S+\\.jpg";
+//        Matcher m = Pattern.compile(regex).matcher(s);
+//        if(m.find())
+//            System.out.println(URLDecoder.decode(m.group(0)));
 //        String s = "2017-07-21 10:13:57";
 //        try {
 //            System.out.println(new SimpleDateFormat ("yyyy-MM-dd HH:mm", Locale.CHINA).parse(s).getTime());

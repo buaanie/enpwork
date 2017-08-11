@@ -1,6 +1,7 @@
 package com.crawler.sites;
 
 import com.crawler.beans.NewsItem;
+import com.crawler.utils.ItemPipeLine;
 import com.crawler.utils.ItemType;
 import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import us.codecraft.webmagic.Page;
@@ -24,9 +25,13 @@ public class Paper implements PageProcessor{
             .setUserAgent(UA1).setUseGzip(true);
 
     public static void main(String[] args) {
+        new Paper().run();
+    }
+    public void run(){
         long time = System.currentTimeMillis();
-        Spider paper = Spider.create(new Paper()).addUrl(String.format(list,1,time));
-        paper.run();
+        //建议page 1~8
+        Spider paper = Spider.create(new Paper()).addUrl(String.format(list,1,time)).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);
+        paper.start();
     }
     @Override
     public void process(Page page) {
@@ -42,18 +47,20 @@ public class Paper implements PageProcessor{
             String descp = page.getHtml().xpath("/html/head/meta[@name='Description']/text()").toString();
             String keywords = page.getHtml().xpath("/html/head/meta[@name='Keywords']/text()").toString();
             String id = lastSplitSlice(url,"_");
-            String source = page.getHtml().xpath("//*[@id='v3cont_id']/div[1]/p[1]/tetx()").toString();
+            String source = page.getHtml().xpath("//*[@id='v3cont_id']/div[1]/p[1]/text()").toString();
             if(source==null)
                 source = "澎湃新闻";
-            String time = page.getHtml().xpath("//*[@id='v3cont_id']/div[1]/p[2]/tetx()").regex(time_regex).toString();
-            NewsItem news = new NewsItem(id,url,title,content,time,source.trim(),type,descp,keywords);
+            else if(source.contains("/")){
+                source = source.split("/")[1];
+            }
+            String time = page.getHtml().xpath("//*[@id='v3cont_id']/div[1]/p[2]/text()").regex(time_regex).toString();
+            NewsItem news = new NewsItem("pap-"+id,url,title,content,time,source.trim(),type,descp,keywords);
             page.putField(ItemType.NewsItem,news);
         }else{
             List<String> urls = page.getHtml().xpath("//div[@class='txt_t']/div/p/a/@href").all();
             List<String> titles = page.getHtml().xpath("//div[@class='txt_t']/div/p/a/text()").all();
             List<String> sources = page.getHtml().xpath("//div[@class='txt_t']/p/a/text()").all();
             for(int i=0;i<urls.size();i++){
-                System.out.println(urls.get(i)+"  "+sources.get(i));
                 Request req = new Request(urls.get(i))
                         .putExtra("title",titles.get(i)).putExtra("type",sources.get(i));
                 page.addTargetRequest(req);

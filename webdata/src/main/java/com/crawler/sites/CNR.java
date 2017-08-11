@@ -29,18 +29,21 @@ public class CNR implements PageProcessor{
             .setUserAgent(UA2).setUseGzip(true).setUseGzip(true);
 
     public static void main(String[] args) {
+        new CNR().run();
+    }
+    public void run(){
         List<String> start = new ArrayList<>();
 //        start.add("http://www.cnr.cn/newscenter/native/city/20170713/t20170713_523848598.shtml");
         for(int i =1;i<10;i++)
             start.add(String.format(url,i));
-        Spider cnr = Spider.create(new CNR()).startUrls(start).setScheduler(new PriorityScheduler()).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);
-        cnr.run();
+        Spider cnr = Spider.create(new CNR()).startUrls(start).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);//.setScheduler(new PriorityScheduler())
+        cnr.start();
     }
     @Override
     public void process(Page page) {
         if(page.getUrl().regex(NEWS_REGEX).match()){
             String news_url = page.getUrl().toString();
-            String news_id = "CNR"+lastSplitSlice(news_url,"/").split("\\.")[0];
+            String news_id = lastSplitSlice(news_url,"/").split("\\.")[0];
             List<Selectable> news_contents = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']//div[@class='TRS_Editor']//p").nodes();
             StringBuffer sb = new StringBuffer();
             Boolean fp = true;
@@ -60,7 +63,7 @@ public class CNR implements PageProcessor{
             String news_type = page.getRequest().getExtra("type").toString();
             String news_descp = page.getHtml().xpath("//head/meta[@name='description']/@content").toString();
             String news_keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
-            NewsItem news = new NewsItem(news_id,news_url,news_title.trim(),news_content.trim(),news_time,news_source,news_type,news_descp,news_keywords);
+            NewsItem news = new NewsItem("cnr-"+news_id,news_url,news_title.trim(),news_content.trim(),news_time,news_source,news_type,news_descp,news_keywords);
             page.putField(ItemType.NewsItem,news);
         }else if(page.getUrl().regex(LIST_REGEX).match()){
             List<Selectable> nodes = page.getHtml().xpath("//div[@class='margin']//div[@class='left']/trs_documents/ul/li").nodes();
