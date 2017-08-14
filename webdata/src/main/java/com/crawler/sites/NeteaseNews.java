@@ -30,7 +30,6 @@ public class NeteaseNews{
         new NeteaseNews().run();
     }
     public void run(){
-        System.out.println("net");
         CompositePageProcessor ntesProcessor = new CompositePageProcessor(site);
         ntesProcessor.setSubPageProcessors(new NeteaseInfo(),new NeteaseList());
         Spider netease = Spider.create(ntesProcessor).addRequest(getStartUrls()).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);

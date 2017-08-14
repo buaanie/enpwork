@@ -9,10 +9,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Index</title>
+    <title>demo</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="../../static/src/css/test.css"/> "/>
 </head>
 <body>
-<p>Spring MVC based on XML config success 2www!</p>
+<p>hello world</p>
 </body>
 </html>

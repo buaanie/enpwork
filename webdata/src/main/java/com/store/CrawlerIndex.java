@@ -9,7 +9,6 @@ import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
-import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -41,7 +40,7 @@ public class CrawlerIndex {
 	}
 	public void close(){
 		try{
-			insertIndexBulk(newsList);
+			indexBulk(newsList);
 			newsList.clear();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -53,39 +52,42 @@ public class CrawlerIndex {
 			client.close();
 	}
 
-	public synchronized void insertNews(NewsItem anews) throws Exception{
-		packNews(anews);
+	public synchronized void indexNews(NewsItem anews){
+        if(newsList.size() <= 50){
+            newsList.add(anews);
+        }
+        else{
+            try{
+                indexBulk(newsList);
+                newsList.clear();
+                newsList.add(anews);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
 	}
-	private synchronized void packNews(NewsItem news){
-		if(newsList.size() <= 50){
-			newsList.add(news);
-		}
-		else{
-			try{
-				insertIndexBulk(newsList);
-				newsList.clear();
-				newsList.add(news);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-	}
-	private void insertIndexBulk(List<NewsItem> newsList) throws Exception {
-		String index = " ";
-		BulkRequestBuilder bqb = client.prepareBulk();	
-		for (NewsItem news : newsList) {
+	private void indexBulk(List<NewsItem> newsLists) throws Exception {
+		String index = "nnewsindex";
+		BulkRequestBuilder bqb = client.prepareBulk();
+		for (NewsItem news : newsLists) {
 			GetResponse test = client.prepareGet(index, "msg", news.getId()).execute().actionGet();
 			if(!test.isExists()){
 				XContentBuilder contentBuilder = XContentFactory.jsonBuilder()
 						.startObject()
+							.field("time", news.getStringTime())
 							.field("title", news.getTitle())
-							.field("url", news.getURL())
-							.field("time", news.getDateTime())
+							.field("desp", news.getDesp())
+							.field("content", news.getContent())
+                            .field("newsid", news.getId())
+                            .field("url", news.getURL())
+							.field("newstype", news.getType())
+							.field("source", news.getSource())
+							.field("keywords", news.getKeywords())
+							.field("cmtid", news.getCmtID())
 						.endObject();
-				IndexRequestBuilder iqbn_test = client.prepareIndex(index, "msg",
-						news.getId()).setSource(contentBuilder);
-				bqb.add(iqbn_test);
-			}
+				IndexRequestBuilder iqbn = client.prepareIndex(index, "msg", news.getId()).setSource(contentBuilder);
+				bqb.add(iqbn);
+            }
 //			else{
 //				XContentBuilder contentBuilder = XContentFactory.jsonBuilder()
 //						.startObject()
@@ -97,13 +99,15 @@ public class CrawlerIndex {
 //				System.out.println(news.getURL());
 //			}
 		}
-		if(bqb.numberOfActions()!=0){
+        if(bqb.numberOfActions()!=0){
 			try {
-				BulkResponse response = bqb.execute().actionGet();
-//				System.out.println(Thread.currentThread().getName() + " insert tjnews into es");
-				logger.info("--------------  insert tjnews into es  "+bqb.numberOfActions());
+                System.out.println("start bulk");
+                BulkResponse response = bqb.execute().actionGet();
+				System.out.println(Thread.currentThread().getName() + " index news into es");
+				logger.info(Thread.currentThread().getName()+" --------- index news into es  "+bqb.numberOfActions());
 				if(response.hasFailures()){
-					logger.error("es news error");
+					logger.error("index news error");
+					System.out.println(response.buildFailureMessage());
 				}
 			} catch (Exception e) {
 				logger.error("error");

@@ -1,6 +1,8 @@
 package com.store;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
+import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
@@ -47,9 +49,11 @@ public class ESClient {
                 int port = Integer.valueOf(properties.getProperty("port", "9300"));
                 String hosts = properties.getProperty("hosts", "127.0.0.1");
                 for (String host : hosts.split(",")) {
+                    System.out.println(host);
                     client.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName(host), port));
                 }
-                logger.info("----><----- connect to ES ----><-----");
+                logger.info("----><----- connected to ES ----><-----");
+                System.out.println("es connected!");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -67,9 +71,9 @@ public class ESClient {
         client.close();
     }
     public static void main(String[] args) {
-        ESClient es = new ESClient();
         //具体配置请在具体方法中填写
-        es.createIndex("nnewsindex");
+        conn.createIndex("nnewsindex");
+        conn.close();
     }
 
     public void createIndex(String indexName) {
@@ -95,28 +99,41 @@ public class ESClient {
             }
          }
         **/
-        String template = "\"analysis\": {" +
-                "  \"analyzer\": {" +
-                "    \"id_analyzer\": {" +
-                "      \"tokenizer\": \"id_tokenizer\"" +
-                "    },    " +
-                "    \"word_analyzer\": {" +
-                "      \"tokenizer\": \"word_tokenizer\"" +
+        String template = "{" +
+                "    \"index\": {" +
+                "        \"analysis\": {" +
+                "            \"analyzer\": {" +
+                "                \"word_analyzer\": {" +
+                "                    \"type\": \"custom\"," +
+                "                    \"tokenizer\": \"word_tokenizer\"" +
+                "                }," +
+                "                \"id_analyzer\": {" +
+                "                    \"type\": \"custom\"," +
+                "                    \"tokenizer\": \"id_tokenizer\"" +
+                "                }," +
+                "                \"index_ansj\": {" +
+                "                    \"type\": \"index_ansj\"," +
+                "                }," +
+                "                \"query_ansj\": {" +
+                "                    \"type\": \"query_ansj\"," +
+                "                }" +
+                "            }," +
+                "            \"tokenizer\": {" +
+                "                \"word_tokenizer\": {" +
+                "                    \"pattern\": \"\\\\s|,|，\"," +
+                "                    \"type\": \"pattern\"" +
+                "                }," +
+                "                \"id_tokenizer\": {" +
+                "                    \"pattern\": \"-\"," +
+                "                    \"type\": \"pattern\"" +
+                "                }" +
+                "            }" +
+                "        }" +
                 "    }" +
-                "  }," +
-                "  \"tokenizer\": {" +
-                "    \"id_tokenizer\": {" +
-                "      \"type\": \"pattern\"," +
-                "      \"pattern\": \",\"" +
-                "    }," +
-                "    \"word_tokenizer\": {" +
-                "      \"type\": \"pattern\"," +
-                "      \"pattern\": \"\\s|,|，\"" +
-                "    }" +
-                "  }" +
                 "}";
-        client.admin().indices().prepareCreate(indexName).setSettings(Settings.builder().loadFromSource(template).put("index.number_of_shards",10).put("index.refresh_interval","10s")).execute().actionGet();//.setAliases("")
-        //创建索引结构
+        Settings s = Settings.builder().loadFromSource(JSONObject.parse(template).toString()).build();
+        CreateIndexResponse createIndexResponse = client.admin().indices().prepareCreate(indexName).setSettings(Settings.builder().put(s).put("index.number_of_shards", 10).put("index.refresh_interval", "10s")).execute().actionGet();//.setAliases("")
+//创建索引结构
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder()
                     .startObject()
@@ -129,18 +146,18 @@ public class ESClient {
                     .startObject("title").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
                     .startObject("desp").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
                     .startObject("content").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
-                    .startObject("news_id").field("type", "string").field("index", "analyzed").field("analyzer", "id_analyzer").endObject()
+                    .startObject("newsid").field("type", "string").field("index", "analyzed").field("analyzer", "id_analyzer").endObject()
                     .startObject("url").field("type", "string").field("index", "not_analyzed").endObject()
-                    .startObject("news_type").field("type", "string").field("index", "not_analyzed").endObject()
+                    .startObject("newstype").field("type", "string").field("index", "not_analyzed").endObject()
                     .startObject("source").field("type", "string").field("index", "not_analyzed").endObject()
                     .startObject("keywords").field("type", "string").field("index", "analyzed").field("analyzer", "word_analyzer").endObject()
-                    .startObject("cmt_id").field("type", "string").field("index", "not_analyzed").endObject()
+                    .startObject("cmtid").field("type", "string").field("index", "not_analyzed").endObject()
                     .endObject()
                     .endObject()
                     .endObject();
             PutMappingRequest mapping = Requests.putMappingRequest(indexName).type("msg").source(builder);
             client.admin().indices().putMapping(mapping).actionGet();
-            System.out.println("创建成功");
+            System.out.println(indexName+" 创建成功");
         } catch (IOException e) {
             e.printStackTrace();
         }

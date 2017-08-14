@@ -8,9 +8,9 @@ import java.util.TimerTask;
 /**
  * Created by ACT-NJ on 2017/8/7.
  */
-public class SpiderEntrance {
+public class NewsSpiderEntrance {
     public static void main(String[] args) {
-        SpiderEntrance entrance = new SpiderEntrance();
+        NewsSpiderEntrance entrance = new NewsSpiderEntrance();
         entrance.timerAll(args[0],args[1]);
     }
     private void timerAll(String type,String env){

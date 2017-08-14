@@ -1,5 +1,6 @@
 package com.graph;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.net.URLDecoder;
@@ -21,9 +22,36 @@ import static com.crawler.utils.StirngUtil.lastSplitSlice;
  */
 public class Trim {
     public static void main(String[] args) {
-        int n =133242354;
-        System.out.println(n%8);
-        System.out.println(7&n);
+        String template = "{" +
+                "    index: {" +
+                "        analysis: {" +
+                "            analyzer: {" +
+                "                \"word_analyzer\":{" +
+                "                    type: \"custom\"," +
+                "                    tokenizer: \"word_tokenizer\"" +
+                "                }," +
+                "                \"id_analyzer\": {" +
+                "                    type: \"custom\"," +
+                "                    tokenizer: \"id_tokenizer\"" +
+                "                }" +
+                "            }," +
+                "            tokenizer: {" +
+                "                \"word_tokenizer\": {" +
+                "                    pattern: \"\\\\s|,|，\"," +
+                "                    type: \"pattern\"" +
+                "                }," +
+                "                \"id_tokenizer\": {" +
+                "                    pattern: \"-\"," +
+                "                    type: \"pattern\"" +
+                "                }" +
+                "            }" +
+                "        }" +
+                "    }" +
+                "}";
+        System.out.println(JSONObject.parse(template));
+//        int n =133242354;
+//        System.out.println(n%8);
+//        System.out.println(7&n);
 //        String s = "2017-08-07 19:56:46";
 //        DateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd HH:mm", Locale.CHINA);
 //        try {
@@ -69,9 +97,9 @@ public class Trim {
 //        String s = "http://media.people.com.cn/n1/2017/0621/c14677-29352617.html";
 //        System.out.println(s.matches(IGNORE_PAGE));
 //        String regex = "</?a([^>]*)>";
-//        String s = "<a href=\"/item/%E4%B8%AD%E5%9B%BD/1122445\" data-lemmaid=\"1122445\">中国</a>";
+//        String s = "<a href='/item/%E4%B8%AD%E5%9B%BD/1122445' data-lemmaid='1122445'>中国</a>";
 //        System.out.println(s.replaceAll(regex,"#"));
-//        String s = "wpnfsfbn \ndsgnbierg\rdfg\r\ns";
+//        String s = "wpnfsfbn dsgnbierg\rdfg\rs";
 //        System.out.println(s.trim());
 //        Map<String,String> m = new HashMap<>();
 //        m.put("aaas","sfs");

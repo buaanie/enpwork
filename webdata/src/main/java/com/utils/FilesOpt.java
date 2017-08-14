@@ -1,5 +1,8 @@
 package com.utils;
 
+
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.*;
 
 /**
@@ -7,7 +10,11 @@ import java.io.*;
  */
 public class FilesOpt {
 
-    public void readFile(String path){
+    public static void main(String[] args) {
+        String p = "webdata/files/test.json";
+        System.out.println(new FilesOpt().readFile(p,"json"));
+    }
+    public Object readFile(String path,String type){
         File file = new File(path);
         if(file.exists()){
             //采用处理流读取文件
@@ -18,13 +25,15 @@ public class FilesOpt {
                 StringBuffer result = new StringBuffer();
                 while((temp=reader.readLine())!=null && !temp.equals(""))
                     result.append(temp);
-                System.out.println(result.toString());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                if(type.equals("json"))
+                    return JSONObject.parseObject(result.toString());
+                else if(type.equals("txt"))
+                    return result.toString();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     public void storeFile(String data,String path){

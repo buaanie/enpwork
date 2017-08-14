@@ -27,6 +27,8 @@ public class TencentInfo implements SubPageProcessor{
         String source = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_article']//span[@class='a_source']/allText()").toString();
         if(source==null || source.matches("\\s+"))
             source = page.getHtml().xpath("//*[@id='C-Main-Article-QQ']//div[@class='tit-bar']//span[@bosszone='jgname']/text()").toString();;
+        if(source==null)
+            source = "腾讯新闻";
         String id = url.replaceAll("[^\\d]","");
         List<Selectable> contents = page.getHtml().xpath("//*[@id='Cnt-Main-Article-QQ']/p[@class='text']").nodes();
         StringBuffer sb = new StringBuffer();

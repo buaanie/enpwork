@@ -7,6 +7,7 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.handler.RequestMatcher;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.scheduler.PriorityScheduler;
 import us.codecraft.webmagic.selector.Selectable;
@@ -33,7 +34,7 @@ public class CNR implements PageProcessor{
     }
     public void run(){
         List<String> start = new ArrayList<>();
-//        start.add("http://www.cnr.cn/newscenter/native/city/20170713/t20170713_523848598.shtml");
+//        start.add("http://gongyi.cnr.cn/news/20170814/t20170814_523899101.shtml");
         for(int i =1;i<10;i++)
             start.add(String.format(url,i));
         Spider cnr = Spider.create(new CNR()).startUrls(start).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);//.setScheduler(new PriorityScheduler())
@@ -57,6 +58,11 @@ public class CNR implements PageProcessor{
                     }
             }
             String news_content = sb.toString();
+            if(news_content.matches("\\s+")) {
+                page.setSkip(true);
+                System.out.println("SFSFSAF");
+                return;
+            }
             String news_title = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']/div[@class='subject']/h2/text()").toString();
             String news_time = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']//div[@class='source']/span[1]/text()").regex(TIME_REGEX).toString();
             String news_source = page.getHtml().xpath("//head/[@name='source']/@content").toString();
@@ -64,16 +70,17 @@ public class CNR implements PageProcessor{
             String news_descp = page.getHtml().xpath("//head/meta[@name='description']/@content").toString();
             String news_keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
             NewsItem news = new NewsItem("cnr-"+news_id,news_url,news_title.trim(),news_content.trim(),news_time,news_source,news_type,news_descp,news_keywords);
+
             page.putField(ItemType.NewsItem,news);
         }else if(page.getUrl().regex(LIST_REGEX).match()){
             List<Selectable> nodes = page.getHtml().xpath("//div[@class='margin']//div[@class='left']/trs_documents/ul/li").nodes();
             for (Selectable node : nodes) {
                 String type = node.xpath("/li/span[1]/text()").toString();
-                if(!type.contains("旅游") && !type.contains("体育")){
-                    Request r = new Request(node.xpath("/li/span[2]/a/@href").toString());
-                    r.putExtra("type",node.xpath("/li/span[1]/text()").toString());
-                    page.addTargetRequest(r);
-                }
+                if(type.contains("旅游") || type.contains("体育") ||type.contains("图片") || type.contains("公益"))
+                    continue;
+                Request r = new Request(node.xpath("/li/span[2]/a/@href").toString());
+                r.putExtra("type",node.xpath("/li/span[1]/text()").toString());
+                page.addTargetRequest(r);
 
             }
             page.setSkip(true);

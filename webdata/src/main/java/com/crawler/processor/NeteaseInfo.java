@@ -47,9 +47,7 @@ public class NeteaseInfo implements SubPageProcessor{
         String time  = page.getRequest().getExtra("time").toString();
         String type =  page.getRequest().getExtra("type").toString();
         String keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
-        if(keywords!=null){
-            keywords = keywords.split(",",2)[1];
-        }else{
+        if(keywords==null){
             page.setSkip(true);
             return MatchOther.NO;
         }

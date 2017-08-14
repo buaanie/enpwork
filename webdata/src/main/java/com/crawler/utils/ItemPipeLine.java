@@ -11,7 +11,7 @@ import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by ACT-NJ on 2017/6/8.
@@ -23,27 +23,29 @@ public class ItemPipeLine implements Pipeline{
     public ItemPipeLine(String type){
         this.pageType = type;
         crawlerNewsIndex = CrawlerIndex.getIndex();
-//        if(type == ItemType.NewsItem)
-//            crawlerNewsHBase = CrawlerHBase.getHBase(1);
-//        else if(type == ItemType.NewsCmt)
-//            crawlerNewsHBase = CrawlerHBase.getHBase(2);
+        if(type==ItemType.NewsCmt)
+            crawlerNewsHBase = CrawlerHBase.getHBase(true);
+        else
+            crawlerNewsHBase = CrawlerHBase.getHBase(false);
     }
     @Override
     public void process(ResultItems resultItems, Task task) {
-        HashMap<String,String> s = new HashMap<>();
-        s.put("","");
         switch (pageType){
             case ItemType.NewsItem:
                 if(resultItems.get(ItemType.NewsItem)!=null)
                 {
-                    NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);
-                    System.out.println(news.toStringJson());
+                    NewsItem news = resultItems.get(ItemType.NewsItem);
+//                    NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);
+                    crawlerNewsIndex.indexNews(news);
+                    crawlerNewsHBase.storeNews(news);
+                    System.out.println(news.toString());
                 };break;
             case ItemType.NewsCmt:
                 if(resultItems.get(ItemType.NewsCmt)!=null)
                 {
-                    ArrayList comments = (ArrayList<NewsCmt>) resultItems.get(ItemType.NewsCmt);
-                    ArrayList users = (ArrayList<CmtUser>) resultItems.get(ItemType.CmtUser);
+                    List<NewsCmt> comments = resultItems.get(ItemType.NewsCmt);
+                    List<CmtUser> users = resultItems.get(ItemType.CmtUser);
+                    crawlerNewsHBase.storeBulkCmt(comments,users);
                 };break;
             case ItemType.WikiItem:
                 if(resultItems.get(ItemType.WikiItem)!=null && resultItems.get(ItemType.WikiItem) instanceof WikiItem)
@@ -52,7 +54,7 @@ public class ItemPipeLine implements Pipeline{
                     System.out.println(wiki.toString());
                 };break;
             default:
-                System.out.println("sorry");;break;
+                System.out.println("sorry, it failed");break;
         }
     }
 

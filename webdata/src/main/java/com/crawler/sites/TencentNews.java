@@ -37,7 +37,6 @@ public class TencentNews implements PageProcessor{
         new TencentNews().run();
     }
     public void run(){
-        System.out.println("ten");
         String ms = String.valueOf(System.currentTimeMillis());
         String date = sdf.format(new Date());
         String url1 = String.format(tct_news,date,"1",ms);
