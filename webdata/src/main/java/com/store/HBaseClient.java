@@ -48,7 +48,6 @@ public class HBaseClient {
 
 	public static void main(String[] args) {
 		String tableName = "nnews";
-		HBaseClient hbase = new HBaseClient();
 		String[] strings = {"info"};
 		try {
 			hbase.createTable(tableName, strings);

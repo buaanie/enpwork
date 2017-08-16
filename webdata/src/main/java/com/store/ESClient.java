@@ -5,10 +5,13 @@ import org.apache.log4j.Logger;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
+import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.cluster.metadata.MappingMetaData;
+import org.elasticsearch.common.collect.ImmutableOpenMap;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -37,9 +40,10 @@ public class ESClient {
     }
 
     private void buildESClient() {
+        String clusterName = "elasticsearch";
         Settings settings = Settings.settingsBuilder()
                 .put("client.transport.sniff", true)
-                .put("cluster.name", "elasticsearch").build();
+                .put("cluster.name", clusterName).build();
         try {
             client = TransportClient.builder().settings(settings).build();
             InputStream stream = this.getClass().getResourceAsStream("/es.properties");
@@ -49,7 +53,6 @@ public class ESClient {
                 int port = Integer.valueOf(properties.getProperty("port", "9300"));
                 String hosts = properties.getProperty("hosts", "127.0.0.1");
                 for (String host : hosts.split(",")) {
-                    System.out.println(host);
                     client.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName(host), port));
                 }
                 logger.info("----><----- connected to ES ----><-----");
@@ -71,8 +74,12 @@ public class ESClient {
         client.close();
     }
     public static void main(String[] args) {
+        String indexName = "nnews";
         //具体配置请在具体方法中填写
-        conn.createIndex("nnewsindex");
+        conn.createIndex(indexName);
+//        conn.deleteIndex("nnewsindex");
+//        GetMappingsResponse get = conn.client.admin().indices().prepareGetMappings(indexName).execute().actionGet();
+//        get.getMappings().keysIt().forEachRemaining(k-> System.out.println(k));
         conn.close();
     }
 
@@ -111,10 +118,10 @@ public class ESClient {
                 "                    \"type\": \"custom\"," +
                 "                    \"tokenizer\": \"id_tokenizer\"" +
                 "                }," +
-                "                \"index_ansj\": {" +
+                "                \"index\": {" +
                 "                    \"type\": \"index_ansj\"," +
                 "                }," +
-                "                \"query_ansj\": {" +
+                "                \"query\": {" +
                 "                    \"type\": \"query_ansj\"," +
                 "                }" +
                 "            }," +

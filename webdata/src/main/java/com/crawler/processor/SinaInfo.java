@@ -22,7 +22,6 @@ public class SinaInfo implements SubPageProcessor {
     @Override
     public MatchOther processPage(Page page) {
         String url = page.getUrl().toString();
-        System.out.println(url);
         String types = page.getRequest().getExtra("type").toString();
         String type = types.split("-")[0];
         String title = page.getRequest().getExtra("title").toString();
@@ -39,7 +38,7 @@ public class SinaInfo implements SubPageProcessor {
             }
         }
         String content = sb.toString();
-        if(content.matches("\\s+")) {
+        if(content==null || content.matches("\\s+")) {
             page.setSkip(true);
             return MatchOther.NO;
         }

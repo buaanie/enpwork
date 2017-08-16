@@ -67,7 +67,7 @@ public class CrawlerIndex {
         }
 	}
 	private void indexBulk(List<NewsItem> newsLists) throws Exception {
-		String index = "nnewsindex";
+		String index = "nnews";
 		BulkRequestBuilder bqb = client.prepareBulk();
 		for (NewsItem news : newsLists) {
 			GetResponse test = client.prepareGet(index, "msg", news.getId()).execute().actionGet();
@@ -101,7 +101,6 @@ public class CrawlerIndex {
 		}
         if(bqb.numberOfActions()!=0){
 			try {
-                System.out.println("start bulk");
                 BulkResponse response = bqb.execute().actionGet();
 				System.out.println(Thread.currentThread().getName() + " index news into es");
 				logger.info(Thread.currentThread().getName()+" --------- index news into es  "+bqb.numberOfActions());

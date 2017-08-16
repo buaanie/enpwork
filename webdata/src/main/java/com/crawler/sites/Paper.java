@@ -20,6 +20,7 @@ import static com.crawler.utils.StirngUtil.lastSplitSlice;
  */
 public class Paper implements PageProcessor{
     private static String list = "http://m.thepaper.cn/load_channel.jsp?nodeids=25428,25426,25481,25429,25462,25490,25488,25434&topCids=1739457,1741122,1741013&pageidx=%d&lastTime=%s";
+    private static String url_head = "http://m.thepaper.cn/";
     private String time_regex = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
     private Site site = Site.me().setDomain("http://news.people.com.cn/").setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000)
             .setUserAgent(UA1).setUseGzip(true);
@@ -61,7 +62,7 @@ public class Paper implements PageProcessor{
             List<String> titles = page.getHtml().xpath("//div[@class='txt_t']/div/p/a/text()").all();
             List<String> sources = page.getHtml().xpath("//div[@class='txt_t']/p/a/text()").all();
             for(int i=0;i<urls.size();i++){
-                Request req = new Request(urls.get(i))
+                Request req = new Request(url_head+urls.get(i))
                         .putExtra("title",titles.get(i)).putExtra("type",sources.get(i));
                 page.addTargetRequest(req);
             }

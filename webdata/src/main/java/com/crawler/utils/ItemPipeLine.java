@@ -36,8 +36,18 @@ public class ItemPipeLine implements Pipeline{
                 {
                     NewsItem news = resultItems.get(ItemType.NewsItem);
 //                    NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);
-                    crawlerNewsIndex.indexNews(news);
-                    crawlerNewsHBase.storeNews(news);
+//                    Thread index = new Thread(){
+//                        public void run(){
+                            crawlerNewsIndex.indexNews(news);
+//                        }
+//                    };
+//                    Thread store = new Thread(){
+//                        public void run(){
+                            crawlerNewsHBase.storeNews(news);
+//                        }
+//                    };
+//                    index.start();
+//                    store.start();
                     System.out.println(news.toString());
                 };break;
             case ItemType.NewsCmt:

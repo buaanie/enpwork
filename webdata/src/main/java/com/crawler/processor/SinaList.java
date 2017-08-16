@@ -20,7 +20,6 @@ public class SinaList implements SubPageProcessor {
 
     @Override
     public MatchOther processPage(Page page) {
-        System.out.println(page.getUrl().toString());
         String raw = page.getRawText();
         JSONObject json = parseJsonp(raw,"{");
         JSONArray jsonArray = json.getJSONArray("list");
@@ -31,7 +30,6 @@ public class SinaList implements SubPageProcessor {
             r.putExtra("title",temp.getString("title"));
             r.putExtra("time",temp.getString("time"));
             r.putExtra("type",getType(temp.getJSONObject("channel").getString("id")));
-            System.out.println(r.getUrl());
             page.addTargetRequest(r);
         }
         page.setSkip(true); //无需保存

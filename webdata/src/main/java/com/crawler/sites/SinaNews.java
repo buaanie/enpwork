@@ -29,7 +29,7 @@ public class SinaNews {
         String now = String.valueOf(System.currentTimeMillis()/1000 - 2*60*60);
         String start = String.format(url,1,now);
         Request r = new Request(start).setCharset("GBK");
-        Spider netease = Spider.create(sinaProcessor).addRequest(r).thread(4);
+        Spider netease = Spider.create(sinaProcessor).addRequest(r).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
         netease.start();
     }
 }

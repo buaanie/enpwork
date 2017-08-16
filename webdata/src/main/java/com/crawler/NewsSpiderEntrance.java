@@ -1,4 +1,6 @@
-package com.crawler.sites;
+package com.crawler;
+
+import com.crawler.sites.*;
 
 import java.util.Calendar;
 import java.util.Date;

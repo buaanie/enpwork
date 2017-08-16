@@ -64,9 +64,9 @@ function drawneoGraphD3(targets,query,rawdata) {
         // .style("fill", function (d, i) {
         //     return color(i);
         // })
-        .on("mouseover",function(d,i){
-            alert(rawdata[i].graph.nodes[0].properties);
-        })
+        // .on("mouseover",function(d,i){
+        //     alert(rawdata[i].graph.nodes[0].properties);
+        // })
         .on("dblclick", dblclick)
         .call(drag);
 
