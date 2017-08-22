@@ -37,7 +37,7 @@ public class FilesOpt {
     }
 
     public void storeFile(String data,String path){
-        File file = new File(path);
+        File file = new File(path+".txt");
         BufferedWriter writer = null;
         if(!file.exists()){
             try {

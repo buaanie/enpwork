@@ -74,7 +74,7 @@ public class ESClient {
         client.close();
     }
     public static void main(String[] args) {
-        String indexName = "nnews";
+        String indexName = "ncmts";
         //具体配置请在具体方法中填写
         conn.createIndex(indexName);
 //        conn.deleteIndex("nnewsindex");
@@ -110,10 +110,10 @@ public class ESClient {
                 "    \"index\": {" +
                 "        \"analysis\": {" +
                 "            \"analyzer\": {" +
-                "                \"word_analyzer\": {" +
+   /*             "                \"word_analyzer\": {" +
                 "                    \"type\": \"custom\"," +
                 "                    \"tokenizer\": \"word_tokenizer\"" +
-                "                }," +
+                "                }," +*/
                 "                \"id_analyzer\": {" +
                 "                    \"type\": \"custom\"," +
                 "                    \"tokenizer\": \"id_tokenizer\"" +
@@ -126,10 +126,10 @@ public class ESClient {
                 "                }" +
                 "            }," +
                 "            \"tokenizer\": {" +
-                "                \"word_tokenizer\": {" +
+/*                "                \"word_tokenizer\": {" +
                 "                    \"pattern\": \"\\\\s|,|，\"," +
                 "                    \"type\": \"pattern\"" +
-                "                }," +
+                "                }," +*/
                 "                \"id_tokenizer\": {" +
                 "                    \"pattern\": \"-\"," +
                 "                    \"type\": \"pattern\"" +
@@ -147,7 +147,7 @@ public class ESClient {
                     .startObject("msg")
 //	                    .startObject("_source").field("enabled", false).endObject() excludes
 //                    .startObject("_source").field("includes", "title", "time","type").endObject()
-                    .startObject("_source").field("excludes", "content", "source").endObject()
+/*                    .startObject("_source").field("excludes", "content", "source").endObject()
                     .startObject("properties")
                     .startObject("time").field("type", "date").field("format","yyy-MM-dd HH:mm:ss||yyy-MM-dd HH:mm||yyyy-MM-dd||epoch_millis").field("index", "not_analyzed").endObject()
                     .startObject("title").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
@@ -158,7 +158,16 @@ public class ESClient {
                     .startObject("newstype").field("type", "string").field("index", "not_analyzed").endObject()
                     .startObject("source").field("type", "string").field("index", "not_analyzed").endObject()
                     .startObject("keywords").field("type", "string").field("index", "analyzed").field("analyzer", "word_analyzer").endObject()
-                    .startObject("cmtid").field("type", "string").field("index", "not_analyzed").endObject()
+                    .startObject("cmtid").field("type", "string").field("index", "not_analyzed").endObject()*/
+                    .startObject("properties")
+                        .startObject("time").field("type", "date").field("format","yyy-MM-dd HH:mm:ss||yyy-MM-dd HH:mm||yyyy-MM-dd||epoch_millis").field("index", "not_analyzed").endObject()
+                        .startObject("content").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+//                        .startObject("cmtid").field("type", "string").field("index", "analyzed").field("analyzer", "id_analyzer").endObject()
+                        .startObject("newsid").field("type", "string").field("index", "analyzed").field("analyzer", "id_analyzer").endObject()
+                        .startObject("cpid").field("type", "string").field("index", "not_analyzed").endObject()
+                        .startObject("crid").field("type", "string").field("index", "not_analyzed").endObject()
+                        .startObject("userid").field("type", "string").field("index", "not_analyzed").endObject()
+                        .startObject("upnum").field("type", "string").field("index", "not_analyzed").endObject()
                     .endObject()
                     .endObject()
                     .endObject();

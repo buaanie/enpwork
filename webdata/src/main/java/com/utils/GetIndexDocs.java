@@ -10,19 +10,50 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by ACT-NJ on 2017/7/22.
  */
 public class GetIndexDocs {
     private TransportClient client = ESClient.getInstance();
-    private String index = "tjnews";
+    private String index = "nnews";
+    private int MaxSize = 4000;
+
+    public HashMap getCmtIds(long from,long to){
+        HashMap<String,List<String>> result = new HashMap<>();
+        QueryBuilder time = QueryBuilders.rangeQuery("time").from(from).to(to);
+        QueryBuilder cmt = QueryBuilders.termQuery("cmtid","");
+        BoolQueryBuilder bool = QueryBuilders.boolQuery().must(time).mustNot(cmt);
+        SearchRequestBuilder request = client.prepareSearch(index).setTypes("msg")
+                .setSearchType(SearchType.DEFAULT).setScroll(new TimeValue(10000))
+                .setQuery(bool).setSize(MaxSize);
+        SearchResponse scrollResp = request.execute().actionGet();
+        System.out.println(scrollResp.getHits().getHits().length);
+        if(scrollResp.getHits().getHits().length>0) {
+            result.put("nts", new ArrayList<>());
+            result.put("sin", new ArrayList<>());
+            result.put("tct", new ArrayList<>());
+        }
+        while (true) {
+            for (SearchHit hit : scrollResp.getHits()) {
+                String id_prefix = hit.getId().split("-")[0];
+                result.get(id_prefix).add(String.valueOf(hit.getSource().get("cmtid")));
+            }
+            //通过scrollid来实现深度翻页
+            scrollResp = client.prepareSearchScroll(scrollResp.getScrollId())
+                    .setScroll(new TimeValue(10000)).execute().actionGet();
+            if (scrollResp.getHits().getHits().length == 0) {
+                break;
+            }
+        }
+        return result;
+    }
 
     //删除文档
     private void deleteDocs(List<String> input){
@@ -78,9 +109,17 @@ public class GetIndexDocs {
     }
 
     public static void main(String[] args){
+        long from = System.currentTimeMillis();
+        long to = from+8*60*60*1000;
         GetIndexDocs g = new GetIndexDocs();
-        GetResponse test = g.client.prepareGet("crawler_all", "msg", "4089924896513098").execute().actionGet();
-        System.out.println(test.getSource().get("releasedate"));
+        HashMap<String,List<String>> ids =  g.getCmtIds(from,to);
+        System.out.println(from+" "+to);
+        List<String> nts = ids.get("nts");
+        List<String> sin = ids.get("sin");
+        List<String> tct = ids.get("tct");
+        System.out.println(nts.size()+" "+sin.size()+" "+tct.size());
+//        GetResponse test = g.client.prepareGet("crawler_all", "msg", "4089924896513098").execute().actionGet();
+//        System.out.println(test.getSource().get("releasedate"));
 
 //		SearchResponse response = client.prepareSearch(index).setSize(0).execute().actionGet();
 //		System.out.println(response.getHits().getTotalHits());

@@ -36,10 +36,14 @@ public class TencentNews {
 
         String ms = String.valueOf(System.currentTimeMillis());
         String date = sdf.format(new Date());
-        Request r = new Request(String.format(tct_news,date,"1",ms))
+        Request r1 = new Request(String.format(tct_news,date,"1",ms))
+                .addHeader("Host","roll.news.qq.com").addHeader("Referer","http://news.qq.com/articleList/rolls/");
+        Request r2 = new Request(String.format(tct_news,date,"2",ms))
+                .addHeader("Host","roll.news.qq.com").addHeader("Referer","http://news.qq.com/articleList/rolls/");
+        Request r3 = new Request(String.format(tct_news,date,"3",ms))
                 .addHeader("Host","roll.news.qq.com").addHeader("Referer","http://news.qq.com/articleList/rolls/");
 
-        Spider tencent = Spider.create(tenProcessor).addRequest(r).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
+        Spider tencent = Spider.create(tenProcessor).addRequest(r1,r2,r3).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
         tencent.start();
     }
 }

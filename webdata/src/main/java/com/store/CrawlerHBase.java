@@ -29,8 +29,8 @@ public class CrawlerHBase {
 	public static CrawlerHBase getHBase(boolean comment){
 		if(comment){
 			try {
-				crawlerHBase.newsCmt = HBaseClient.getTable("ncmt");
-				crawlerHBase.cmtUser = HBaseClient.getTable("nuser");
+				crawlerHBase.newsCmt = HBaseClient.getTable("ncmts");
+				crawlerHBase.cmtUser = HBaseClient.getTable("nusers");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -108,9 +108,27 @@ public class CrawlerHBase {
 		List<Put> cmt_puts = new ArrayList<>(70);
 		List<Put> user_puts = new ArrayList<>(70);
 		for(NewsCmt cmt : cmtList){
-//			Put put = new Put(Bytes.toBytes(news.getId()));
-//			put.add(Bytes.toBytes("info"), Bytes.toBytes("cmtid"), Bytes.toBytes(news.getCmtID()));
-//			puts.add(put);
+			Put put = new Put(Bytes.toBytes(cmt.getID()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("cmtid"), Bytes.toBytes(cmt.getID()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("time"), Bytes.toBytes(cmt.getStringTime()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("content"), Bytes.toBytes(cmt.getContent()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("newsid"), Bytes.toBytes(cmt.getTargetId()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("userid"), Bytes.toBytes(cmt.getUid()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("upnum"), Bytes.toBytes(cmt.getUpNum()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("cpid"), Bytes.toBytes(cmt.getPid()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("crid"), Bytes.toBytes(cmt.getRid()));
+			cmt_puts.add(put);
+		}
+		for(CmtUser user : userList){
+			Put put = new Put(Bytes.toBytes(user.getUid()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("uid"), Bytes.toBytes(user.getUid()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("nickname"), Bytes.toBytes(user.getNickname()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("region"), Bytes.toBytes(user.getRegion()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("gender"), Bytes.toBytes(user.getGender()));
+			put.add(Bytes.toBytes("info"), Bytes.toBytes("avatar"), Bytes.toBytes(user.getAvatar()));
+			if(user.getExtra()!=null)
+				put.add(Bytes.toBytes("info"), Bytes.toBytes("extra"), Bytes.toBytes(user.getExtra()));
+			user_puts.add(put);
 		}
 		try {
 			newsCmt.put(cmt_puts);

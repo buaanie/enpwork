@@ -30,11 +30,27 @@ import static com.crawler.utils.StirngUtil.UA2;
 public class TencentCmt implements PageProcessor{
     private static final String tct_cmt = "https://coral.qq.com/article/%s/comment?commentid=%s&tag=&reqnum=40";
     public static void main(String[] args) {
-        String id = "TCT-2029093517";
+        String id = "tct-2087613603";
         String cmt_url = String.format(tct_cmt,id.split("-")[1],"0");
-        Spider ten_cmt = Spider.create(new TencentCmt()).addRequest(new Request(cmt_url).putExtra("id",id)).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
+        Spider ten_cmt = Spider.create(new TencentCmt()).addRequest(new Request(cmt_url).putExtra("id",id.split("-")[1])).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
         ten_cmt.run();
     }
+
+    public void run(List<String> ids) {
+        List<Request> requests = new ArrayList<>();
+        for (String id : ids) {
+            if(!id.contains("-"))
+                id = id.replace("tct","");
+            else
+                id = id.split("-")[1];
+            System.out.println(id);
+            Request cmt_req = new Request(String.format(tct_cmt,id,"0")).putExtra("id",id);
+            requests.add(cmt_req);
+        }
+        Spider ten_cmt = Spider.create(new TencentCmt()).startRequest(requests).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
+        ten_cmt.run();
+    }
+
     @Override
     public void process(Page page) {
         Json json = new Json(page.getRawText());
@@ -47,19 +63,19 @@ public class TencentCmt implements PageProcessor{
         String target_id = page.getRequest().getExtra("id").toString();
         Boolean hasNext = Boolean.valueOf(json.jsonPath("$.data.hasnext").toString());//用于判断是否还有分页
         String last_id = json.jsonPath("$.data.last").toString();//记录最后一条评论id，用于拼接下一分页
-        JSONArray comments = JSONArray.parseArray(json.jsonPath("$.data.commentid").toString());
-        Iterator<Object> iter = comments.iterator();
+        List<String> comments = json.jsonPath("$.data.commentid[*]").all();
+        Iterator<String> iter = comments.iterator();
         List<NewsCmt> commentsList = new ArrayList<>();
         List<CmtUser> cmtuserList = new ArrayList<>();
         while(iter.hasNext()){
-            JSONObject temp = (JSONObject) iter.next();
+            JSONObject temp = JSONObject.parseObject(iter.next());
             String cmt_id = temp.getString("id");
             String root_id = temp.getString("rootid");
             String parent_id = temp.getString("parent");
             Long time = temp.getLong("time");
             String content = temp.getString("content");
             String up = temp.getString("up");
-            String user_id = temp.getJSONObject("userinfo").getString("userid");
+            String user_id = "tct-"+temp.getJSONObject("userinfo").getString("userid");
             String user_nick = temp.getJSONObject("userinfo").getString("nick");
             String user_region = temp.getJSONObject("userinfo").getString("region");
             String user_gender = temp.getJSONObject("userinfo").getString("gender"); //1：男  2：女
@@ -74,7 +90,7 @@ public class TencentCmt implements PageProcessor{
         page.putField(ItemType.CmtUser,cmtuserList);
         page.putField(ItemType.NewsCmt,commentsList);
         if(hasNext)
-            page.addTargetRequest(new Request(String.format(tct_cmt,target_id,last_id)));
+            page.addTargetRequest(new Request(String.format(tct_cmt,target_id,last_id)).putExtra("id",target_id));
     }
 
     @Override

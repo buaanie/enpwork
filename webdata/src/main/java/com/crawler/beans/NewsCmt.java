@@ -17,7 +17,7 @@ public class NewsCmt {
     private long milliseTime;     //评论时间
     private String stringTime;	    //发布时间
     private String id;          //评论id
-    private String target;      //评论文章的id
+    private String targetid;      //评论文章的id
     private String pid = "0";         //评论上一级id
     private String rid = "0";
     private String uid;         //评论人id
@@ -35,7 +35,7 @@ public class NewsCmt {
     public NewsCmt(String id, String target, String uid, String upNum, long time, String content)
     {
         this.id = id;
-        this.target = target;
+        this.targetid = target;
         this.uid = uid;
         this.upNum = upNum;
         this.milliseTime = time;
@@ -43,7 +43,7 @@ public class NewsCmt {
     }
     public NewsCmt(String id, String target, String uid, String upNum, String time, String content){
         this.id = id;
-        this.target = target;
+        this.targetid = target;
         this.uid = uid;
         this.upNum = upNum;
         this.stringTime = time;
@@ -72,7 +72,21 @@ public class NewsCmt {
     public String getContent() {
         return content;
     }
-
+    public String getTargetId(){
+        return targetid;
+    }
+    public String getPid(){
+        return pid;
+    }
+    public String getRid(){
+        return rid;
+    }
+    public String getUid(){
+        return uid;
+    }
+    public String getUpNum(){
+        return upNum;
+    }
     public String toString(){
         try {
             ObjectMapper mapper = new ObjectMapper();

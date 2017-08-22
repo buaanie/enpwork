@@ -13,10 +13,7 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Json;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,12 +28,21 @@ public class NeteaseCmt implements PageProcessor{
     private static final String api_url = "http://comment.news.163.com/api/v1/products/a2869674571f77b5a0867c3d71db5856/threads/%s/comments/newList?offset=%d&limit=40&headLimit=3&tailLimit=1&ibc=newswap";
 
     public static void main(String[] args) {
-        String  news_id = "NTS-CPI6A4LQ000187VE";
+        String  news_id = "nts-CSDMLO5N0001899N";
         Request cmt_req = new Request(String.format(api_url,news_id.split("-")[1],0)).putExtra("id",news_id);
         Spider net_cmt = Spider.create(new NeteaseCmt()).addRequest(cmt_req).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
         net_cmt.run();
     }
 
+    public void run(List<String> ids){
+        List<Request> requests = new ArrayList<>();
+        for (String id : ids) {
+            Request cmt_req = new Request(String.format(api_url,id.split("-")[1],0)).putExtra("id",id);
+            requests.add(cmt_req);
+        }
+        Spider net_cmt = Spider.create(new NeteaseCmt()).startRequest(requests).addPipeline(new ItemPipeLine(ItemType.NewsCmt)).thread(2);
+        net_cmt.run();
+    }
     @Override
     public void process(Page page) {
         Json json = new Json(page.getRawText());
@@ -50,6 +56,7 @@ public class NeteaseCmt implements PageProcessor{
         Iterator<String> iter = comments.keySet().iterator();
         List<CmtUser> cmtuserList = new ArrayList<>();
         HashMap<String,NewsCmt> commentsSet = new HashMap<>();
+        int count = 0;
         while(iter.hasNext()){
             JSONObject temp = comments.getJSONObject(iter.next());
             String cmt_id = temp.getString("commentId");
@@ -58,16 +65,18 @@ public class NeteaseCmt implements PageProcessor{
             String up = temp.getString("vote");
             JSONObject _user = temp.getJSONObject("user");
             String user_id = _user.getString("userId");
-            String user_nick = _user.getString("nickname");
-            String user_region = _user.getString("location");
+            if(user_id.equals("0"))
+                user_id= "nts-t"+System.currentTimeMillis();
+            String user_nick = String.valueOf(_user.getOrDefault("nickname","-"));
+            String user_region = String.valueOf(_user.getOrDefault("location","-"));
             String user_gender = "-";
-            String user_avatar = _user.getString("avatar");
+            String user_avatar = String.valueOf(_user.getOrDefault("avatar","-"));
             NewsCmt comment = new NewsCmt("nts-"+cmt_id,target_id,user_id,up,time,content);
             CmtUser user = new CmtUser(user_id,user_nick,user_region,user_gender,user_avatar);
             commentsSet.put(cmt_id,comment);
             cmtuserList.add(user);
+            count++;
         }
-
         String levels = json.jsonPath("$.commentIds").toString();
         Pattern pattern = Pattern.compile("\"(.+?)\"");
         Matcher matcher = pattern.matcher(levels);
@@ -91,8 +100,8 @@ public class NeteaseCmt implements PageProcessor{
         Matcher m = Pattern.compile("offset=(\\d+)").matcher(page.getUrl().toString());
         if(m.find()){
             int offset = Integer.valueOf(m.group(1));
-            if(offset+30<cmt_num){
-                String page_next = String.format(api_url,target_id,offset+30);
+            if(offset+count<cmt_num){
+                String page_next = String.format(api_url,target_id.split("-")[1],offset+count);
                 page.addTargetRequest(new Request(page_next).putExtra("id",target_id));
             }
         }

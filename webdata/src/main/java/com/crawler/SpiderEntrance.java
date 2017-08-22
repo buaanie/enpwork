@@ -1,18 +1,16 @@
 package com.crawler;
 
 import com.crawler.sites.*;
+import com.utils.GetIndexDocs;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * Created by ACT-NJ on 2017/8/7.
  */
-public class NewsSpiderEntrance {
+public class SpiderEntrance {
     public static void main(String[] args) {
-        NewsSpiderEntrance entrance = new NewsSpiderEntrance();
+        SpiderEntrance entrance = new SpiderEntrance();
         entrance.timerAll(args[0],args[1]);
     }
     private void timerAll(String type,String env){
@@ -21,7 +19,7 @@ public class NewsSpiderEntrance {
         long period = 4*3600*1000;//4小时为间隔
         long delay = 3;    //3'延迟
         Timer spiderTimer = new Timer();
-        TimerTask spiderTask;
+        TimerTask spiderTask = null;
         if(type.equals("news")){
             spiderTask =new TimerTask() {
                 @Override
@@ -29,13 +27,16 @@ public class NewsSpiderEntrance {
                     runNewsCrawler();
                 }
             };
-        }else{
+        }else if(type.equals("cmts")){
             spiderTask =new TimerTask() {
                 @Override
                 public void run() {
                     runCmtCrawler();
                 }
             };
+        }else{
+            System.out.println("sorry no task");
+            return;
         }
         if(env.equals("test")){
             spiderTimer.schedule(spiderTask, delay);
@@ -48,12 +49,19 @@ public class NewsSpiderEntrance {
         new NeteaseNews().run();
         new SinaNews().run();
         new TencentNews().run();
-        new CNR().run();
-        new People().run();
-        new Paper().run();
+//        new CNR().run();
+//        new People().run();
+//        new Paper().run();
     }
     private void runCmtCrawler(){
-
+        HashMap<String,List<String>> ids = getCurrentCmtIds();
+        List<String> nts = ids.get("nts");
+        List<String> sin = ids.get("sin");
+        List<String> tct = ids.get("tct");
+        System.out.println(nts.size()+" "+sin.size()+" "+tct.size());
+        new SinaCmt().run(sin);
+        new NeteaseCmt().run(nts);
+        new TencentCmt().run(tct);
     }
 
     private Calendar getFirstTime(){
@@ -68,5 +76,12 @@ public class NewsSpiderEntrance {
         calendar.set(Calendar.MINUTE, 35);
         calendar.set(Calendar.SECOND, 00);
         return calendar;
+    }
+
+    private HashMap getCurrentCmtIds(){
+        long from = System.currentTimeMillis();
+        long to = from-8*60*60*1000;
+        HashMap<String,List<String>> ids = new GetIndexDocs().getCmtIds(to,from);
+        return ids;
     }
 }

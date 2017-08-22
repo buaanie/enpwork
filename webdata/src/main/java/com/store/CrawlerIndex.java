@@ -1,14 +1,17 @@
 package com.store;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.crawler.beans.NewsCmt;
 import com.crawler.beans.NewsItem;
 import org.apache.log4j.Logger;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
+import org.elasticsearch.action.update.UpdateRequestBuilder;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -88,16 +91,6 @@ public class CrawlerIndex {
 				IndexRequestBuilder iqbn = client.prepareIndex(index, "msg", news.getId()).setSource(contentBuilder);
 				bqb.add(iqbn);
             }
-//			else{
-//				XContentBuilder contentBuilder = XContentFactory.jsonBuilder()
-//						.startObject()
-//							.field("url", news.getURL())
-//						.endObject();
-//				UpdateRequestBuilder iqb_up = client.prepareUpdate(index, "msg",
-//						news.getId()).setDoc(contentBuilder);
-//				bqb.add(iqb_up);
-//				System.out.println(news.getURL());
-//			}
 		}
         if(bqb.numberOfActions()!=0){
 			try {
@@ -109,9 +102,56 @@ public class CrawlerIndex {
 					System.out.println(response.buildFailureMessage());
 				}
 			} catch (Exception e) {
-				logger.error("error");
+				logger.error(e);
 			}
 		}
 	}
 
+	public synchronized void indexCmts(List<NewsCmt> cmtList){
+		String index = "ncmts";
+        BulkRequestBuilder bqb = client.prepareBulk();
+        try {
+            for (NewsCmt cmt : cmtList) {
+			    GetResponse test = client.prepareGet(index, "msg", cmt.getID()).execute().actionGet();
+			    if(!test.isExists()){
+                    XContentBuilder contentBuilder = XContentFactory.jsonBuilder()
+                                .startObject()
+                                .field("time", cmt.getStringTime())
+                                .field("content", cmt.getContent())
+                                .field("newsid", cmt.getTargetId())
+                                .field("userid", cmt.getUid())
+                                .field("upnum", cmt.getUpNum())
+                                .field("cpid", cmt.getPid())
+                                .field("crid", cmt.getRid())
+                                .endObject();
+                    IndexRequestBuilder iqbn = client.prepareIndex(index, "msg", cmt.getID()).setSource(contentBuilder);
+                    bqb.add(iqbn);
+                }
+                else{
+                    XContentBuilder contentBuilder = XContentFactory.jsonBuilder()
+                            .startObject()
+                                .field("upnum", cmt.getUpNum())
+                            .endObject();
+                    UpdateRequestBuilder iqb_up = client.prepareUpdate(index, "msg",
+                            cmt.getID()).setDoc(contentBuilder);
+                    bqb.add(iqb_up);
+                }
+		    }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		if(bqb.numberOfActions()!=0){
+			try {
+				BulkResponse response = bqb.execute().actionGet();
+				System.out.println(Thread.currentThread().getName() + " index comments into es");
+				logger.info(Thread.currentThread().getName()+" --------- index comments into es  "+bqb.numberOfActions());
+				if(response.hasFailures()){
+					logger.error("index news error");
+					System.out.println(response.buildFailureMessage());
+				}
+			} catch (Exception e) {
+				logger.error(e);
+			}
+		}
+	}
 }

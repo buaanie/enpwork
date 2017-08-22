@@ -38,6 +38,15 @@ public class SinaCmt implements PageProcessor {
         Spider sina_cmt = Spider.create(new SinaCmt()).addRequest(cmt_req).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
         sina_cmt.run();
     }
+    public void run(List<String> ids){
+        List<Request> requests = new ArrayList<>();
+        for (String id : ids) {
+            Request cmt_req = new Request(String.format(url, id.split("-")[2], id.split("-")[1], 1)).putExtra("id", id).putExtra("page",1);
+            requests.add(cmt_req);
+        }
+        Spider sina_cmt = Spider.create(new SinaCmt()).startRequest(requests).addPipeline(new ItemPipeLine(ItemType.NewsCmt));
+        sina_cmt.run();
+    }
 
     @Override
     public void process(Page page) {
@@ -77,7 +86,7 @@ public class SinaCmt implements PageProcessor {
         String cmt_time = temp.getString("time");
         String cmt_content = temp.getString("content");
         String up = temp.getString("agree");
-        String user_id = temp.getString("uid");
+        String user_id = "sin-"+temp.getString("uid");
         String user_region = temp.getString("area");
         String user_nick = temp.getString("nick");
         String config = temp.getString("config");

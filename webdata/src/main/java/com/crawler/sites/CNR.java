@@ -58,15 +58,14 @@ public class CNR implements PageProcessor{
                     }
             }
             String news_content = sb.toString();
-            if(news_content.matches("\\s+")) {
+            if(news_url.contains("pic") || news_content.matches("\\s+")) {
                 page.setSkip(true);
-                System.out.println("SFSFSAF");
                 return;
             }
             String news_title = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']/div[@class='subject']/h2/text()").toString();
             String news_time = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']//div[@class='source']/span[1]/text()").regex(TIME_REGEX).toString();
             String news_source = page.getHtml().xpath("//head/[@name='source']/@content").toString();
-            String news_type = page.getRequest().getExtra("type").toString();
+            String news_type = page.getRequest().getExtra("type").toString().replaceAll("[|]","");
             String news_descp = page.getHtml().xpath("//head/meta[@name='description']/@content").toString();
             String news_keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
             NewsItem news = new NewsItem("cnr-"+news_id,news_url,news_title.trim(),news_content.trim(),news_time,news_source,news_type,news_descp,news_keywords);

@@ -38,7 +38,7 @@ public class NeteaseNews{
     public Request[] getStartUrls(){
         List<Request> res = new ArrayList<>();
         for (String s : list) {
-            for(int i=0;i<40;i=i+40){
+            for(int i=0;i<81;i=i+40){
                 Request request = new Request(String.format(url,s.split("-")[0],i));
                 request.putExtra("type",s.split("-")[1]);
                 request.putExtra("identity",s.split("-")[0]);

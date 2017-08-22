@@ -33,14 +33,24 @@ public class CmtUser {
     public String getGender(){
         return gender;
     }
-    public String getvatar(){
+    public String getAvatar(){
         return avatar;
     }
     public String getExtra(String key) {
-        if (extras == null) {
+        if (extras == null || extras.size()==0) {
             return null;
         }
         return extras.get(key);
+    }
+    public String getExtra() {
+        if (extras == null || extras.size()==0) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String s : extras.keySet()) {
+            sb.append(s+":{"+extras.get(s)+"}");
+        }
+        return  sb.toString();
     }
     public void putExtra(String key, String value) {
         if (extras == null) {

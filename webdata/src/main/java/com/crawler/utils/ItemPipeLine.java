@@ -1,17 +1,23 @@
 package com.crawler.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.crawler.beans.CmtUser;
 import com.crawler.beans.NewsCmt;
 import com.crawler.beans.NewsItem;
 import com.crawler.beans.WikiItem;
 import com.store.CrawlerHBase;
 import com.store.CrawlerIndex;
+import com.utils.FilesOpt;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by ACT-NJ on 2017/6/8.
@@ -19,12 +25,15 @@ import java.util.List;
 public class ItemPipeLine implements Pipeline{
     private CrawlerIndex crawlerNewsIndex;
     private CrawlerHBase crawlerNewsHBase;
-    private  String pageType = null;
+    private String pageType = null;
+    private FilesOpt filePersist = null;
     public ItemPipeLine(String type){
         this.pageType = type;
-        crawlerNewsIndex = CrawlerIndex.getIndex();
-        if(type==ItemType.NewsCmt)
-            crawlerNewsHBase = CrawlerHBase.getHBase(true);
+//        crawlerNewsIndex = CrawlerIndex.getIndex();
+        filePersist = new FilesOpt();
+        if(type==ItemType.NewsCmt) {
+//            crawlerNewsHBase = CrawlerHBase.getHBase(true);
+        }
         else
             crawlerNewsHBase = CrawlerHBase.getHBase(false);
     }
@@ -35,15 +44,16 @@ public class ItemPipeLine implements Pipeline{
                 if(resultItems.get(ItemType.NewsItem)!=null)
                 {
                     NewsItem news = resultItems.get(ItemType.NewsItem);
+                    filePersist.storeFile(news.toJsonString(),news.getId());
 //                    NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);
 //                    Thread index = new Thread(){
 //                        public void run(){
-                            crawlerNewsIndex.indexNews(news);
+//                            crawlerNewsIndex.indexNews(news);
 //                        }
 //                    };
 //                    Thread store = new Thread(){
 //                        public void run(){
-                            crawlerNewsHBase.storeNews(news);
+//                            crawlerNewsHBase.storeNews(news);
 //                        }
 //                    };
 //                    index.start();
@@ -55,7 +65,21 @@ public class ItemPipeLine implements Pipeline{
                 {
                     List<NewsCmt> comments = resultItems.get(ItemType.NewsCmt);
                     List<CmtUser> users = resultItems.get(ItemType.CmtUser);
-                    crawlerNewsHBase.storeBulkCmt(comments,users);
+//                    ExecutorService executor = Executors.newSingleThreadExecutor();
+//                    try {
+//                        executor.submit(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                crawlerNewsHBase.storeBulkCmt(comments,users);
+//                            }
+//                        }).get();
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    } catch (ExecutionException e) {
+//                        e.printStackTrace();
+//                    }
+//                    crawlerNewsIndex.indexCmts(comments);
+                    filePersist.storeFile(JSON.toJSONString(comments),String.valueOf(System.currentTimeMillis()));
                 };break;
             case ItemType.WikiItem:
                 if(resultItems.get(ItemType.WikiItem)!=null && resultItems.get(ItemType.WikiItem) instanceof WikiItem)

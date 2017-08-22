@@ -11,6 +11,7 @@ import us.codecraft.webmagic.handler.SubPageProcessor;
 import java.util.Date;
 import java.util.Iterator;
 
+import static com.crawler.sites.SinaNews.url;
 import static com.crawler.utils.StirngUtil.parseJsonp;
 
 /**
@@ -23,6 +24,7 @@ public class SinaList implements SubPageProcessor {
         String raw = page.getRawText();
         JSONObject json = parseJsonp(raw,"{");
         JSONArray jsonArray = json.getJSONArray("list");
+        int count = 0;
         for (Object o : jsonArray) {
             JSONObject temp = (JSONObject) o;
             Request r = new Request(temp.getString("url"));
@@ -30,6 +32,13 @@ public class SinaList implements SubPageProcessor {
             r.putExtra("title",temp.getString("title"));
             r.putExtra("time",temp.getString("time"));
             r.putExtra("type",getType(temp.getJSONObject("channel").getString("id")));
+            page.addTargetRequest(r);
+            count++;
+        }
+        if(count>=80){
+            int page_num = (int) page.getRequest().getExtra("page")+1;
+            String page_time = page.getRequest().getExtra("time").toString();
+            Request r = new Request(String.format(url,page_num,page_time)).setCharset("GBK").putExtra("page",page_num).putExtra("time",page_time);
             page.addTargetRequest(r);
         }
         page.setSkip(true); //无需保存

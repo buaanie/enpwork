@@ -115,6 +115,7 @@ public class NewsItem {
     public String getCmtID(){
         return this.cmt_id;
     }
+
     public String toString(){
     	return "新闻：{" + "id= '"+ id+ "' 标题='" + title +
     	    "', 时间='" + stringTime + "'}";
@@ -124,7 +125,7 @@ public class NewsItem {
     	    "', 时间='" + stringTime + "', 链接='" + url +
     	    "', 来源='" + source + "', 内容='" + content + "'}";
     	}
-    public String toStringJson(){
+    public String toJsonString(){
         try {
             ObjectMapper mapper = new ObjectMapper();
             String info = mapper.writeValueAsString(this);

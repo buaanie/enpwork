@@ -23,7 +23,7 @@ public class TencentInfo implements SubPageProcessor{
         String time  = page.getRequest().getExtra("time").toString();
         String title  = page.getRequest().getExtra("title").toString();
         String keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
-        if(keywords==null || keywords.equals("")){
+        if(keywords==null || keywords.equals("") || !keywords.contains(",")){
             page.setSkip(true);
             return MatchOther.NO;
         }
@@ -49,9 +49,12 @@ public class TencentInfo implements SubPageProcessor{
         String cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_articleFt']/script[2]").regex("cmt_id = (\\d+);").toString();
         if(cmt_id==null || cmt_id.equals(""))
             cmt_id = page.getHtml().xpath("//*[@id='Main-Article-QQ']//div[@class='qq_articleFt']/script[1]").regex("cmt_id = (\\d+);").toString();
+        if(cmt_id==null){
+            cmt_id = page.getHtml().xpath("//*[@id='MainL']/div[1]/script[1]").regex("cmt_id = (\\d+);").toString();
+        }
         // 电脑 http://coral.qq.com/cmt_id
         // 手机http://xw.qq.com/c/coral/cmt_id
-        news.setCmtID("tct"+cmt_id);
+        news.setCmtID("tct-"+cmt_id);
         page.putField(ItemType.NewsItem,news);
         return MatchOther.NO;
     }

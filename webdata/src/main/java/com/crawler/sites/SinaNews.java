@@ -18,7 +18,7 @@ import static com.crawler.utils.StirngUtil.UA1;
  * http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&offset_page=0&offset_num=0&num=60&page=1&last_time=1500255424
  */
 public class SinaNews {
-    private static String url = "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=40&page=%d&last_time=%s";
+    public static String url = "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=100&page=%d&last_time=%s";
     private static Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000).setUserAgent(UA1);
     public static void main(String[] args) {
         new SinaNews().run();
@@ -26,9 +26,9 @@ public class SinaNews {
     public void run(){
         CompositePageProcessor sinaProcessor = new CompositePageProcessor(site);
         sinaProcessor.setSubPageProcessors(new SinaInfo(),new SinaList());
-        String now = String.valueOf(System.currentTimeMillis()/1000 - 2*60*60);
+        String now = String.valueOf(System.currentTimeMillis()/1000 - 13*60*60);
         String start = String.format(url,1,now);
-        Request r = new Request(start).setCharset("GBK");
+        Request r = new Request(start).setCharset("GBK").putExtra("page",1).putExtra("time",now);
         Spider netease = Spider.create(sinaProcessor).addRequest(r).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
         netease.start();
     }

@@ -10,6 +10,7 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.crawler.utils.StirngUtil.UA1;
@@ -30,8 +31,12 @@ public class Paper implements PageProcessor{
     }
     public void run(){
         long time = System.currentTimeMillis();
+        List<String> starts = new ArrayList<>();
+        for(int i=2;i<10;i++){
+            starts.add(String.format(list,i,time));
+        }
         //建议page 1~8
-        Spider paper = Spider.create(new Paper()).addUrl(String.format(list,1,time)).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);
+        Spider paper = Spider.create(new Paper()).startUrls(starts).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);
         paper.start();
     }
     @Override
