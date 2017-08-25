@@ -1,13 +1,10 @@
 package com.ansj.vec;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
@@ -23,7 +20,7 @@ public class Word2VEC {
 		// learn.saveModel(new File("library/javaSkip1"));
 
 		Word2VEC vec = new Word2VEC();
-		vec.loadJavaModel("library/javaSkip1");
+		vec.loadJavaModel("files/library/javaSkip1");
 
 		// System.out.println("中国" + "\t" +
 		// Arrays.toString(vec.getWordVector("中国")));
@@ -60,6 +57,8 @@ public class Word2VEC {
 	private int words;
 	private int size;
 	private int topNSize = 40;
+
+
 
 	/**
 	 * 加载模型

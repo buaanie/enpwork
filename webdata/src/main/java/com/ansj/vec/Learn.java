@@ -73,7 +73,8 @@ public class Learn {
    * 
    * @throws IOException
    */
-  private void trainModel(File file) throws IOException {
+  private void
+  trainModel(File file) throws IOException {
     try (BufferedReader br = new BufferedReader(new InputStreamReader(
         new FileInputStream(file)))) {
       String temp = null;
@@ -442,9 +443,9 @@ public class Learn {
   public static void main(String[] args) throws IOException {
     Learn learn = new Learn();
     long start = System.currentTimeMillis();
-    learn.learnFile(new File("library/xh.txt"));
+    learn.learnFile(new File("files/library/xh.txt"));
     System.out.println("use time " + (System.currentTimeMillis() - start));
-    learn.saveModel(new File("library/javaVector"));
+    learn.saveModel(new File("files/library/javaVector"));
 
   }
 }

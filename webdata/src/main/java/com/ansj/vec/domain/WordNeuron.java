@@ -42,7 +42,7 @@ public class WordNeuron extends Neuron {
   }
 
   /**
-   * 用于有监督的创造hoffman tree
+   * 用于有监督的创造huffman tree
    * 
    * @param name
    * @param freq
