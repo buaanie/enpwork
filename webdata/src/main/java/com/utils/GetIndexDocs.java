@@ -14,6 +14,9 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.sort.SortBuilder;
+import org.elasticsearch.search.sort.SortBuilders;
+import org.elasticsearch.search.sort.SortOrder;
 
 import java.util.*;
 
@@ -23,9 +26,10 @@ import java.util.*;
 public class GetIndexDocs {
     private TransportClient client = ESClient.getInstance();
     private String index = "nnews";
-    private int MaxSize = 4000;
+    private String _index = "nevents";
+    private int MaxSize = 3000;
 
-    public HashMap getCmtIds(long from,long to){
+    public HashMap getCmtIds(long from,long to,String index){
         HashMap<String,List<String>> result = new HashMap<>();
         QueryBuilder time = QueryBuilders.rangeQuery("time").from(from).to(to);
         QueryBuilder cmt = QueryBuilders.termQuery("cmtid","");
@@ -46,6 +50,33 @@ public class GetIndexDocs {
                 result.get(id_prefix).add(String.valueOf(hit.getSource().get("cmtid")));
             }
             //通过scrollid来实现深度翻页
+            scrollResp = client.prepareSearchScroll(scrollResp.getScrollId())
+                    .setScroll(new TimeValue(10000)).execute().actionGet();
+            if (scrollResp.getHits().getHits().length == 0) {
+                break;
+            }
+        }
+        return result;
+    }
+    public List<Pair> getPeriodNews(long from,long to){
+        QueryBuilder time = QueryBuilders.rangeQuery("time").from(from).to(to);
+        SortBuilder sort = SortBuilders.fieldSort("time").order(SortOrder.DESC);
+        SearchRequestBuilder request = client.prepareSearch(index).setTypes("msg")
+                .setSearchType(SearchType.DEFAULT).setScroll(new TimeValue(10000))
+                .setQuery(time).addSort(sort).setSize(MaxSize);
+        SearchResponse scrollResp = request.execute().actionGet();
+        int num =  (int)scrollResp.getHits().getTotalHits();
+        int cabage = (int) (num*1.5);
+        List<Pair> result = new ArrayList<>(cabage);
+        int index = 0;
+        while (true) {
+            for (SearchHit hit : scrollResp.getHits()) {
+                String id = String.valueOf(hit.getSource().get("newsid"));
+                String title = String.valueOf(hit.getSource().get("title"));
+//                System.out.println(index + " - "+ String.valueOf(hit.getSource().get("time")));
+                index++;
+                result.add(new Pair(id,title));
+            }
             scrollResp = client.prepareSearchScroll(scrollResp.getScrollId())
                     .setScroll(new TimeValue(10000)).execute().actionGet();
             if (scrollResp.getHits().getHits().length == 0) {
@@ -108,11 +139,12 @@ public class GetIndexDocs {
         return  result;
     }
 
+
     public static void main(String[] args){
         long from = System.currentTimeMillis();
         long to = from+8*60*60*1000;
         GetIndexDocs g = new GetIndexDocs();
-        HashMap<String,List<String>> ids =  g.getCmtIds(from,to);
+        HashMap<String,List<String>> ids =  g.getCmtIds(from,to,"nnews");
         System.out.println(from+" "+to);
         List<String> nts = ids.get("nts");
         List<String> sin = ids.get("sin");

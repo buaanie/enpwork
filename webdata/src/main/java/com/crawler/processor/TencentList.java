@@ -17,6 +17,10 @@ public class TencentList implements SubPageProcessor{
     @Override
     public MatchOther processPage(Page page) {
         Json jsonobject = new Json(page.getRawText());
+        if(!jsonobject.jsonPath("$.response.code").toString().equals("0")){
+            page.setSkip(true); //无需保存
+            return MatchOther.NO;
+        }
         List<String> list = jsonobject.jsonPath("$.data.article_info[*]").all();
         for (String s : list) {
             JSONObject temp = JSONObject.parseObject(s);

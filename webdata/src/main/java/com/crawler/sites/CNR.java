@@ -7,9 +7,7 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.handler.RequestMatcher;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.scheduler.PriorityScheduler;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.ArrayList;
@@ -30,9 +28,9 @@ public class CNR implements PageProcessor{
             .setUserAgent(UA2).setUseGzip(true).setUseGzip(true);
 
     public static void main(String[] args) {
-        new CNR().run();
+        new CNR().start();
     }
-    public void run(){
+    public void start(){
         List<String> start = new ArrayList<>();
 //        start.add("http://gongyi.cnr.cn/news/20170814/t20170814_523899101.shtml");
         for(int i =1;i<10;i++)
@@ -58,18 +56,17 @@ public class CNR implements PageProcessor{
                     }
             }
             String news_content = sb.toString();
-            if(news_url.contains("pic") || news_content.matches("\\s+")) {
+            String news_title = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']/div[@class='subject']/h2/text()").toString();
+            if(news_url.contains("pic") || news_title.equals("") || news_content.matches("\\s+")) {
                 page.setSkip(true);
                 return;
             }
-            String news_title = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']/div[@class='subject']/h2/text()").toString();
             String news_time = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']//div[@class='source']/span[1]/text()").regex(TIME_REGEX).toString();
             String news_source = page.getHtml().xpath("//head/[@name='source']/@content").toString();
             String news_type = page.getRequest().getExtra("type").toString().replaceAll("[|]","");
             String news_descp = page.getHtml().xpath("//head/meta[@name='description']/@content").toString();
             String news_keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
             NewsItem news = new NewsItem("cnr-"+news_id,news_url,news_title.trim(),news_content.trim(),news_time,news_source,news_type,news_descp,news_keywords);
-
             page.putField(ItemType.NewsItem,news);
         }else if(page.getUrl().regex(LIST_REGEX).match()){
             List<Selectable> nodes = page.getHtml().xpath("//div[@class='margin']//div[@class='left']/trs_documents/ul/li").nodes();

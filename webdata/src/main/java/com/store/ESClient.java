@@ -3,15 +3,17 @@ package com.store;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequestBuilder;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder;
+import org.elasticsearch.action.delete.DeleteAction;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.cluster.metadata.MappingMetaData;
-import org.elasticsearch.common.collect.ImmutableOpenMap;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -56,7 +58,7 @@ public class ESClient {
                     client.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName(host), port));
                 }
                 logger.info("----><----- connected to ES ----><-----");
-                System.out.println("es connected!");
+                System.out.print("**** es connected ! ****         ");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -74,10 +76,12 @@ public class ESClient {
         client.close();
     }
     public static void main(String[] args) {
-        String indexName = "ncmts";
+        String indexName = "nevents";
         //具体配置请在具体方法中填写
-        conn.createIndex(indexName);
+//        conn.createIndex(indexName);
 //        conn.deleteIndex("nnewsindex");
+//        conn.modifyIndexMap(indexName);
+        conn.clearIndex(indexName);
 //        GetMappingsResponse get = conn.client.admin().indices().prepareGetMappings(indexName).execute().actionGet();
 //        get.getMappings().keysIt().forEachRemaining(k-> System.out.println(k));
         conn.close();
@@ -139,12 +143,13 @@ public class ESClient {
                 "    }" +
                 "}";
         Settings s = Settings.builder().loadFromSource(JSONObject.parse(template).toString()).build();
-        CreateIndexResponse createIndexResponse = client.admin().indices().prepareCreate(indexName).setSettings(Settings.builder().put(s).put("index.number_of_shards", 10).put("index.refresh_interval", "10s")).execute().actionGet();//.setAliases("")
+        CreateIndexResponse createIndexResponse = client.admin().indices().prepareCreate(indexName).setSettings(Settings.builder().put(s).put("index.number_of_shards", 5).put("index.refresh_interval", "10s")).execute().actionGet();//.setAliases("")
 //创建索引结构
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder()
                     .startObject()
                     .startObject("msg")
+                    //新闻
 //	                    .startObject("_source").field("enabled", false).endObject() excludes
 //                    .startObject("_source").field("includes", "title", "time","type").endObject()
 /*                    .startObject("_source").field("excludes", "content", "source").endObject()
@@ -159,7 +164,8 @@ public class ESClient {
                     .startObject("source").field("type", "string").field("index", "not_analyzed").endObject()
                     .startObject("keywords").field("type", "string").field("index", "analyzed").field("analyzer", "word_analyzer").endObject()
                     .startObject("cmtid").field("type", "string").field("index", "not_analyzed").endObject()*/
-                    .startObject("properties")
+                    //评论
+/*                    .startObject("properties")
                         .startObject("time").field("type", "date").field("format","yyy-MM-dd HH:mm:ss||yyy-MM-dd HH:mm||yyyy-MM-dd||epoch_millis").field("index", "not_analyzed").endObject()
                         .startObject("content").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
 //                        .startObject("cmtid").field("type", "string").field("index", "analyzed").field("analyzer", "id_analyzer").endObject()
@@ -167,7 +173,20 @@ public class ESClient {
                         .startObject("cpid").field("type", "string").field("index", "not_analyzed").endObject()
                         .startObject("crid").field("type", "string").field("index", "not_analyzed").endObject()
                         .startObject("userid").field("type", "string").field("index", "not_analyzed").endObject()
-                        .startObject("upnum").field("type", "string").field("index", "not_analyzed").endObject()
+                        .startObject("upnum").field("type", "string").field("index", "not_analyzed").endObject()*/
+                    //事件
+                    .startObject("properties")
+                    .startObject("time").field("type", "date").field("format","yyy-MM-dd HH:mm:ss||yyy-MM-dd HH:mm||yyyy-MM-dd||epoch_millis").field("index", "not_analyzed").endObject()
+                    .startObject("description").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+                    .startObject("summary").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+                    .startObject("location").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+                    .startObject("participant").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+                    .startObject("keywords").field("type", "string").field("index", "analyzed").field("analyzer", "index_ansj").field("search_analyzer","query_ansj").endObject()
+                    .startObject("articleid").field("type", "string").field("index", "analyzed").field("analyzer", "id_analyzer").endObject()
+                    .startObject("chainid").field("type", "string").field("index","analyzed").field("analyzer", "id_analyzer").endObject()
+                    .startObject("etype").field("type", "integer").field("index", "not_analyzed").endObject()
+                    .startObject("emotion").field("type", "integer").field("index", "not_analyzed").endObject()
+                    .startObject("hot").field("type", "integer").field("index", "not_analyzed").endObject()
                     .endObject()
                     .endObject()
                     .endObject();
@@ -178,7 +197,6 @@ public class ESClient {
             e.printStackTrace();
         }
     }
-
     public void modifyIndexMap(String indexName) {
         //更改map
         try {
@@ -186,11 +204,10 @@ public class ESClient {
             XContentBuilder builder = XContentFactory.jsonBuilder()
                     .startObject()
                     .startObject("msg")
-                    .startObject("_source").field("includes", "reply", "ge2").endObject()
+//                    .startObject("_source").field("includes", "reply", "ge2").endObject()
                 	.startObject("properties")
-						.startObject("reply").field("type", "long").field("index","not_analyzed").endObject()
-						.startObject("ge2").field("type", "string").field("index","analyzed").field("analyzer","ik").endObject()
-						.startObject("ge3").field("type", "string").field("index","not_analyzed").endObject()
+						.startObject("isHot").field("type", "integer").field("index","not_analyzed").endObject()
+//						.startObject("chain").field("type", "string").field("index","analyzed").field("analyzer", "id_analyzer").endObject()
                     .endObject()
                     .endObject()
                     .endObject();
@@ -200,14 +217,21 @@ public class ESClient {
             e.printStackTrace();
         }
     }
-
     public void deleteIndex(String indexName){
         //删除索引
         IndicesExistsResponse res = client.admin().indices().prepareExists(indexName).execute().actionGet();
         if (res.isExists()) {
             DeleteIndexRequestBuilder delIdx = client.admin().indices().prepareDelete(indexName);
-            delIdx.execute().actionGet();
-            System.out.println("删除成功");
+            if(delIdx.execute().actionGet().isAcknowledged())
+                System.out.println(indexName + " 删除成功");
+        }
+    }
+    public void clearIndex(String indexName){
+        IndicesExistsResponse res = client.admin().indices().prepareExists(indexName).execute().actionGet();
+        if (res.isExists()) {
+            DeleteResponse clear = client.prepareDelete().setIndex(indexName).setType("msg").execute().actionGet();
+            if(clear.isFound())
+                System.out.println("清空成功");
         }
     }
 

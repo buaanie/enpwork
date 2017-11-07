@@ -2,6 +2,7 @@ package com.crawler.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
+import org.nlpcn.commons.lang.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,6 +31,7 @@ public class StirngUtil {
      * @return 去掉各类标签之后的文本
      */
     public static String tidyHTMLText(String rawText){
+//        StringUtil.rmHtmlTag(rawText);
         String res = rawText.replaceAll(labelRegex,"").replaceAll(noteRegex,"").replaceAll(specialRegex," ").trim();
         return res;
     }

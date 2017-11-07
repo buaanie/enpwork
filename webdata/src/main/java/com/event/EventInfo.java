@@ -1,95 +1,106 @@
 package com.event;
 
-import java.util.Arrays;
-import java.util.Date;
+import java.io.Serializable;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateFormatUtils;
-
-public class EventInfo {
-	String isCrawled;	//是否需要爬取
-	String eventId;		//事件ID
-    String mergedEvents = "";
-    Date time;
-    long timeSpan = 0L;
-    String corewords;
-    String[] chain;			//演化链
-    String chainRid;
-    String[] weiboIDs;		//相关微博MID
-    int chainLen;
-    public Date getTime() {
-        return this.time;
+public class EventInfo implements Serializable{
+	private String eventId;		//事件ID
+    private String time;        //时间
+    private String description; //简述
+    private String summary;       //事件标题
+    private String location;    //事件地点
+    private String participant;//参与人
+    private String keywords;//关键词
+    private String articleId;//新闻ids，以,隔开
+    private String relatedEventId;//相关事件id
+    private int etype;  //事件类型
+    private int emotion;//事情情感极性
+//    private int hot;//热度
+    private int show;//是否显示，0为不显示，1为合并，>=2为显示 标记新闻条数
+//    private String chain ="";//事件演化链，','隔开事件id
+    public EventInfo(String eventId,String articleId,int show){
+        this.eventId = eventId;
+        this.articleId = articleId;
+        this.show = show;
     }
-
-    public void setTime(Date time) {
+    public String getEventId(){
+        return eventId;
+    }
+    public String getArticleId(){
+        return articleId;
+    }
+    public void setTime(String time){
         this.time = time;
     }
-    public String getDateString() {
-        return this.time == null?null: DateFormatUtils.format(this.time, "yyyy-MM-dd HH:mm");
+    public String getTime(){
+        return time;
     }
-    public String getChainRid() {
-        return this.chainRid;
+    public void setDescription(String description){
+        this.description = description;
     }
-
-    public void setChainRid(String chainRid) {
-        this.chainRid = chainRid;
+    public String getDescription(){
+        return description;
     }
-    public String getCrawled() {
-    	return this.isCrawled;
+    public void setSummary(String summary){
+        this.summary = summary;
     }
-    
-    public void setCrawler(String isCrawled) {
-    	this.isCrawled = isCrawled;
+    public String getSummary(){
+        return summary;
     }
-    public EventInfo(String eventId) {
-        this.eventId = eventId;
-        this.mergedEvents = this.mergedEvents + eventId;
+    public void setLocation(String location){
+        this.location = location;
     }
-    public String[] getChain() {
-        return this.chain;
+    public String getLocation(){
+        return location;
     }
-
-    public void setChain(String[] chain) {
-        this.chain = chain;
+    public void setParticipant(String participant){
+        this.participant = participant;
     }
-    public String[] getWeiboID() {
-        return this.weiboIDs;
+    public String getParticipant(){
+        return participant;
     }
-
-    public void setWeiboID(String[] weiboID) {
-        this.weiboIDs = weiboID;
+    public void setKeywords(String keywords){
+        this.keywords = keywords;
     }
-    public String getCorewords() {
-        return this.corewords;
+    public String getKeywords(){
+        return keywords;
     }
-
-    public void setCorewords(String corewords) {
-        String[] split = corewords.trim().split(" ");
-        if(split.length > 6) {
-            split = (String[]) Arrays.copyOfRange(split, 0, 5);
-        }
-
-        this.corewords = StringUtils.join(split, " ");
+    public void setRelatedEventId(String relatedEventId){
+        this.relatedEventId = relatedEventId;
     }
-    public String getEventId() {
-        return this.eventId;
+    public void addRelatedId(String id){
+        relatedEventId += id;
     }
-
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
+    public String getRelatedEventId(){
+        return relatedEventId;
     }
-    public int getChainLen() {
-        return this.chainLen;
+    public void setEtype(int type){
+        this.etype = type;
     }
-
-    public void setChainLen(String chainLen) {
-        this.chainLen = Integer.parseInt(chainLen) ;
+    public int getEtype(){
+        return etype;
     }
-    public String getMergedEvents() {
-        return this.mergedEvents;
+    public void setEmotion(int emotion){
+        this.emotion = emotion;
     }
-
-    public void setMergedEvents(String eventsString) {
-        this.mergedEvents = eventsString;
+    public int getEmotion(){
+        return emotion;
     }
+//    public void setHot(int hot){
+//        this.hot = hot;
+//    }
+//    public int getHot(){
+//        return hot;
+//    }
+    public void setShow(int show) {
+        this.show = show;
+    }
+    public int getShow() {
+        return show;
+    }
+//    public void addChain(String id) {
+//        chain = chain+","+id;
+//    }
+//    public String getChain() {
+//        return chain;
+//    }
 }

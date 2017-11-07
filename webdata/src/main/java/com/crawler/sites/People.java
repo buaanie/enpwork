@@ -10,11 +10,8 @@ import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.scheduler.PriorityScheduler;
-import us.codecraft.webmagic.selector.Json;
 import us.codecraft.webmagic.selector.Selectable;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,9 +28,9 @@ public class People implements PageProcessor{
             .setUserAgent(UA2).setUseGzip(true);
 
     public static void main(String[] args) {
-        new People().run();
+        new People().start();
     }
-    public void run(){
+    public void start(){
         Date today = new Date();
         String  startURL = String.format(url,today.getTime());
         Request r = new Request(startURL).setCharset("UTF-8");
@@ -51,15 +48,9 @@ public class People implements PageProcessor{
             String news_type = page.getHtml().xpath("/html/head/title/text()").toString().split("--")[1];
             List<Selectable> news_contents = page.getHtml().xpath("//*[@id='rwb_zw']/p").nodes();
             StringBuffer sb = new StringBuffer();
-            Boolean fp = true;
             for (Selectable content : news_contents) {
                 if(!content.xpath("/p/allText()").toString().equals(""))
-                    if(fp) {
-                        sb.append(filtJournal(content.xpath("/p/allText()").toString()));
-                        fp = false;
-                    }else{
-                        sb.append(content.xpath("/p/allText()").toString());
-                    }
+                    sb.append(filtJournal(content.xpath("/p/allText()").toString()));
             }
             String news_content = sb.toString();
             String news_descp = page.getHtml().xpath("/html/head/meta[@name='description']/@content").toString();
@@ -69,6 +60,8 @@ public class People implements PageProcessor{
         }else if(_url.contains("index")){
             JSONArray res = JSONObject.parseObject(page.getRawText()).getJSONArray("items");
             for(int i =0;i<900;i++){
+                if(i>=res.size())
+                    break;
                 String u = res.getJSONObject(i).getString("url");
                 String t = res.getJSONObject(i).getString("title");
                 String tm = res.getJSONObject(i).getString("date");

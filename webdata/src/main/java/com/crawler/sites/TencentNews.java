@@ -28,9 +28,9 @@ public class TencentNews {
             .setUserAgent(UA2);
 
     public static void main(String[] args) {
-        new TencentNews().run();
+        new TencentNews().start();
     }
-    public void run(){
+    public void start(){
         CompositePageProcessor tenProcessor = new CompositePageProcessor(site);
         tenProcessor.setSubPageProcessors(new TencentInfo(),new TencentList());
 
@@ -40,10 +40,7 @@ public class TencentNews {
                 .addHeader("Host","roll.news.qq.com").addHeader("Referer","http://news.qq.com/articleList/rolls/");
         Request r2 = new Request(String.format(tct_news,date,"2",ms))
                 .addHeader("Host","roll.news.qq.com").addHeader("Referer","http://news.qq.com/articleList/rolls/");
-        Request r3 = new Request(String.format(tct_news,date,"3",ms))
-                .addHeader("Host","roll.news.qq.com").addHeader("Referer","http://news.qq.com/articleList/rolls/");
-
-        Spider tencent = Spider.create(tenProcessor).addRequest(r1,r2,r3).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
+        Spider tencent = Spider.create(tenProcessor).addRequest(r1,r2).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
         tencent.start();
     }
 }

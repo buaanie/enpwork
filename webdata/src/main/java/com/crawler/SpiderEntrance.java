@@ -46,12 +46,12 @@ public class SpiderEntrance {
     }
 
     private void runNewsCrawler(){
-        new NeteaseNews().run();
-        new SinaNews().run();
-        new TencentNews().run();
-//        new CNR().run();
-//        new People().run();
-//        new Paper().run();
+        new NeteaseNews().start();
+        new SinaNews().start();
+        new TencentNews().start();
+        new CNR().start();
+        new People().start();
+        new Paper().start();
     }
     private void runCmtCrawler(){
         HashMap<String,List<String>> ids = getCurrentCmtIds();
@@ -80,8 +80,8 @@ public class SpiderEntrance {
 
     private HashMap getCurrentCmtIds(){
         long from = System.currentTimeMillis();
-        long to = from-8*60*60*1000;
-        HashMap<String,List<String>> ids = new GetIndexDocs().getCmtIds(to,from);
+        long to = from-9*60*60*1000;
+        HashMap<String,List<String>> ids = new GetIndexDocs().getCmtIds(to,from,"nnews");
         return ids;
     }
 }

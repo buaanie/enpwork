@@ -21,9 +21,9 @@ public class SinaNews {
     public static String url = "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=100&page=%d&last_time=%s";
     private static Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000).setUserAgent(UA1);
     public static void main(String[] args) {
-        new SinaNews().run();
+        new SinaNews().start();
     }
-    public void run(){
+    public void start(){
         CompositePageProcessor sinaProcessor = new CompositePageProcessor(site);
         sinaProcessor.setSubPageProcessors(new SinaInfo(),new SinaList());
         String now = String.valueOf(System.currentTimeMillis()/1000 - 13*60*60);

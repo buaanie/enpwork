@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import com.store.HBaseClient;
 import org.apache.hadoop.hbase.Cell;
@@ -29,31 +27,32 @@ import org.apache.hadoop.hbase.util.Bytes;
  */
 public class GetTableRows {
 	private HTable table;
+	private FilesOpt filePersist = null;
 	public GetTableRows() throws IOException {
-		table = HBaseClient.getTable("carsInfo");
+		filePersist = new FilesOpt();
+		table = HBaseClient.getTable("weibosInfo");
 	}
 	public static void main(String[] args) {
 		try {
 			GetTableRows get = new GetTableRows();
-			get.getOneRow("2478-1002448");
+//			get.getOneRow("2478-1002448");
 
 //			List<String> dlList = Arrays.asList("id1","id2");
 //			get.deleteRows(dlList);
 
 			DateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			String start = "20170101";
-			String end = "20170201";
-			Long from = sdf.parse(start).getTime();
-			Long to = sdf.parse(end).getTime();
-			while(from<to){
-				long temp = from+24*3600*1000;
-//				temp = (temp<to) ? temp: to;
-				get.getRows(String.valueOf(from), String.valueOf(temp));
-				from = temp;
+			Calendar start = Calendar.getInstance();
+			start.set(2017,7,11);
+			Calendar end = Calendar.getInstance();
+			end.set(2017,7,13);
+			while(start.before(end)){
+				String from = sdf.format(start.getTime());
+				start.add(Calendar.DAY_OF_MONTH,14);
+				String to = sdf.format(start.getTime());
+				get.getRows(from,to);
 			}
+
 		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
@@ -110,21 +109,29 @@ public class GetTableRows {
 			ResultScanner resultScanner = table.getScanner(scan);
 			Iterator<Result> iterator = resultScanner.iterator();
 			byte[] family = Bytes.toBytes("info");
+			StringBuffer sb = new StringBuffer();
             while(iterator.hasNext()) {
                 Result result = iterator.next();
-                count++;
-                byte[] id = Bytes.toBytes("id");
-                if(result.containsColumn(family,id)) {
-                    String s = Bytes.toString(result.getValue(family,id));
-                    System.out.println(s);
+//                byte[] title = Bytes.toBytes("title");
+                byte[] content = Bytes.toBytes("text");
+                if(result.containsColumn(family,content)) {
+//                    String s1 = Bytes.toString(result.getValue(family,title));
+//					sb.append(s1+"\n");
+                    String s2 = Bytes.toString(result.getValue(family,content));
+					sb.append(s2+"\n");
+					if (count++ % 10000 == 0) {
+						long  time = System.currentTimeMillis();
+						filePersist.storeFile(sb.toString(),String.valueOf(time));
+						sb.delete(0,sb.length());
+						System.out.println(startRow+"-"+time);
+					}
                 }else{
                     continue;
                 }
-                if (count++ % 1000 == 0) {
-                    System.out.println("---------");
-                }
             }
-	        table.close();
+			long  time = System.currentTimeMillis();
+			filePersist.storeFile(sb.toString(),String.valueOf(time));
+//	        table.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}       

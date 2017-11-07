@@ -3,7 +3,6 @@ package com.crawler.sites;
 import com.crawler.beans.NewsItem;
 import com.crawler.utils.ItemPipeLine;
 import com.crawler.utils.ItemType;
-import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
@@ -27,9 +26,9 @@ public class Paper implements PageProcessor{
             .setUserAgent(UA1).setUseGzip(true);
 
     public static void main(String[] args) {
-        new Paper().run();
+        new Paper().start();
     }
-    public void run(){
+    public void start(){
         long time = System.currentTimeMillis();
         List<String> starts = new ArrayList<>();
         for(int i=2;i<10;i++){
@@ -51,6 +50,8 @@ public class Paper implements PageProcessor{
             String title = page.getRequest().getExtra("title").toString();
             String type = page.getRequest().getExtra("type").toString();
             String descp = page.getHtml().xpath("/html/head/meta[@name='Description']/text()").toString();
+            if(descp==null ||descp.equals(""))
+                descp=title;
             String keywords = page.getHtml().xpath("/html/head/meta[@name='Keywords']/text()").toString();
             String id = lastSplitSlice(url,"_");
             String source = page.getHtml().xpath("//*[@id='v3cont_id']/div[1]/p[1]/text()").toString();

@@ -21,12 +21,15 @@
 
     <!--静态资源映射-->
     <!--本项目把静态资源放在了webapp的statics目录下，资源映射如下-->
+    <!--容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL-->
+    <!--<mvc:default-servlet-handler/> -->
     <mvc:resources mapping="/css/**" location="/static/src/css/"/>
     <mvc:resources mapping="/js/**" location="/static/src/js/"/>
     <mvc:resources mapping="/image/**" location="/static/src/image/"/>
 
     <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) 使用JSP-->
     <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
+    <!-- 可以配置多个视图解析器，返回不同视图比如pdf格式 swf格式的视图 -->
     <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/views/"/><!--设置JSP文件的目录位置-->
@@ -34,7 +37,7 @@
         <property name="exposeContextBeansAsAttributes" value="true"/>
     </bean>
 
-    <!-- 自动扫描装配 -->
+    <!-- 自动扫描装配@Controller -->
     <context:component-scan base-package="com.graph" use-default-filters="false">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>

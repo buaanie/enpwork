@@ -26,13 +26,13 @@ public class ItemPipeLine implements Pipeline{
     private CrawlerIndex crawlerNewsIndex;
     private CrawlerHBase crawlerNewsHBase;
     private String pageType = null;
-    private FilesOpt filePersist = null;
+//    private FilesOpt filePersist = null;
     public ItemPipeLine(String type){
         this.pageType = type;
-//        crawlerNewsIndex = CrawlerIndex.getIndex();
-        filePersist = new FilesOpt();
+        crawlerNewsIndex = CrawlerIndex.getIndex();
+//        filePersist = new FilesOpt();
         if(type==ItemType.NewsCmt) {
-//            crawlerNewsHBase = CrawlerHBase.getHBase(true);
+            crawlerNewsHBase = CrawlerHBase.getHBase(true);
         }
         else
             crawlerNewsHBase = CrawlerHBase.getHBase(false);
@@ -44,16 +44,16 @@ public class ItemPipeLine implements Pipeline{
                 if(resultItems.get(ItemType.NewsItem)!=null)
                 {
                     NewsItem news = resultItems.get(ItemType.NewsItem);
-                    filePersist.storeFile(news.toJsonString(),news.getId());
+//                    filePersist.storeFile(news.toJsonString(),news.getId());
 //                    NewsItem news = (NewsItem) resultItems.get(ItemType.NewsItem);
 //                    Thread index = new Thread(){
-//                        public void run(){
-//                            crawlerNewsIndex.indexNews(news);
+//                        public void start(){
+                            crawlerNewsIndex.indexNews(news);
 //                        }
 //                    };
 //                    Thread store = new Thread(){
-//                        public void run(){
-//                            crawlerNewsHBase.storeNews(news);
+//                        public void start(){
+                            crawlerNewsHBase.storeNews(news);
 //                        }
 //                    };
 //                    index.start();
@@ -69,8 +69,8 @@ public class ItemPipeLine implements Pipeline{
 //                    try {
 //                        executor.submit(new Runnable() {
 //                            @Override
-//                            public void run() {
-//                                crawlerNewsHBase.storeBulkCmt(comments,users);
+//                            public void start() {
+                                crawlerNewsHBase.storeBulkCmt(comments,users);
 //                            }
 //                        }).get();
 //                    } catch (InterruptedException e) {
@@ -78,8 +78,8 @@ public class ItemPipeLine implements Pipeline{
 //                    } catch (ExecutionException e) {
 //                        e.printStackTrace();
 //                    }
-//                    crawlerNewsIndex.indexCmts(comments);
-                    filePersist.storeFile(JSON.toJSONString(comments),String.valueOf(System.currentTimeMillis()));
+                    crawlerNewsIndex.indexCmts(comments);
+//                    filePersist.storeFile(JSON.toJSONString(comments),String.valueOf(System.currentTimeMillis()));
                 };break;
             case ItemType.WikiItem:
                 if(resultItems.get(ItemType.WikiItem)!=null && resultItems.get(ItemType.WikiItem) instanceof WikiItem)

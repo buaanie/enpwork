@@ -25,8 +25,10 @@ import static com.crawler.utils.StirngUtil.UA1;
 
 /**
  * Created by ACT-NJ on 2017/7/19.
- * 手机版评论页面 http://cmnt.sina.cn/index?product=comos&index=cmt_id&tj_ch=news
- * 电脑版评论页面 http://comment5.news.sina.com.cn/comment/skin/default.html?channel=_type&newsid=comos-cmt_id
+ * 手机版评论展示页面 http://cmnt.sina.cn/index?product=comos&index=cmt_id&tj_ch=news
+ * 电脑版评论展示页面 http://comment5.news.sina.com.cn/comment/skin/default.html?channel=_type&newsid=comos-cmt_id
+ * 评论API：http://comment5.news.sina.com.cn/page/info?version=1&format=json&channel=gn&newsid=comos-cmt_id&group=0&compress=0&ie=gbk&oe=gbk&page=1&page_size=20
+ * 注意里面有hot_list
  */
 public class SinaCmt implements PageProcessor {
     private static final String url = "http://comment5.news.sina.com.cn/page/info?format=json&channel=%s&newsid=comos-%s&compress=1&page=%d&page_size=40";

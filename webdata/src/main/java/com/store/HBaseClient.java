@@ -16,7 +16,7 @@ public class HBaseClient {
 	private Configuration conf;
 	private HConnection conn;
 	private Logger logger;
-
+	// nnews、ncmts、nusers
 	private HBaseClient(){
 		logger =Logger.getLogger(this.getClass());
 		buildHBaseClient();
@@ -39,8 +39,8 @@ public class HBaseClient {
 			conf.set("hbase.zookeeper.quorum","10.1.1.34,10.1.1.35,10.1.1.36,10.1.1.37,10.1.1.38");
 			conf.set("hbase.zookeeper.property.dataDir","/root/hbase/zookeeper");
 			conn = HConnectionManager.createConnection(conf);
-			logger.info("hbase connectted ______");
-			System.out.println("hbase connected!");
+			logger.info(">> hbase connected _________");
+			System.out.println("**** hbase connected ! ****");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

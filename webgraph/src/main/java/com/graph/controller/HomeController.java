@@ -36,7 +36,6 @@ public class HomeController {
 
     @RequestMapping("/index2")
     public ModelAndView index2(){
-
         System.out.print("-----");
         ModelAndView view2= new ModelAndView("index");
         return view2;

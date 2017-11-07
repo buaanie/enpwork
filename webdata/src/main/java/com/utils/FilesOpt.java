@@ -36,8 +36,8 @@ public class FilesOpt {
         return null;
     }
 
-    public void storeFile(String data,String path){
-        File file = new File(path+".txt");
+    public void storeFile(String data,String name){
+        File file = new File("./log/"+name+".txt");
         BufferedWriter writer = null;
         if(!file.exists()){
             try {
@@ -60,6 +60,6 @@ public class FilesOpt {
                 e.printStackTrace();
             }
         }
-        System.out.println(Thread.currentThread().getName()+" 写入信息成功");
+//        System.out.println(Thread.currentThread().getName()+" 写入信息成功");
     }
 }

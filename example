@@ -1,0 +1,34 @@
+title1 = "杭州姑娘代购半年逃税80多万 涉嫌走私被查"; 
+title2 = "杭州85后姑娘职业代购半年 逃税80多万被查";            0.8003589623999573
+title3 = "杭州姑娘代购半年 逃税80多万面临刑罚";                0.7675061253599584
+title4 = "杭州女孩代购半年 逃税80多万被查";                    0.8263269730903108
+title5 = "这种情况下代购会涉嫌走私，已有杭州姑娘因此被查";     0.8401955936764386
+title6 = "杭州女老板店内被捅杀 浑身是血边喊救命边往外爬";      0.49410204183749934
+title7 = "杭州市检察院对“保姆放火案”被告人提起公诉";           0.3874808528968647
+title8 = "杭州市检察院对“蓝色钱江放火案”被告人提起公诉";       0.3924808528968647
+title8 = "全国首家互联网法院在杭州成立";                       0.47608150743054284
+title9 = "中国首家互联网法院在杭州揭牌";                       0.44601990881889286
+
+
+杭州保姆事件，既有保姆也有莫焕晶这两种指代
+
+[1] Amit S. Introducing the Knowledge Graph: things, not strings. Official Blog(of
+Google), 2012
+[2]	Bizer C, Tom H, TimBerners-Lee, et al. Linked data: the story so far[J].
+International Journal on Semantic Web & Information Systems, 2009, 5(3):1-22.
+[3]	Events G D O, Tone A. Global Data on Events, Location and Tone (GDELT)[J].
+2015.
+[4]	Chinese Academy of Sciences Institute of Network Technology ICT YANTAI,
+Scienc C A O. Open Web Knowledge Aided Information Search and Data
+Mining[J]. Journal of Computer Research & Development, 2015.
+[5]	SIGHAN: http://sighan.cs.uchicago.edu/bakeoff2005/
+[6]	HBase: http://hbase.apache.org/
+[7]	Elasticsearch: https://www.elastic.co/cn/
+[8]	Lafferty, John D, McCallum, et al. Conditional Random Fields: Probabilistic Models for Segmenting and Labeling Sequence Data[M]// Departmental Papers (CIS). 2001.
+[9]	Mikolov T, Sutskever I, Chen K, et al. Distributed representations of words and phrases and their compositionality[C]// International Conference on Neural Information Processing Systems. Curran Associates Inc. 2013:3111-3119.
+[10] ACE: https://www.ldc.upenn.edu/collaborations/past-projects/ace
+[11]	Abiteboul S, Vianu V. Queries and computation on the Web[J]. Theoretical Computer Science, 2000, 239(2): 231-255.
+[12]	J. Teevan, D. Ramage, and M. R. Morris, “# twittersearch: a comparison of microblog search and web search,” in Proceedings of the fourth ACM international conference on Web search and data mining. ACM, 2011,pp. 35–44.
+[13]	Busch M, Gade K, Larson B, et al. Earlybird: Real-time search at twitter[C]//Data Engineering (ICDE), 2012 IEEE 28th International Conference on. IEEE, 2012: 1360-1369.
+[14]	Chen C, Li F, Ooi B C, et al. Ti: an efficient indexing mechanism for real-time search on tweets[C]//Proceedings of the 2011 ACM SIGMOD International Conference on Management of data. ACM, 2011: 649-660.
+[15]	Wu L, Lin W, Xiao X, et al. LSII: an indexing structure for exact real-time search on microblogs[C]//Data Engineering (ICDE), 2013 IEEE 29th International Conference on. IEEE, 2013: 482-493.
