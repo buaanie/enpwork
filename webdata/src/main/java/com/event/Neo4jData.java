@@ -93,10 +93,10 @@ public class Neo4jData {
     }
     public String toString(){
         return "事件ID:"+eventId+
-                ",标题:"+name+
+//                ",标题:"+name+
                 ",新闻:"+news_desc+
-                ",类型:"+type+
-                ",关键词:"+keywords+
+//                ",类型:"+type+
+//                ",关键词:"+keywords+
                 ",时间:"+getTimeString()+
                 ",地点:"+location+
                 ",人物:"+participant;

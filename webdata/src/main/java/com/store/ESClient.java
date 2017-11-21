@@ -48,7 +48,7 @@ public class ESClient {
                 .put("cluster.name", clusterName).build();
         try {
             client = TransportClient.builder().settings(settings).build();
-            InputStream stream = this.getClass().getResourceAsStream("/es.properties");
+            InputStream stream = this.getClass().getResourceAsStream("/es3.properties");
             Properties properties = new Properties();
             try {
                 properties.load(stream);

@@ -33,11 +33,13 @@ public class NeoInserter {
         ScanNewsInfo newsInfo = new ScanNewsInfo();
         ScanWeiboEvent weiboEvent = new ScanWeiboEvent();
         NeoInserter inserter = new NeoInserter();
-        Date from = new Date(1480780800000L);
+        Date from = new Date(1509494400000L);
         Date to = new Date(from.getTime()+3600*24*1000L);
-        while(to.getTime()<1480906427000L){
+        while(to.getTime()<1510704000000L){
+            System.out.println("(((()))))");
             List<RelatedEvent> events = weiboEvent.filterEventFromTo(from,to);
             List<Neo4jData> neo4j = newsInfo.getNewsFromES(events);
+            System.out.println(neo4j.size()+"________________");
 //            inserter.delete(neo4j);
             inserter.insert(neo4j);
             from = to;
@@ -78,6 +80,7 @@ public class NeoInserter {
                 String time = data.getTimeString().equals("")?"-":data.getTimeString();
                 String location = data.getLoca().equals("")?"-":data.getLoca();
                 String participant = data.getPart().equals("")?"-":data.getPart();
+                participant.replace("特朗普","唐纳德·特朗普");
                 String news_desc = data.getNewsDesc().equals("")?"-":data.getNewsDesc();
                 String insertE = "create ( event"+id+":NEvent {id:'"+id+"',name:'"+name
                         +"',location:'"+location

@@ -19,7 +19,7 @@ import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 
 public class ScanNewsInfo {
-    private  final String NewsIndex = "news_all";
+    private  final String NewsIndex = "news_info3";
     private TransportClient client;
     public ScanNewsInfo()
     {
@@ -28,17 +28,25 @@ public class ScanNewsInfo {
     public static void main(String[] args) {
         ScanNewsInfo getNewsInfo = new ScanNewsInfo();
         ScanWeiboEvent getEventInfo = new ScanWeiboEvent();
-        Date to = new Date(new Date().getTime()-4*3600*1000);
-        Date from = new Date(to.getTime()-3600*15*1000);
-        List<RelatedEvent> events = getEventInfo.filterEventFromTo(from,to);
-        //检测微博新闻交集
-        List<Neo4jData> neo4j = getNewsInfo.getNewsFromES(events);
-        for(Neo4jData n:neo4j){
-        	System.out.println(n.toString());
+        Calendar end = Calendar.getInstance();
+        Calendar start = Calendar.getInstance();
+        Calendar temp = Calendar.getInstance();
+        start.add(Calendar.DAY_OF_MONTH,-15);
+        temp.add(Calendar.DAY_OF_MONTH,-14);
+        while(temp.before(end)){
+            List<RelatedEvent> events = getEventInfo.filterEventFromTo(start.getTime(),temp.getTime());
+            getNewsInfo.getNewsFromES(events);
+            start.add(Calendar.DAY_OF_MONTH,1);
+            temp.add(Calendar.DAY_OF_MONTH,1);
         }
+        //检测微博新闻交集
+//        List<Neo4jData> neo4j = getNewsInfo.getNewsFromES(events);
+//        for(Neo4jData n:neo4j){
+//        	System.out.println(n.toString());
+//        }
     }
     public List<Neo4jData> getNewsFromES(List<RelatedEvent> events){
-        Map<String,String> judge = new HashMap<>();
+        Set<String> judge = new HashSet();
         List<Neo4jData> neo4jRes = new ArrayList<>();
         int maxSize = 5;
         for(RelatedEvent event : events){
@@ -64,11 +72,10 @@ public class ScanNewsInfo {
                 continue;
             }
 //            System.out.println(words+" "+ event.getTime().toLocaleString()+ event.getDesc()+"-----总共"+total+"结果");
-            NewsItem newsSubject;
             Map<String, Object> map = response.getHits().getAt(0).getSource();
-            newsSubject = new DataAssembler().bindNews(map);
-            if(!judge.containsKey(newsSubject.getTitle())){
-                judge.put(newsSubject.getTitle(),"-");
+            NewsItem newsSubject = new DataAssembler().bindNews(map);
+            if(!judge.contains(newsSubject.getTitle())){
+                judge.add(newsSubject.getTitle());
                 Neo4jData neo4jData = new Neo4jData(event.getID(),event.getDesc().replaceAll("\\[.+\\]", ""),newsSubject.getTitle(),event.getTime(),event.getLoca(),event.getPart(),event.getType(),event.getCorewords());
 //                System.out.println(neo4jData.toString());
                 neo4jRes.add(neo4jData);

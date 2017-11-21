@@ -57,7 +57,7 @@ public class CNR implements PageProcessor{
             }
             String news_content = sb.toString();
             String news_title = page.getHtml().xpath("//div[@class='wrapper']//div[@class='article']/div[@class='subject']/h2/text()").toString();
-            if(news_url.contains("pic") || news_title.equals("") || news_content.matches("\\s+")) {
+            if(news_url.contains("pic") || news_title==null  || news_title.equals("") || news_content.matches("\\s+")) {
                 page.setSkip(true);
                 return;
             }

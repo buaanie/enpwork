@@ -84,6 +84,7 @@ public class CrawlerHBase {
 			}
 		}
 	}
+
 	private void storeBulkNews(List<NewsItem> newsList) throws IOException {
 		List<Put> puts = new ArrayList<>(70);
 		for(NewsItem news : newsList){
@@ -101,9 +102,10 @@ public class CrawlerHBase {
 		}
 		newsInfo.put(puts);
 		newsInfo.flushCommits();
-		logger.info("=====><===== store into nnews ====><====");
+		logger.info(System.currentTimeMillis()+ "store into nnews _____>");
 		System.out.println(Thread.currentThread().getName() + " store into nnews");
 	}
+
 	public synchronized void storeBulkCmt(List<NewsCmt> cmtList,List<CmtUser> userList) {
 		List<Put> cmt_puts = new ArrayList<>(70);
 		List<Put> user_puts = new ArrayList<>(70);

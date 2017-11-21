@@ -2,7 +2,6 @@ package com.utils;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -26,11 +25,15 @@ import org.apache.hadoop.hbase.util.Bytes;
 |------------------------------------------------------|
  */
 public class GetTableRows {
-	private HTable table;
+	private HTable weibo_table;
+	private HTable news_table;
 	private FilesOpt filePersist = null;
 	public GetTableRows() throws IOException {
 		filePersist = new FilesOpt();
-		table = HBaseClient.getTable("weibosInfo");
+
+//		weibo_table = new HTable()
+		weibo_table = HBaseClient.getTable("weibosInfo");
+		news_table = HBaseClient.getTable("nnews");
 	}
 	public static void main(String[] args) {
 		try {
@@ -40,17 +43,20 @@ public class GetTableRows {
 //			List<String> dlList = Arrays.asList("id1","id2");
 //			get.deleteRows(dlList);
 
-			DateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			Calendar start = Calendar.getInstance();
-			start.set(2017,7,11);
-			Calendar end = Calendar.getInstance();
-			end.set(2017,7,13);
-			while(start.before(end)){
-				String from = sdf.format(start.getTime());
-				start.add(Calendar.DAY_OF_MONTH,14);
-				String to = sdf.format(start.getTime());
-				get.getRows(from,to);
-			}
+//			DateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//			Calendar start = Calendar.getInstance();
+//			start.set(2017,7,11);
+//			Calendar end = Calendar.getInstance();
+//			end.set(2017,7,13);
+//			while(start.before(end)){
+//				String from = sdf.format(start.getTime());
+//				start.add(Calendar.DAY_OF_MONTH,1);
+//				String to = sdf.format(start.getTime());
+//				get.getRows(from,to);
+//			}
+
+			String from = "tct";
+			get.testNews(from);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -66,8 +72,8 @@ public class GetTableRows {
 			count++;
 		}
 		try {
-			table.delete(deletes);
-			table.close();
+			weibo_table.delete(deletes);
+			weibo_table.close();
 			System.out.println("删除成功_"+count);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -77,7 +83,7 @@ public class GetTableRows {
 	public void getOneRow(String id) {
 		Get scan = new Get(id.getBytes());
 		try {
-			Result r = table.get(scan);
+			Result r = weibo_table.get(scan);
 			if (r.size() == 0) {
 				System.out.println("找不到相关内容");
 				return;
@@ -102,39 +108,64 @@ public class GetTableRows {
 
 	public void getRows(String startRow,String stopRow) {
 		long count = 0;
-        try {
+		try {
             Scan scan = new Scan();
             scan.setStartRow(startRow.getBytes());
             scan.setStopRow(stopRow.getBytes());
-			ResultScanner resultScanner = table.getScanner(scan);
+			ResultScanner resultScanner = weibo_table.getScanner(scan);
 			Iterator<Result> iterator = resultScanner.iterator();
 			byte[] family = Bytes.toBytes("info");
 			StringBuffer sb = new StringBuffer();
             while(iterator.hasNext()) {
-                Result result = iterator.next();
+				Result result = iterator.next();
 //                byte[] title = Bytes.toBytes("title");
                 byte[] content = Bytes.toBytes("text");
                 if(result.containsColumn(family,content)) {
 //                    String s1 = Bytes.toString(result.getValue(family,title));
 //					sb.append(s1+"\n");
-                    String s2 = Bytes.toString(result.getValue(family,content));
-					sb.append(s2+"\n");
-					if (count++ % 10000 == 0) {
+//                    String s2 = Bytes.toString(result.getValue(family,content));
+//					sb.append(s2+"\n");
+					if (count++ % 1000 == 0) {
 						long  time = System.currentTimeMillis();
-						filePersist.storeFile(sb.toString(),String.valueOf(time));
-						sb.delete(0,sb.length());
+//						filePersist.storeFile(sb.toString(),String.valueOf(time));
+//						sb.delete(0,sb.length());
 						System.out.println(startRow+"-"+time);
 					}
                 }else{
                     continue;
                 }
             }
-			long  time = System.currentTimeMillis();
-			filePersist.storeFile(sb.toString(),String.valueOf(time));
-//	        table.close();
+//			long  time = System.currentTimeMillis();
+//			filePersist.storeFile(sb.toString(),String.valueOf(time));
+//	        weibo_table.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}       
 	}
 
+	public void testNews(String startRow){
+		long count = 0;
+		Scan scan = new Scan(startRow.getBytes());
+		ResultScanner resultScanner = null;
+		try {
+			resultScanner = news_table.getScanner(scan);
+			Iterator<Result> iterator = resultScanner.iterator();
+			byte[] family = Bytes.toBytes("info");
+			while(iterator.hasNext()) {
+				Result result = iterator.next();
+				byte[] content = Bytes.toBytes("title");
+				if(result.containsColumn(family,content)) {
+					String s = Bytes.toString(result.getValue(family,content));
+					if (count++ % 1000 == 0) {
+						long  time = System.currentTimeMillis();
+						System.out.println(s+"-"+time);
+					}
+				}else{
+					continue;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

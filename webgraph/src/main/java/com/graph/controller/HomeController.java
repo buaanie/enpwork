@@ -4,8 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.utils.FilesOpt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,11 +32,25 @@ public class HomeController {
         return "index0";
     }
 
-    @RequestMapping("/index2")
+    @RequestMapping(method = RequestMethod.GET, value = {"/daily"})
+    public String daily(Model model, ServletRequest request) {
+        //输出日志文件
+        logger.info("the daily news jsp pages");
+        //返回一个index0.jsp这个视图
+        return "daily";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = {"/graph"})
+    public String graph(Model model, ServletRequest request) {
+        logger.info("the daily news jsp pages");
+        //返回一个index0.jsp这个视图
+        return "graph";
+    }
+
+    @RequestMapping("/test")
     public ModelAndView index2(){
-        System.out.print("-----");
-        ModelAndView view2= new ModelAndView("index");
-        return view2;
+        ModelAndView view= new ModelAndView("test");
+        return view;
     }
 
     @ResponseBody

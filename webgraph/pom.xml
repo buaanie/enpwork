@@ -121,11 +121,6 @@
             <artifactId>spring-test</artifactId>
             <version>4.3.8.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>4.3.8.RELEASE</version>
-        </dependency>
         <!-- SECURITY begin -->
         <dependency>
             <groupId>io.springside</groupId>
@@ -192,6 +187,16 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.3.10.v20160621</version>
+                <configuration>
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <!--<httpConnector implementiom="org.eclipse.jetty.server.nio.SelectChannelConnector">-->
+                        <!--<port>8084</port>-->
+                        <!--<maxIdleTime>60000</maxIdleTime>-->
+                    <!--</httpConnector>-->
+                    <!--<webAppConfig>-->
+                        <!--<contextPath>/</contextPath>-->
+                    <!--</webAppConfig>-->
+                </configuration>
             </plugin>
         </plugins>
     </build>

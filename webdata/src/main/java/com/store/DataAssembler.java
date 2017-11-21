@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by ACT-NJ on 2017/7/23.
  */
 public class DataAssembler {
-    static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'z");
+    static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");//'z
     public NewsItem bindNews(Map<String, Object> map) {
         NewsItem news = new NewsItem();
         if (map.containsKey("id")) {

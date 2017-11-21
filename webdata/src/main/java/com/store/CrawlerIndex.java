@@ -60,14 +60,13 @@ public class CrawlerIndex {
 		if(client!=null || client.connectedNodes().size()>0)
 			client.close();
 	}
-
 	public synchronized void indexNews(NewsItem anews){
         if(newsList.size() <= 50){
             newsList.add(anews);
         }
         else{
             try{
-                indexBulk(newsList);
+				indexBulk(newsList);
                 newsList.clear();
                 newsList.add(anews);
             }catch(Exception e){

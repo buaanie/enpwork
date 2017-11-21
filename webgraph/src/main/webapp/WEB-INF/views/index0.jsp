@@ -11,7 +11,7 @@
 <head>
     <title>demo</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="../../static/src/css/test.css"/> "/>
-    <script type="text/javascript" src="../../static/src/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../../static/src/js/jquery-3.2.1.min.jquery.min.js"></script>
     <script type="text/javascript" src="../../static/src/js/d3.min.js"></script>
     <script type="text/javascript" src="../../static/src/js/neod3.js"></script>
     <script type="text/javascript">
@@ -41,6 +41,7 @@
         });
     </script>
 </head>
+<jsp:include page="header.jsp"></jsp:include>
 <body>
 <div class = "show">
     <div class="searchBox">

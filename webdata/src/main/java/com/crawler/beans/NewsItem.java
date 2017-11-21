@@ -74,6 +74,10 @@ public class NewsItem {
     public String getStringTime() {
         return stringTime;
     }
+    public String getClearTime() throws ParseException {
+        DateFormat sdf = new SimpleDateFormat ("yyyyMMddHH", Locale.CHINA);
+        return sdf.format(getDateTime());
+    }
     public void setStringTime(String stringTime) {
         this.stringTime = stringTime;
     }

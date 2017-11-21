@@ -35,9 +35,9 @@ public class HBaseClient {
 	private void buildHBaseClient() {
 		try {
 			conf = HBaseConfiguration.create();
-			conf.set("hbase.zookeeper.property.clientPort", "2222");
-			conf.set("hbase.zookeeper.quorum","10.1.1.34,10.1.1.35,10.1.1.36,10.1.1.37,10.1.1.38");
-			conf.set("hbase.zookeeper.property.dataDir","/root/hbase/zookeeper");
+//			conf.set("hbase.zookeeper.property.clientPort", "2222");
+//			conf.set("hbase.zookeeper.quorum","10.1.1.34,10.1.1.35,10.1.1.36,10.1.1.37,10.1.1.38");
+//			conf.set("hbase.zookeeper.property.dataDir","/root/hbase/zookeeper");
 			conn = HConnectionManager.createConnection(conf);
 			logger.info(">> hbase connected _________");
 			System.out.println("**** hbase connected ! ****");
