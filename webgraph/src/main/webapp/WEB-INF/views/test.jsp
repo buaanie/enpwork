@@ -12,8 +12,8 @@
 <head>
     <meta charset="utf-8">
     <title>Bootstrap 实例 - 响应式的导航栏</title>
-    <link rel="stylesheet" type="text/css" href="../../static/src/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../static/src/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../../static/src/css/bootstrap-combined.min.css">
+    <%--<link rel="stylesheet" type="text/css" href="../../static/src/css/index.css">--%>
     <script src="../../static/src/js/jquery.min.js"></script>
     <script src="../../static/src/js/bootstrap.min.js"></script>
 </head>
