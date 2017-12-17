@@ -29,7 +29,7 @@ public class HomeController {
         //输出日志文件
         logger.info("the first jsp pages");
         //返回一个index0.jsp这个视图
-        return "index0";
+        return "index";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = {"/daily"})

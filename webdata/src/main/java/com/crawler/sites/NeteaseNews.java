@@ -23,8 +23,8 @@ import static com.crawler.utils.StirngUtil.UA1;
  */
 public class NeteaseNews{
     private String[] list = {"BCR1UC1Qwangning-社会","BD29LPUBwangning-国内","BD29MJTVwangning-国际","BAI67OGGwangning-军事"};
-    private  String list_url = "http://3g.163.com/touch/reconstruct/article/list/%s/%d-40.html";
-    private Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000)
+    private  String list_url = "http://3g.163.com/touch/reconstruct/article/list/%s/%d-20.html";
+    private Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(3000).setSleepTime(3000)
             .setUserAgent(UA1);
     public static void main(String[] args) {
         new NeteaseNews().start();
@@ -38,7 +38,7 @@ public class NeteaseNews{
     public Request[] getStartUrls(){
         List<Request> res = new ArrayList<>();
         for (String s : list) {
-            for(int i=0;i<41;i=i+40){
+            for(int i=0;i<41;i=i+20){
                 Request request = new Request(String.format(list_url,s.split("-")[0],i));
                 request.putExtra("type",s.split("-")[1]);
                 request.putExtra("identity",s.split("-")[0]);

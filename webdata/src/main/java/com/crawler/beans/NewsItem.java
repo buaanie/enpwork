@@ -56,7 +56,10 @@ public class NewsItem {
         this.title = title;
     }
     public String getSource() {
-        return source;
+	    if(source!=null)
+            return source;
+	    else
+	        return "";
     }
     public void setSource(String source) {
         this.source = source;
@@ -106,7 +109,10 @@ public class NewsItem {
         this.description = description;
     }
     public String getKeywords() {
-        return keywords.replace("[","").replace("]","");
+	    if(keywords!=null)
+            return keywords.replace("[","").replace("]","");
+	    else
+	        return "";
     }
     public void setKeyWords(String words) {
 	    this.keywords = words;

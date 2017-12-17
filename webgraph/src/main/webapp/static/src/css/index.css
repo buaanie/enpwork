@@ -104,14 +104,14 @@ body {
   border-radius: 50%;
 }
 
-/*indexï¿½Ä´ï¿½Ö±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ê½*/
+/*indexµÄ´¹Ö±µ¼º½Ò»¡¢¶þ¼¶²Ëµ¥ÑùÊ½*/
 body {
 		}
-		/*ï¿½ï¿½ï¿½Ëµï¿½*/
+		/*×ó²à²Ëµ¥*/
 		.sidebar-menu{
 			border-right: 1px solid #c4c8cb;
 		}
-		/*Ò»ï¿½ï¿½ï¿½Ëµï¿½*/
+		/*Ò»¼¶²Ëµ¥*/
 		.menu-first{
 			height: 60px;
 			line-height: 40px;
@@ -123,14 +123,14 @@ body {
 			font-weight: normal;
 			text-align: center;
 		}
-		/*Ò»ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ê»®ï¿½ï¿½×´Ì¬*/
+		/*Ò»¼¶²Ëµ¥Êó±ê»®¹ý×´Ì¬*/
 		.menu-first:hover{
 			text-decoration: none;
 			background-color: #d6d4d5;
 			border-top: 1px solid #b7b7b7;
 			border-bottom: 1px solid #acacac;
 		}
-		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½*/
+		/*¶þ¼¶²Ëµ¥*/
 		.menu-second li a{
 			background-color: #f6f6f6;
 			height: 40px;
@@ -140,7 +140,7 @@ body {
 			font-size: 14px;
 			text-align: center;
 		}
-		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ê»®ï¿½ï¿½ï¿½ï¿½Ê½*/
+		/*¶þ¼¶²Ëµ¥Êó±ê»®¹ýÑùÊ½*/
 		.menu-second li a:hover {
 			text-decoration: none;
 			background-color: #66c3ec;
@@ -149,7 +149,7 @@ body {
 			border-right: 3px solid #f8881c;
 			border-left: 3px solid #66c3ec;
 		}
-		/*ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½Ñ¡ï¿½ï¿½×´Ì¬*/
+		/*¶þ¼¶²Ëµ¥Ñ¡ÖÐ×´Ì¬*/
 		.menu-second-selected {
 			background-color: #66c3ec;
 			height:31px;
@@ -160,7 +160,7 @@ body {
 			border-left: 3px solid #66c3ec;
 			text-align:center;
 		}
-		/*ï¿½ï¿½ï¿½ï¿½bootstrapï¿½ï¿½ï¿½ï¿½Ê½*/
+		/*¸²¸ÇbootstrapµÄÑùÊ½*/
 		.nav-list,.nav-list li a{
 			padding: 0px;
 			margin: 0px;
