@@ -19,7 +19,7 @@ import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 
 public class ScanNewsInfo {
-    private  final String NewsIndex = "news_info3";
+    private static final String NewsIndex = "news_info3";
     private TransportClient client;
     public ScanNewsInfo()
     {

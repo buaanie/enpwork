@@ -9,7 +9,8 @@ import org.apache.hadoop.hbase.client.HBaseAdmin;
 import org.apache.hadoop.hbase.client.HConnection;
 import org.apache.hadoop.hbase.client.HConnectionManager;
 import org.apache.hadoop.hbase.client.HTable;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HBaseClient {
 	private static HBaseClient hbase = new HBaseClient();
@@ -18,7 +19,7 @@ public class HBaseClient {
 	private Logger logger;
 	// nnews、ncmts、nusers
 	private HBaseClient(){
-		logger =Logger.getLogger(this.getClass());
+		logger = LoggerFactory.getLogger(this.getClass());
 		buildHBaseClient();
 	}
 	public void close(){

@@ -75,7 +75,7 @@ public class RelatedEvent {
         String[] split = corewords.trim().split(" ");
         //有待测试，不知多少关键词合适
         if(split.length > 6) {
-            split = (String[]) Arrays.copyOfRange(split, 0, 5);
+            split = Arrays.copyOfRange(split, 0, 5);
         }
         this.corewords = StringUtils.join(split, " ");
     }

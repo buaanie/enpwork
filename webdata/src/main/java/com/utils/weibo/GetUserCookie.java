@@ -32,8 +32,9 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.log4j.Logger;
 import org.elasticsearch.common.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -44,13 +45,14 @@ import org.elasticsearch.common.Base64;
  */
 public class GetUserCookie {
 	// 日志处理
-	private static Logger logger = Logger.getLogger(GetUserCookie.class);
+	private Logger logger;
 	private LoginPojo loginPojo;
 
 	// 验证弹出类,验证码输入工具类
 	// private VerifyGuiUtil verifyGuiUtil = new VerifyGuiUtil();
 
 	public LoginPojo getLoginPojo() {
+		logger = LoggerFactory.getLogger(GetUserCookie.class);
 		return loginPojo;
 	}
 

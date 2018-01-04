@@ -1,7 +1,10 @@
 package com.store;
 
 import com.crawler.beans.NewsItem;
+import com.event.EventInfo;
 import com.event.RelatedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,7 +14,8 @@ import java.util.Map;
  * Created by ACT-NJ on 2017/7/23.
  */
 public class DataAssembler {
-    static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");//'z
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");//'z
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     public NewsItem bindNews(Map<String, Object> map) {
         NewsItem news = new NewsItem();
         if (map.containsKey("id")) {
@@ -53,7 +57,7 @@ public class DataAssembler {
         return news;
     }
 
-    public RelatedEvent bindEvent(String id,Map<String, Object> map){
+    public RelatedEvent bindRelatedEvent(String id, Map<String, Object> map){
         RelatedEvent event = new RelatedEvent(id);
         String corewords = map.get("corewords").toString();
         event.setCorewords(corewords);
@@ -63,7 +67,7 @@ public class DataAssembler {
                 date = dateFormatter.parse(map.get("time").toString());
                 event.setTime(date);
             } catch (Exception ex) {
-                ex.printStackTrace();
+                logger.error(ex.getMessage());
             }
         }
         if (map.containsKey("corewords")) {
@@ -91,6 +95,19 @@ public class DataAssembler {
         }
         if (map.containsKey("participant")) {
             event.setPart(map.get("participant").toString());
+        }
+        return event;
+    }
+
+    public EventInfo bindEvent(String id, Map<String, Object> map){
+        EventInfo event = new EventInfo(id);
+        String corewords = map.get("corewords").toString();
+        if (map.containsKey("time")) {
+            try {
+                Date date = dateFormatter.parse(map.get("time").toString());
+            } catch (Exception ex) {
+                logger.error(ex.getMessage());
+            }
         }
         return event;
     }

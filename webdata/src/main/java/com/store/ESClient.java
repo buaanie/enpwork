@@ -1,7 +1,6 @@
 package com.store;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.log4j.Logger;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequestBuilder;
@@ -18,6 +17,8 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,7 +34,7 @@ public class ESClient {
     private Logger logger;
 
     private ESClient() {
-        logger = Logger.getLogger(this.getClass());
+        logger = LoggerFactory.getLogger(this.getClass());
         buildESClient();
     }
 

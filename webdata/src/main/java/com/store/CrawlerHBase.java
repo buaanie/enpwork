@@ -12,7 +12,8 @@ import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.RetriesExhaustedWithDetailsException;
 import org.apache.hadoop.hbase.util.Bytes;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class CrawlerHBase {
@@ -23,7 +24,7 @@ public class CrawlerHBase {
 	private List<NewsItem> newsList;
 	private Logger logger;
 	private CrawlerHBase(){
-		logger =  Logger.getLogger(this.getClass());
+		logger =  LoggerFactory.getLogger(this.getClass());
 	    registerShutdownHook();
 	}
 	public static CrawlerHBase getHBase(boolean comment){
@@ -137,11 +138,11 @@ public class CrawlerHBase {
 			newsCmt.flushCommits();
 			cmtUser.put(user_puts);
 			cmtUser.flushCommits();
-			logger.info("=====><===== store into ncmt ====><====");
+			logger.info("store into ncmt{}",cmt_puts.size());
 		} catch (InterruptedIOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} catch (RetriesExhaustedWithDetailsException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 }

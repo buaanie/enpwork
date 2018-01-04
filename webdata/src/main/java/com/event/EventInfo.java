@@ -17,6 +17,9 @@ public class EventInfo implements Serializable{
 //    private int hot;//热度
     private int show;//是否显示，0为不显示，1为合并，>=2为显示 标记新闻条数
 //    private String chain ="";//事件演化链，','隔开事件id
+    public EventInfo(String id){
+        this.eventId = eventId;
+    }
     public EventInfo(String eventId,String articleId,int show){
         this.eventId = eventId;
         this.articleId = articleId;

@@ -23,8 +23,10 @@ import java.util.*;
 public class ScanWeiboEvent {
     private final String EventIndex = "events_v3";
     private TransportClient client;
+    private DataAssembler assembler;
     public ScanWeiboEvent(){
         client = ESClient.getInstance();
+        assembler = new DataAssembler();
     }
     public static void main(String[] args) {
         ScanWeiboEvent getEvent = new ScanWeiboEvent();
@@ -81,7 +83,7 @@ public class ScanWeiboEvent {
                 if (map.get("participant").toString().equals("")||map.get("location").toString().equals("")||map.get("participant").toString().contains("某")||map.get("desc").toString().equals("")) {
                 	continue;
                 }
-                result.add( new DataAssembler().bindEvent(id, map));
+                result.add( assembler.bindRelatedEvent(id, map));
             }
             //通过scrollid来实现深度翻页
             scrollResp = client.prepareSearchScroll(scrollResp.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
