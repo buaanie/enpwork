@@ -40,8 +40,7 @@ public class HBaseClient {
 //			conf.set("hbase.zookeeper.quorum","10.1.1.34,10.1.1.35,10.1.1.36,10.1.1.37,10.1.1.38");
 //			conf.set("hbase.zookeeper.property.dataDir","/root/hbase/zookeeper");
 			conn = HConnectionManager.createConnection(conf);
-			logger.info(">> hbase connected _________");
-			System.out.println("**** hbase connected ! ****");
+			logger.info("hbase connected");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -65,7 +64,7 @@ public class HBaseClient {
 	public void createTable(String tableName, String[] cfs) throws IOException{
 		HBaseAdmin admin = new HBaseAdmin(conf);
 		if (admin.tableExists(tableName)) {
-			System.out.println("表已经存在！输入1删除重建");
+			logger.warn("表已经存在！输入1删除重建");
 			Scanner scanner = new Scanner(System.in);
 			if(scanner.nextInt()==1)
 				deleteTable(tableName);
@@ -78,7 +77,7 @@ public class HBaseClient {
 			tableDesc.addFamily(new HColumnDescriptor(cfs[i].getBytes()));
 		}
 		admin.createTable(tableDesc);
-		System.out.println(tableName+" 表创建成功！");
+		logger.info("{} 表创建成功！",tableName);
 	}
 
 	/**
@@ -90,11 +89,11 @@ public class HBaseClient {
 		try {
 			HBaseAdmin admin = new HBaseAdmin(conf);
 			if (!admin.tableExists(tableName)) {
-				System.out.println(tableName+" 表不存在, 无需删除操作！");
+				logger.info("{}表不存在, 无需删除操作！",tableName);
 			}else{
 				admin.disableTable(tableName);
 				admin.deleteTable(tableName);
-				System.out.println(tableName+" 表删除成功!");
+				logger.info("{}表删除成功！",tableName);
 			}
 		} catch (MasterNotRunningException e) {
 			e.printStackTrace();

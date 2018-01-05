@@ -16,7 +16,7 @@ public class SpiderEntrance {
     private void timerAll(String type,String env){
         Date firstTime = getFirstTime().getTime();
 //		System.out.println(hour+" "+firstTime.toLocaleString());
-        long period = 4*3600*1000;//4小时为间隔
+        long period = 4*3600*1000L;//4小时为间隔
         long delay = 3;    //3'延迟
         Timer spiderTimer = new Timer();
         TimerTask spiderTask = null;
@@ -81,7 +81,6 @@ public class SpiderEntrance {
     private HashMap getCurrentCmtIds(){
         long from = System.currentTimeMillis();
         long to = from-9*60*60*1000;
-        HashMap<String,List<String>> ids = new GetIndexDocs().getCmtIds(to,from,"nnews");
-        return ids;
+        return new GetIndexDocs().getCmtIds(to,from,"nnews");
     }
 }

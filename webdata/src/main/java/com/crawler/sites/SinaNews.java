@@ -19,7 +19,7 @@ import static com.crawler.utils.StirngUtil.UA1;
  */
 public class SinaNews {
     public static String url = "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=100&page=%d&last_time=%s";
-    private static Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(2000).setSleepTime(3000).setUserAgent(UA1);
+    private static Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(2000).setSleepTime(3000).setUserAgent(UA1).setUseGzip(true);
     public static void main(String[] args) {
         new SinaNews().start();
     }

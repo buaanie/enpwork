@@ -22,7 +22,7 @@ public class Paper implements PageProcessor{
     private static String list = "http://m.thepaper.cn/load_channel.jsp?nodeids=25428,25426,25481,25429,25462,25490,25488,25434&topCids=1739457,1741122,1741013&pageidx=%d&lastTime=%s";
     private static String url_head = "http://m.thepaper.cn/";
     private String time_regex = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
-    private Site site = Site.me().setDomain("http://news.people.com.cn/").setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000)
+    private Site site = Site.me().setDomain("http://m.thepaper.cn/").setRetryTimes(3).setCycleRetryTimes(1000).setSleepTime(2000).setDisableCookieManagement(true)
             .setUserAgent(UA1).setUseGzip(true);
 
     public static void main(String[] args) {

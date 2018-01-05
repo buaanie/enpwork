@@ -98,7 +98,7 @@ public class CrawlerIndex {
         if(bqb.numberOfActions()!=0){
 			try {
                 BulkResponse response = bqb.execute().actionGet();
-				logger.info(Thread.currentThread().getName()+" >> index news into es  "+bqb.numberOfActions());
+				logger.info("index news into es, hits:{}",bqb.numberOfActions());
 				if(response.hasFailures()){
 					logger.error("index news error: "+response.buildFailureMessage());
 				}

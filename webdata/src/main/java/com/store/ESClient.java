@@ -58,10 +58,9 @@ public class ESClient {
                 for (String host : hosts.split(",")) {
                     client.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName(host), port));
                 }
-                logger.info("----><----- connected to ES ----><-----");
-                System.out.print("**** es connected ! ****         ");
+                logger.info("connected to ES");
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
 //			client.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName("10.1.1.33"), 9300))
 //					.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName("10.1.1.34"), 9300))
@@ -69,7 +68,7 @@ public class ESClient {
 //					.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName("10.1.1.36"), 9300))
 //					.addTransportAddress(new InetSocketTransportAddress(Inet4Address.getByName("10.1.1.37"), 9300));
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
@@ -144,7 +143,8 @@ public class ESClient {
                 "    }" +
                 "}";
         Settings s = Settings.builder().loadFromSource(JSONObject.parse(template).toString()).build();
-        CreateIndexResponse createIndexResponse = client.admin().indices().prepareCreate(indexName).setSettings(Settings.builder().put(s).put("index.number_of_shards", 5).put("index.refresh_interval", "10s")).execute().actionGet();//.setAliases("")
+        //CreateIndexResponse createIndexResponse =
+        client.admin().indices().prepareCreate(indexName).setSettings(Settings.builder().put(s).put("index.number_of_shards", 5).put("index.refresh_interval", "10s")).execute().actionGet();//.setAliases("")
 //创建索引结构
         try {
             XContentBuilder builder = XContentFactory.jsonBuilder()
@@ -193,9 +193,9 @@ public class ESClient {
                     .endObject();
             PutMappingRequest mapping = Requests.putMappingRequest(indexName).type("msg").source(builder);
             client.admin().indices().putMapping(mapping).actionGet();
-            System.out.println(indexName+" 创建成功");
+            logger.info("{}创建成功",indexName);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
     public void modifyIndexMap(String indexName) {
@@ -212,10 +212,10 @@ public class ESClient {
                     .endObject()
                     .endObject()
                     .endObject();
-            System.out.println(builder.string());
+//            System.out.println(builder.string());
             mappingRequest.setSource(builder).setType("msg").execute().actionGet();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
     public void deleteIndex(String indexName){
@@ -224,7 +224,7 @@ public class ESClient {
         if (res.isExists()) {
             DeleteIndexRequestBuilder delIdx = client.admin().indices().prepareDelete(indexName);
             if(delIdx.execute().actionGet().isAcknowledged())
-                System.out.println(indexName + " 删除成功");
+                logger.info("{}删除成功",indexName);
         }
     }
     public void clearIndex(String indexName){
@@ -232,7 +232,7 @@ public class ESClient {
         if (res.isExists()) {
             DeleteResponse clear = client.prepareDelete().setIndex(indexName).setType("msg").execute().actionGet();
             if(clear.isFound())
-                System.out.println("清空成功");
+                logger.info("清空成功");
         }
     }
 

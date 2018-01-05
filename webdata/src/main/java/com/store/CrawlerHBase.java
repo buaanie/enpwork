@@ -18,11 +18,11 @@ import org.slf4j.LoggerFactory;
 
 public class CrawlerHBase {
 	private static CrawlerHBase crawlerHBase = new CrawlerHBase();
+	private static Logger logger;
 	private HTable newsInfo;
 	private HTable newsCmt;
 	private HTable cmtUser;
 	private List<NewsItem> newsList;
-	private Logger logger;
 	private CrawlerHBase(){
 		logger =  LoggerFactory.getLogger(this.getClass());
 	    registerShutdownHook();
@@ -33,14 +33,14 @@ public class CrawlerHBase {
 				crawlerHBase.newsCmt = HBaseClient.getTable("ncmts");
 				crawlerHBase.cmtUser = HBaseClient.getTable("nusers");
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}else{
 			try {
 				crawlerHBase.newsInfo = HBaseClient.getTable("nnews");
 				crawlerHBase.newsList = new ArrayList<NewsItem>(70);
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}
 		return crawlerHBase;
@@ -103,8 +103,7 @@ public class CrawlerHBase {
 		}
 		newsInfo.put(puts);
 		newsInfo.flushCommits();
-		logger.info(System.currentTimeMillis()+ "store into nnews _____>");
-		System.out.println(Thread.currentThread().getName() + " store into nnews");
+		logger.info("time:{} store into nnews",System.currentTimeMillis());
 	}
 
 	public synchronized void storeBulkCmt(List<NewsCmt> cmtList,List<CmtUser> userList) {

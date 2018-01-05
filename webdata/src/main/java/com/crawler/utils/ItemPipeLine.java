@@ -31,11 +31,12 @@ public class ItemPipeLine implements Pipeline{
         this.pageType = type;
         crawlerNewsIndex = CrawlerIndex.getIndex();
 //        filePersist = new FilesOpt();
-        if(type==ItemType.NewsCmt) {
+        if(type.equals(ItemType.NewsCmt)) {
             crawlerNewsHBase = CrawlerHBase.getHBase(true);
         }
-        else
+        else {
             crawlerNewsHBase = CrawlerHBase.getHBase(false);
+        }
     }
     @Override
     public void process(ResultItems resultItems, Task task) {
