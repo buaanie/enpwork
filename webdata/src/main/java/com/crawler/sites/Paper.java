@@ -36,7 +36,7 @@ public class Paper implements PageProcessor{
         }
         //建议page 1~8
         Spider paper = Spider.create(new Paper()).startUrls(starts).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);
-        paper.start();
+        paper.run();
     }
     @Override
     public void process(Page page) {

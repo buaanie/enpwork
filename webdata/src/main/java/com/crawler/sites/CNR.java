@@ -36,7 +36,7 @@ public class CNR implements PageProcessor{
         for(int i =1;i<10;i++)
             start.add(String.format(url,i));
         Spider cnr = Spider.create(new CNR()).startUrls(start).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);//.setScheduler(new PriorityScheduler())
-        cnr.start();
+        cnr.run();
     }
     @Override
     public void process(Page page) {

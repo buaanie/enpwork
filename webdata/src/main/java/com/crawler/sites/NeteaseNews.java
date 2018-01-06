@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.crawler.utils.StirngUtil.UA1;
+import static com.crawler.utils.StirngUtil.UA2;
 
 /**
  * Created by ACT-NJ on 2017/7/16.
@@ -25,7 +26,7 @@ public class NeteaseNews{
     private String[] list = {"BCR1UC1Qwangning-社会","BD29LPUBwangning-国内","BD29MJTVwangning-国际","BAI67OGGwangning-军事"};
     private  String list_url = "http://3g.163.com/touch/reconstruct/article/list/%s/%d-20.html";
     private Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(3000).setSleepTime(3000)
-            .setUserAgent(UA1);
+            .setUserAgent(UA2).setUseGzip(true);
     public static void main(String[] args) {
         new NeteaseNews().start();
     }

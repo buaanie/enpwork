@@ -30,6 +30,6 @@ public class SinaNews {
         String start = String.format(url,1,now);
         Request r = new Request(start).setCharset("GBK").putExtra("page",1).putExtra("time",now);
         Spider netease = Spider.create(sinaProcessor).addRequest(r).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
-        netease.start();
+        netease.run();
     }
 }
