@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletRequest;
 
@@ -16,12 +17,16 @@ import javax.servlet.ServletRequest;
  */
 @Controller
 public class EventController {
-    @RequestMapping(method = RequestMethod.GET, value = {"/events/getLastestByType"})
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = {"/event/getLastestByType"})
     public Object getLastest(
             @RequestParam(value = "type", defaultValue = "0") int type,
             @RequestParam(value = "period", defaultValue = "3") int time,
             Model model, ServletRequest request){
+        System.out.println("????");
         JSONObject jsonrs = new JSONObject();
-        return new ResponseEntity<String>(jsonrs.toString(), HttpStatus.OK);
+        return jsonrs.toJSONString();
+//        return new ResponseEntity<String>(jsonrs.toString(), HttpStatus.OK);
     }
 }

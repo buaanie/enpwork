@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
      
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@ page trimDirectiveWhitespaces="true" %>
 <html lang="zh-CN">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,9 +38,9 @@
 
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">			            
-						<li><a href="#" onclick="showAtRight('userList.jsp')">新闻聚合</a></li>
-						<li><a href="#" onclick="showAtRight('productList.jsp')">评论挖掘</a></li>
-						<li><a href="#" onclick="showAtRight('recordList.jsp')" >图谱展示</a></li>
+						<li><a href="#" onclick="getPage('news.jsp')">新闻聚合</a></li>
+						<li><a href="#" onclick="getPage('detail.jsp')">评论挖掘</a></li>
+						<li><a href="#" onclick="getPage('graph.jsp')" >图谱展示</a></li>
 					</ul>
           			
         		</div>
@@ -48,10 +50,10 @@
 		<div class="container-fluid">
             <div class="col-sm-3 col-md-2 sidebar" data-spy="affix">
                 <ul id="myNav" class="nav nav-tabs nav-stacked">
-                    <li><a href="#all" onclick="showAtRight('all')">全部事件</a></li>
-                    <li><a href="#politics" onclick="showAtRight('politics')">政治军事</a></li>
-                    <li><a href="#nature" onclick="showAtRight('nature')">自然灾害</a></li>
-                    <li><a href="#public" onclick="showAtRight('public')">公共热点</a></li>
+                    <li><a href="#all" onclick="showAtRight('0')">全部事件</a></li>
+                    <li><a href="#politics" onclick="showAtRight('1')">政治军事</a></li>
+                    <li><a href="#nature" onclick="showAtRight('2')">自然灾害</a></li>
+                    <li><a href="#public" onclick="showAtRight('3')">公共热点</a></li>
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -74,15 +76,16 @@
         function showAtRight(type) {
             $.ajax({
                 type:"GET",
-                url:'<c:url value="/events/findNodeByName?name="></c:url>'+encodeURIComponent(query)+"&type=" + encodeURIComponent(type),
+                url:'/event/getLastestByType?type='+type+'&period=3',
                 dataType: "json",
                 success: function (data) {
                     if(data==null || data.errors.length>0){
                         alert("参数有误");
                         return ;
                     }
-                    var array = data.results[0].data;
-                    drawETable('neo4j-object',query,array);
+                    alert("hhlo")
+//                    var array = data.results[0].data;
+//                    drawETable('neo4j-object',query,array);
                 },
                 error: function (e) {
                     alert("无查询结果");
