@@ -27,7 +27,7 @@ public class Learn {
   /**
    * 训练多少个特征
    */
-  private int layerSize = 200;
+  private int layerSize = 250;
 
   /**
    * 上下文窗口大小

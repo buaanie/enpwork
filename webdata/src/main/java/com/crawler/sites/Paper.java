@@ -3,6 +3,7 @@ package com.crawler.sites;
 import com.crawler.beans.NewsItem;
 import com.crawler.utils.ItemPipeLine;
 import com.crawler.utils.ItemType;
+import org.apache.http.HttpHeaders;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
@@ -36,7 +37,7 @@ public class Paper implements PageProcessor{
         }
         //建议page 1~8
         Spider paper = Spider.create(new Paper()).startUrls(starts).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);
-        paper.run();
+        paper.start();
     }
     @Override
     public void process(Page page) {
@@ -69,7 +70,8 @@ public class Paper implements PageProcessor{
             List<String> sources = page.getHtml().xpath("//div[@class='txt_t']/p/a/text()").all();
             for(int i=0;i<urls.size();i++){
                 Request req = new Request(url_head+urls.get(i))
-                        .putExtra("title",titles.get(i)).putExtra("type",sources.get(i));
+                        .putExtra("title",titles.get(i)).putExtra("type",sources.get(i))
+                        .addHeader(HttpHeaders.ACCEPT_ENCODING, "gzip");
                 page.addTargetRequest(req);
             }
             page.setSkip(true);

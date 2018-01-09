@@ -10,6 +10,7 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.handler.CompositePageProcessor;
 
 import static com.crawler.utils.StirngUtil.UA1;
+import static com.crawler.utils.StirngUtil.UA2;
 
 /**
  * Created by ACT-NJ on 2017/7/19.
@@ -19,7 +20,7 @@ import static com.crawler.utils.StirngUtil.UA1;
  */
 public class SinaNews {
     public static String url = "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=100&page=%d&last_time=%s";
-    private static Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(2000).setSleepTime(3000).setUserAgent(UA1).setUseGzip(true);
+    private static Site site = Site.me().setRetryTimes(2).setCycleRetryTimes(2000).setSleepTime(3000).setUserAgent(UA1).setDisableCookieManagement(true).setUseGzip(true);
     public static void main(String[] args) {
         new SinaNews().start();
     }
@@ -30,6 +31,6 @@ public class SinaNews {
         String start = String.format(url,1,now);
         Request r = new Request(start).setCharset("GBK").putExtra("page",1).putExtra("time",now);
         Spider netease = Spider.create(sinaProcessor).addRequest(r).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
-        netease.run();
+        netease.start();
     }
 }

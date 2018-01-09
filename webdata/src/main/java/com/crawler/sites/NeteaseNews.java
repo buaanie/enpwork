@@ -26,7 +26,7 @@ public class NeteaseNews{
     private String[] list = {"BCR1UC1Qwangning-社会","BD29LPUBwangning-国内","BD29MJTVwangning-国际","BAI67OGGwangning-军事"};
     private  String list_url = "http://3g.163.com/touch/reconstruct/article/list/%s/%d-20.html";
     private Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(3000).setSleepTime(3000)
-            .setUserAgent(UA2).setUseGzip(true);
+            .setUserAgent(UA2).setDisableCookieManagement(true).setUseGzip(true).setCharset("UTF-8");
     public static void main(String[] args) {
         new NeteaseNews().start();
     }

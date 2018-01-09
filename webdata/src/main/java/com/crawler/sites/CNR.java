@@ -25,7 +25,7 @@ public class CNR implements PageProcessor{
     private final String LIST_REGEX = "http://kuaixun\\.cnr\\.cn/\\?n=\\d+"; //新闻列表页面 index\.html
     private final String NEWS_REGEX = "http://www\\.cnr\\.cn/.*\\.shtml"; //新闻列表页面
     private Site site = Site.me().setDomain("http://www.cnr.cn/").setRetryTimes(3).setCycleRetryTimes(2000).setSleepTime(3000)
-            .setUserAgent(UA2).setUseGzip(true).setUseGzip(true);
+            .setUserAgent(UA2).setUseGzip(true).setDisableCookieManagement(true).setCharset("UTF-8");
 
     public static void main(String[] args) {
         new CNR().start();
@@ -36,7 +36,7 @@ public class CNR implements PageProcessor{
         for(int i =1;i<10;i++)
             start.add(String.format(url,i));
         Spider cnr = Spider.create(new CNR()).startUrls(start).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(3);//.setScheduler(new PriorityScheduler())
-        cnr.run();
+        cnr.start();
     }
     @Override
     public void process(Page page) {

@@ -16,7 +16,8 @@ import java.util.regex.Pattern;
  */
 public class StirngUtil {
 
-    public static final String UA1 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36";
+//    public static final String UA1 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
+    public static final String UA1 = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
     public static final String UA2 = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
     public static final String TIME_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
     public static final String TIME_REGEX2 = "\\d{4}年\\d{2}月\\d{2}日\\d{2}\\:\\d{2}";

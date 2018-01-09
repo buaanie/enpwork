@@ -31,7 +31,7 @@ public class SinaInfo implements SubPageProcessor {
         String source = page.getHtml().xpath("//head/meta[@name='mediaid']/@content").toString();
         String id = page.getHtml().xpath("//head/meta[@name='publishid']/@content").toString();
         List<Selectable> contents = page.getHtml().xpath("//*[@id='artibody']/p").nodes();
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (Selectable content : contents) {
             if(content.xpath("/p/@class").toString().equals("")) {
                 sb.append(content.xpath("/p/text()").toString());

@@ -83,7 +83,7 @@
                         alert("参数有误");
                         return ;
                     }
-                    alert("hhlo")
+                    alert("hhlo");
 //                    var array = data.results[0].data;
 //                    drawETable('neo4j-object',query,array);
                 },

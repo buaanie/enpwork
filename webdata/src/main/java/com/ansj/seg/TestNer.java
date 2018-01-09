@@ -36,7 +36,6 @@ public class TestNer {
         }
         try {
             Model model = CRFModel.load("D:\\Jworkspace\\enpwork\\library\\crf.model");
-
         } catch (Exception e) {
             e.printStackTrace();
         }

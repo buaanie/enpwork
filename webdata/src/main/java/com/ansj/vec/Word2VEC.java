@@ -20,7 +20,7 @@ public class Word2VEC {
 		// learn.saveModel(new File("library/javaSkip1"));
 
 		Word2VEC vec = new Word2VEC();
-		vec.loadJavaModel("files/library/javaSkip1");
+		vec.loadJavaModel("files/javaSkip300");
 
 		// System.out.println("中国" + "\t" +
 		// Arrays.toString(vec.getWordVector("中国")));
@@ -39,7 +39,6 @@ public class Word2VEC {
 		long start = System.currentTimeMillis();
 		for (int i = 0; i < 100; i++) {
 			System.out.println(vec.distance(str));
-			;
 		}
 		System.out.println(System.currentTimeMillis() - start);
 

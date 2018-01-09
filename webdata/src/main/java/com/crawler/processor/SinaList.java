@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.handler.RequestMatcher;
+import org.apache.http.HttpHeaders;
 import us.codecraft.webmagic.handler.SubPageProcessor;
 
 import java.util.Date;
@@ -28,7 +29,7 @@ public class SinaList implements SubPageProcessor {
         for (Object o : jsonArray) {
             JSONObject temp = (JSONObject) o;
             Request r = new Request(temp.getString("url"));
-            r.setCharset("utf-8");
+            r.setCharset("utf-8").addHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate");
             r.putExtra("title",temp.getString("title"));
             r.putExtra("time",temp.getString("time"));
             r.putExtra("type",getType(temp.getJSONObject("channel").getString("id")));
@@ -38,7 +39,7 @@ public class SinaList implements SubPageProcessor {
         if(count>=80){
             int page_num = (int) page.getRequest().getExtra("page")+1;
             String page_time = page.getRequest().getExtra("time").toString();
-            Request r = new Request(String.format(url,page_num,page_time)).setCharset("GBK").putExtra("page",page_num).putExtra("time",page_time);
+            Request r = new Request(String.format(url,page_num,page_time)).setCharset("GBK").putExtra("page",page_num).putExtra("time",page_time).addHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate");
             page.addTargetRequest(r);
         }
         page.setSkip(true); //无需保存

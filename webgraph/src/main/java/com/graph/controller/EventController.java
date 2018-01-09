@@ -24,7 +24,6 @@ public class EventController {
             @RequestParam(value = "type", defaultValue = "0") int type,
             @RequestParam(value = "period", defaultValue = "3") int time,
             Model model, ServletRequest request){
-        System.out.println("????");
         JSONObject jsonrs = new JSONObject();
         return jsonrs.toJSONString();
 //        return new ResponseEntity<String>(jsonrs.toString(), HttpStatus.OK);

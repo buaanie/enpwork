@@ -1,8 +1,6 @@
 package com.utils;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.store.HBaseClient;
@@ -10,6 +8,8 @@ import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /*
 {row key, column( =<family> + <label>), version} ->cell
@@ -28,15 +28,19 @@ public class GetTableRows {
 	private HTable weibo_table;
 	private HTable news_table;
 	private FilesOpt filePersist = null;
-	public GetTableRows() throws IOException {
+	private Logger logger;
+	public GetTableRows(){
 		filePersist = new FilesOpt();
-
+		logger = LoggerFactory.getLogger(GetTableRows.class);
 //		weibo_table = new HTable()
-		weibo_table = HBaseClient.getTable("weibosInfo");
-		news_table = HBaseClient.getTable("nnews");
+		try {
+			weibo_table = HBaseClient.getTable("weibosInfo");
+			news_table = HBaseClient.getTable("nnews");
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
 	}
 	public static void main(String[] args) {
-		try {
 			GetTableRows get = new GetTableRows();
 //			get.getOneRow("2478-1002448");
 
@@ -56,11 +60,7 @@ public class GetTableRows {
 //			}
 
 			String from = "tct";
-			get.testNews(from);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			get.getNewsFrom(from);
 	}
 
 	public void deleteRows(List<String> delete_ids) {
@@ -143,7 +143,7 @@ public class GetTableRows {
 		}       
 	}
 
-	public void testNews(String startRow){
+	public void getNewsFrom(String startRow){
 		long count = 0;
 		Scan scan = new Scan(startRow.getBytes());
 		ResultScanner resultScanner = null;
