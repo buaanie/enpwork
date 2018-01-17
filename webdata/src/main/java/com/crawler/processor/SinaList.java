@@ -29,7 +29,6 @@ public class SinaList implements SubPageProcessor {
         for (Object o : jsonArray) {
             JSONObject temp = (JSONObject) o;
             Request r = new Request(temp.getString("url"));
-            r.setCharset("utf-8").addHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate");
             r.putExtra("title",temp.getString("title"));
             r.putExtra("time",temp.getString("time"));
             r.putExtra("type",getType(temp.getJSONObject("channel").getString("id")));
