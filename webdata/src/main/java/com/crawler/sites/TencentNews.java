@@ -25,7 +25,7 @@ public class TencentNews {
     private static final String tct_news = "http://roll.news.qq.com/interface/cpcroll.php?site=news&mode=1&cata=&date=%s&page=%s&_=%s";
     private static DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(2000).setDisableCookieManagement(true).setSleepTime(3000)
-            .setUserAgent(UA2).setCharset("UTF-8");
+            .setUserAgent(UA2);
 
     public static void main(String[] args) {
         new TencentNews().start();
