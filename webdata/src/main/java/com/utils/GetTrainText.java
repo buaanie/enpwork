@@ -21,13 +21,20 @@ public class GetTrainText {
         }
         logger = LoggerFactory.getLogger(GetTrainText.class);
     }
-    public void getRawNews(){
-        GetTrainText getNews = new GetTrainText("hbase");
-        String startRow = "0";
+    public void getHBaseRawNews(String startRow){
         getTableRows.getNewsFrom(startRow);
     }
 
-    public static void main(String[] args) {
+    //注意采用秒而不是毫秒
+    private void getDocsByTime(long start,long end){
+        long temp = start + 259200;//3*24*3600
+        while(temp < end){
+        }
+    }
 
+    public static void main(String[] args) {
+        String source = "hbase";
+        GetTrainText getNews = new GetTrainText(source);
+        getNews.getHBaseRawNews("2017-03");
     }
 }

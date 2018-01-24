@@ -2,7 +2,7 @@ package com.utils;
 
 import com.crawler.beans.NewsItem;
 import com.store.DataAssembler;
-import com.store.ESClient;
+import com.store.ESClient13;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by ACT-NJ on 2017/7/22.
  */
 public class QueryExample {
-    private TransportClient client = ESClient.getInstance();
+    private TransportClient client = ESClient13.getInstance();
     private DataAssembler assembler = new DataAssembler();
     public List<NewsItem> getRelatedNewsSubject(String query_word) {
         String indexName = "news_all";

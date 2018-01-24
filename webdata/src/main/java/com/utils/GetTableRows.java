@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 import com.store.HBaseClient;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.client.*;
@@ -35,7 +36,7 @@ public class GetTableRows {
 //		weibo_table = new HTable()
 		try {
 			weibo_table = HBaseClient.getTable("weibosInfo");
-			news_table = HBaseClient.getTable("nnews");
+			news_table = HBaseClient.getTable("newsInfo");//newsInfo nnews
 		} catch (IOException e) {
 			logger.error(e.getMessage());
 		}
@@ -56,7 +57,7 @@ public class GetTableRows {
 //				String from = sdf.format(start.getTime());
 //				start.add(Calendar.DAY_OF_MONTH,1);
 //				String to = sdf.format(start.getTime());
-//				get.getRows(from,to);
+//				get.getRowsPeriod(from,to);
 //			}
 
 			String from = "tct";
@@ -106,59 +107,31 @@ public class GetTableRows {
 		}
 	}
 
-	public void getRows(String startRow,String stopRow) {
+	public void getRowsByID(List<String> ids){
 		long count = 0;
+		List<Get> gets = new ArrayList<Get>();
+		for(String id:ids){
+			Get g = new Get(id.getBytes());
+			gets.add(g);
+			count++;
+		}
 		try {
-            Scan scan = new Scan();
-            scan.setStartRow(startRow.getBytes());
-            scan.setStopRow(stopRow.getBytes());
-			ResultScanner resultScanner = weibo_table.getScanner(scan);
-			Iterator<Result> iterator = resultScanner.iterator();
+			StringBuilder  sb = new StringBuilder ();
+			Result[] result = weibo_table.get(gets);
 			byte[] family = Bytes.toBytes("info");
-			StringBuffer sb = new StringBuffer();
-            while(iterator.hasNext()) {
-				Result result = iterator.next();
-//                byte[] title = Bytes.toBytes("title");
-                byte[] content = Bytes.toBytes("text");
-                if(result.containsColumn(family,content)) {
-//                    String s1 = Bytes.toString(result.getValue(family,title));
-//					sb.append(s1+"\n");
-//                    String s2 = Bytes.toString(result.getValue(family,content));
-//					sb.append(s2+"\n");
+			byte[] title = Bytes.toBytes("title");
+			byte[] content = Bytes.toBytes("text");
+			for (Result r : result) {
+				if(r.containsColumn(family,content)) {
+                    String s1 = Bytes.toString(r.getValue(family,title));
+					sb.append(s1+"\n");
+                    String s2 = Bytes.toString(r.getValue(family,content));
+					sb.append(s2+"\n");
 					if (count++ % 1000 == 0) {
 						long  time = System.currentTimeMillis();
-//						filePersist.storeFile(sb.toString(),String.valueOf(time));
-//						sb.delete(0,sb.length());
-						System.out.println(startRow+"-"+time);
-					}
-                }else{
-                    continue;
-                }
-            }
-//			long  time = System.currentTimeMillis();
-//			filePersist.storeFile(sb.toString(),String.valueOf(time));
-//	        weibo_table.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}       
-	}
-
-	public void getNewsFrom(String startRow){
-		long count = 0;
-		Scan scan = new Scan(startRow.getBytes());
-		ResultScanner resultScanner = null;
-		try {
-			resultScanner = news_table.getScanner(scan);
-			Iterator<Result> iterator = resultScanner.iterator();
-			byte[] family = Bytes.toBytes("info");
-			while(iterator.hasNext()) {
-				Result result = iterator.next();
-				byte[] content = Bytes.toBytes("title");
-				if(result.containsColumn(family,content)) {
-					String s = Bytes.toString(result.getValue(family,content));
-					if (count++ % 1000 == 0) {
-						long  time = System.currentTimeMillis();
-						System.out.println(s+"-"+time);
+						filePersist.storeFile(sb.toString(),String.valueOf(time));
+						sb.delete(0,sb.length());
+						System.out.println(time);
 					}
 				}else{
 					continue;
@@ -167,5 +140,50 @@ public class GetTableRows {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	//获取某段事件的数据，注意替换table
+	public void getRowsPeriod(String startRow, String stopRow) {
+		long count = 0;
+		try {
+            Scan scan = new Scan();
+            scan.setStartRow(startRow.getBytes());
+            if(stopRow!=null) {
+                scan.setStopRow(stopRow.getBytes());
+            }
+			ResultScanner resultScanner = news_table.getScanner(scan);
+			Iterator<Result> iterator = resultScanner.iterator();
+            byte[] family = Bytes.toBytes("info");
+            byte[] title = Bytes.toBytes("title");
+            byte[] content = Bytes.toBytes("content");
+			StringBuilder  sb = new StringBuilder ();
+            while(iterator.hasNext()) {
+				Result result = iterator.next();
+                if(result.containsColumn(family,content)) {
+//                    String s1 = Bytes.toString(result.getValue(family,title));
+//					sb.append(s1+"\n");
+                    String s2 = StringUtils.removePattern(Bytes.toString(result.getValue(family,content)),"（[^）]*）|\\([^\\)]*\\)");
+					if(s2.length()>20)
+					    sb.append(s2+"\n");
+					if (count++ % 1500 == 0) {
+						long  time = System.currentTimeMillis();
+                        filePersist.storeFile(sb.toString(),String.valueOf(time));
+						sb.delete(0,sb.length());
+//						System.out.println(startRow+"-"+time);
+					}
+                }else{
+                    continue;
+                }
+            }
+			long  time = System.currentTimeMillis();
+            filePersist.storeFile(sb.toString(),String.valueOf(time));
+	        weibo_table.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}       
+	}
+
+	public void getNewsFrom(String startRow){
+        getRowsPeriod(startRow,null);
 	}
 }

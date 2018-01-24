@@ -7,7 +7,7 @@ import java.util.*;
 
 import com.crawler.beans.NewsItem;
 import com.store.DataAssembler;
-import com.store.ESClient;
+import com.store.ESClient13;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -23,7 +23,7 @@ public class ScanNewsInfo {
     private TransportClient client;
     public ScanNewsInfo()
     {
-        client = ESClient.getInstance();
+        client = ESClient13.getInstance();
     }
     public static void main(String[] args) {
         ScanNewsInfo getNewsInfo = new ScanNewsInfo();

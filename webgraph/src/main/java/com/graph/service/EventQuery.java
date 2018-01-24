@@ -2,9 +2,8 @@ package com.graph.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.event.EventInfo;
-import com.event.RelatedEvent;
 import com.store.DataAssembler;
-import com.store.ESClient;
+import com.store.ESClient13;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -33,7 +32,7 @@ public class EventQuery {
     private DataAssembler assembler;
     private Logger logger;
     public EventQuery(){
-        esClient = ESClient.getInstance();
+        esClient = ESClient13.getInstance();
         assembler = new DataAssembler();
         logger = LoggerFactory.getLogger(this.getClass());
     }

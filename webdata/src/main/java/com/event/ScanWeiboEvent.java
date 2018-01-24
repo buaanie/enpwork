@@ -4,7 +4,7 @@ package com.event;
  * Created by ACT-NJ on 2016/10/10.
  */
 import com.store.DataAssembler;
-import com.store.ESClient;
+import com.store.ESClient13;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -25,7 +25,7 @@ public class ScanWeiboEvent {
     private TransportClient client;
     private DataAssembler assembler;
     public ScanWeiboEvent(){
-        client = ESClient.getInstance();
+        client = ESClient13.getInstance();
         assembler = new DataAssembler();
     }
     public static void main(String[] args) {

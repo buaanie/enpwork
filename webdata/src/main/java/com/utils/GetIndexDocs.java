@@ -1,6 +1,6 @@
 package com.utils;
 
-import com.store.ESClient;
+import com.store.ESClient13;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequestBuilder;
@@ -24,7 +24,7 @@ import java.util.*;
  * Created by ACT-NJ on 2017/7/22.
  */
 public class GetIndexDocs {
-    private TransportClient client = ESClient.getInstance();
+    private TransportClient client = ESClient13.getInstance();
     private String index = "nnews";
     private String _index = "nevents";
     private int MaxSize = 3000;
@@ -58,6 +58,7 @@ public class GetIndexDocs {
         }
         return result;
     }
+
     public List<Pair> getPeriodNews(long from,long to){
         QueryBuilder time = QueryBuilders.rangeQuery("time").from(from).to(to);
         SortBuilder sort = SortBuilders.fieldSort("time").order(SortOrder.DESC);
@@ -111,7 +112,7 @@ public class GetIndexDocs {
     }
 
     //利用scroll查询
-    private List<String> findDocs(String filter){
+    private List<String> findDocsByURL(String filter){
         List<String> result = new ArrayList<>();
         int MaxSize = 4000;
 		QueryBuilder url = QueryBuilders.termQuery("url", filter);
@@ -139,6 +140,33 @@ public class GetIndexDocs {
         return  result;
     }
 
+    private List<String> findDocsByTimeAndType(long start,long end){
+        String _index = "";
+        List<String> result = new ArrayList<>();
+        int MaxSize = 10000;
+        QueryBuilder time = QueryBuilders.rangeQuery("time").from(start).to(end);
+        QueryBuilder uid = QueryBuilders.rangeQuery("uid").from(0).to(52);
+        QueryBuilder type = QueryBuilders.rangeQuery("eventtype").from(0);
+        QueryBuilder allFilter= QueryBuilders.boolQuery().must(time).must(uid).must(type);
+        SearchRequestBuilder request = client.prepareSearch(_index).setTypes("msg")
+                .setSearchType(SearchType.DEFAULT).setScroll(new TimeValue(30000))
+                .setQuery(allFilter).setSize(MaxSize);
+        SearchResponse scrollResp = request.execute().actionGet();
+        System.out.println("total event hits:" + scrollResp.getHits().getTotalHits());
+        while (true) {
+            for (SearchHit hit : scrollResp.getHits()) {
+                String title = hit.getSource().get("title").toString();
+//                    String id = hit.getId();
+//                    result.add(id);
+            }
+            //通过scrollid来实现深度翻页
+            scrollResp = client.prepareSearchScroll(scrollResp.getScrollId()).setScroll(new TimeValue(60000)).execute().actionGet();
+            if (scrollResp.getHits().getHits().length == 0) {
+                break;
+            }
+        }
+        return  result;
+    }
 
     public static void main(String[] args){
         long from = System.currentTimeMillis();

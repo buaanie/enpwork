@@ -2,6 +2,7 @@ package com.crawler.processor;
 
 import com.crawler.beans.NewsItem;
 import com.crawler.utils.ItemType;
+import org.nlpcn.commons.lang.util.StringUtil;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.handler.SubPageProcessor;
@@ -21,6 +22,7 @@ public class SinaInfo implements SubPageProcessor {
     private final DateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd HH:mm", Locale.CHINA);
     @Override
     public MatchOther processPage(Page page) {
+        System.out.print(page.getUrl()+" -- "+ page.getStatusCode()+"-  -");
         String url = page.getUrl().toString();
         String types = page.getRequest().getExtra("type").toString();
         String type = types.split("-")[0];
@@ -30,14 +32,15 @@ public class SinaInfo implements SubPageProcessor {
         String keywords = page.getHtml().xpath("//head/meta[@name='keywords']/@content").toString();
         String source = page.getHtml().xpath("//head/meta[@name='mediaid']/@content").toString();
         String id = page.getHtml().xpath("//head/meta[@name='publishid']/@content").toString();
-        List<Selectable> contents = page.getHtml().xpath("//*[@id='artibody']/p").nodes();
+        List<Selectable> contents = page.getHtml().xpath("//*[@id='article']/p").nodes();
         StringBuilder sb = new StringBuilder();
         for (Selectable content : contents) {
-            if(content.xpath("/p/@class").toString().equals("")) {
-                sb.append(content.xpath("/p/text()").toString());
-            }
+//            if(content.xpath("/p/@class").toString().equals("")) {
+                sb.append(StringUtil.rmHtmlTag(content.xpath("/p/tidyText()").toString()));
+//            }
         }
         String content = sb.toString();
+//        System.out.println(keywords+"+++"+source+"++++"+content);
         if(content==null || content.matches("\\s+")) {
             page.setSkip(true);
             return MatchOther.NO;

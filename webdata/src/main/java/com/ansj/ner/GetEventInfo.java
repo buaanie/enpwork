@@ -1,6 +1,6 @@
 package com.ansj.ner;
 
-import com.store.ESClient;
+import com.store.ESClient13;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -27,7 +27,7 @@ public class GetEventInfo {
     private TransportClient esClient;
     private Logger logger;
     public GetEventInfo(){
-        esClient = ESClient.getInstance();
+        esClient = ESClient13.getInstance();
         logger = LoggerFactory.getLogger(this.getClass());
     }
     public List<String> filterEvent(Date from, Date to){

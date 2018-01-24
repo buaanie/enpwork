@@ -2,6 +2,8 @@ package com.utils;
 
 
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -9,10 +11,12 @@ import java.io.*;
  * Created by ACT-NJ on 2017/7/24.
  */
 public class FilesOpt {
+    private Logger logger = LoggerFactory.getLogger(FilesOpt.class);
 
     public static void main(String[] args) {
-        String p = "webdata/files/test.json";
-        System.out.println(new FilesOpt().readFile(p,"json"));
+        String p = "D:\\Jworkspace\\enpwork\\log";
+//        System.out.println(new FilesOpt().readFile(p,"json"));
+        new FilesOpt().mergerFiles(p,".txt");
     }
     public Object readFile(String path,String type){
         File file = new File(path);
@@ -38,8 +42,10 @@ public class FilesOpt {
 
     public void storeFile(String data,String name){
         File file = new File("./log/"+name+".txt");
+        boolean append = true;
         BufferedWriter writer = null;
         if(!file.exists()){
+            append = false;
             try {
                 file.createNewFile();
             } catch (IOException e) {
@@ -47,7 +53,7 @@ public class FilesOpt {
             }
         }
         try {
-            writer = new BufferedWriter(new FileWriter(file));
+            writer = new BufferedWriter(new FileWriter(file,append));
             writer.write(data);
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,6 +66,40 @@ public class FilesOpt {
                 e.printStackTrace();
             }
         }
-//        System.out.println(Thread.currentThread().getName()+" 写入信息成功");
+        logger.info("{} 写入信息成功",Thread.currentThread().getName());
+    }
+
+    private void mergerFiles(String path,String suffer){
+        File dir = new File(path);
+        if(!dir.exists() || !dir.isDirectory()){
+            logger.error("not a vaild Directory");
+            return;
+        }
+        File[] files = dir.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(suffer);
+            }
+        });
+        StringBuilder sb = new StringBuilder();
+        for (File fileName : files) {
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(fileName));
+                String temp = null;
+                while((temp=reader.readLine())!=null && !temp.equals(""))
+                    sb.append(temp+"\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    if(reader!=null)
+                        reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        storeFile(sb.toString(),"merge0");
     }
 }

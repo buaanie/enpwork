@@ -50,7 +50,7 @@ public class SpiderEntrance {
         new SinaNews().start();
         new TencentNews().start();
         new CNR().start();
-//        new People().start();
+        new People().start();
         new Paper().start();
     }
     private void runCmtCrawler(){

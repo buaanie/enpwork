@@ -131,7 +131,9 @@ public class NewsItem {
     }
     public String toString(){
     	return "新闻：{" + "id= '"+ id+ "' 标题='" + title +
-    	    "', 时间='" + stringTime + "'}";
+    	    "', 时间='" + stringTime +
+    	    "', 内容='" + content +
+    	    "', url='" + url + "'}";
     	}
     public String toDeatailString(){
     	return "新闻：{" + "id= '"+ id+ "' 标题='" + title +

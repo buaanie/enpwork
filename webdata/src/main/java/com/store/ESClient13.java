@@ -1,15 +1,10 @@
 package com.store;
 
 import com.alibaba.fastjson.JSONObject;
-import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequestBuilder;
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
-import org.elasticsearch.action.admin.indices.mapping.get.GetMappingsResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequestBuilder;
-import org.elasticsearch.action.delete.DeleteAction;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.client.transport.TransportClient;
@@ -28,21 +23,21 @@ import java.util.Properties;
 /**
  * Created by ACT-NJ on 2017/5/31.
  */
-public class ESClient {
-    private static ESClient conn = new ESClient();
+public class ESClient13 {
+    private static ESClient13 conn = new ESClient13();
     private TransportClient client;
     private Logger logger;
 
-    private ESClient() {
+    private ESClient13() {
         logger = LoggerFactory.getLogger(this.getClass());
-        buildESClient();
+        buildESClient13();
     }
 
     public static TransportClient getInstance() {
         return conn.client;
     }
 
-    private void buildESClient() {
+    private void buildESClient13() {
         String clusterName = "elasticsearch";
         Settings settings = Settings.settingsBuilder()
                 .put("client.transport.sniff", true)

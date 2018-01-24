@@ -58,7 +58,7 @@ public class TestVec {
             List<float[]> lf = new ArrayList<>();
             for (String s : ss) {
                 List<Term> t  = DicAnalysis.parse(s).recognition(stopFilter).getTerms();
-                float[] v = new float[200];
+                float[] v = new float[250];
                 int cout = 0;
                 for (Term term : t) {
                     if(term.getName().length()>1 && vec.getWordVector(term.getName())!=null){//term.getName().length()>1 &&

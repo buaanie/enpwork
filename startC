@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "crawler"
+cd /usr/app/enpwork/webdata
+nohup mvn exec:exec -Dexec.executable="java"  -Dexec.args="-Xms1024m -Xmx1024m  -cp %classpath com.crawler.SpiderEntrance news all" > /dev/null 2>crawler.log &

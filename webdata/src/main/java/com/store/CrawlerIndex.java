@@ -28,7 +28,7 @@ public class CrawlerIndex {
     //添加一个日志器
     private Logger logger;
     private CrawlerIndex() {
-    	client = ESClient.getInstance();
+    	client = ESClient13.getInstance();
     	logger = LoggerFactory.getLogger(this.getClass());
     	registerShutdownHook();
 	}

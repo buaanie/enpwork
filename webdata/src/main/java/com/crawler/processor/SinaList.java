@@ -30,6 +30,7 @@ public class SinaList implements SubPageProcessor {
             JSONObject temp = (JSONObject) o;
             Request r = new Request(temp.getString("url"));
             r.putExtra("title",temp.getString("title"));
+            r.setCharset("utf-8").addHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate");
             r.putExtra("time",temp.getString("time"));
             r.putExtra("type",getType(temp.getJSONObject("channel").getString("id")));
             page.addTargetRequest(r);
@@ -38,7 +39,7 @@ public class SinaList implements SubPageProcessor {
         if(count>=80){
             int page_num = (int) page.getRequest().getExtra("page")+1;
             String page_time = page.getRequest().getExtra("time").toString();
-            Request r = new Request(String.format(url,page_num,page_time)).setCharset("GBK").putExtra("page",page_num).putExtra("time",page_time).addHeader(HttpHeaders.ACCEPT_ENCODING, "gzip, deflate");
+            Request r = new Request(String.format(url,page_num,page_time)).setCharset("GBK").putExtra("page",page_num).putExtra("time",page_time);
             page.addTargetRequest(r);
         }
         page.setSkip(true); //无需保存

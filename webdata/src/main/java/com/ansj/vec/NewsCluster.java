@@ -52,13 +52,12 @@ public class NewsCluster {
         List<float[]> lf = new ArrayList<>(num);
         List<EventInfo> resultEvents = new ArrayList<>(num);
         try {
-            vec.loadJavaModel("./files/javaSkip300");
+            vec.loadJavaModel("./files/vec.mod");
             logger.info("load model finish");
             for (Pair id_title : idTitles) {
                 System.out.println(id_title.getText());
                 List<Term> terms  = ToAnalysis.parse(id_title.getText()).recognition(stopFilter).getTerms();
-                System.out.println(terms.size()+"+=++");
-                float[] v = new float[200];
+                float[] v = new float[250];
                 int count = 0;
                 for (Term term : terms) {
                     System.out.println(term.getName());
@@ -67,7 +66,6 @@ public class NewsCluster {
                         v = addVec(v, vec.getWordVector(term.getName()));
                     }
                 }
-                System.out.println(count+"+++++");
                 lf.add(normalize(v,count));
             }
             Map<Integer,List<Integer>> maps = getTitleVecSimi(lf);
@@ -96,7 +94,6 @@ public class NewsCluster {
         }
     }
     public Map<Integer,List<Integer>> getTitleVecSimi(List<float[]> titleVec){
-        System.out.println(titleVec.size()+"_____");
         int size = titleVec.size();
         int[] mark = new int[size];
         Map<Integer,List<Integer>> maps = new HashMap<>();
@@ -116,9 +113,6 @@ public class NewsCluster {
                     if(maps.get(i)==null)
                         maps.put(i,new ArrayList<>());
                     maps.get(i).add(j);
-                }
-                else {
-                    logger.info("???");
                 }
             }
         }

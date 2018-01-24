@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#cd bd13/usr/app/enpwork
+git pull origin master;
+cd webdata;mvn clean;mvn compile

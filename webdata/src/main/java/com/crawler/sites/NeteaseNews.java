@@ -25,15 +25,15 @@ import static com.crawler.utils.StirngUtil.UA2;
 public class NeteaseNews{
     private String[] list = {"BCR1UC1Qwangning-社会","BD29LPUBwangning-国内","BD29MJTVwangning-国际","BAI67OGGwangning-军事"};
     private  String list_url = "http://3g.163.com/touch/reconstruct/article/list/%s/%d-20.html";
-    private Site site = Site.me().setRetryTimes(3).setCycleRetryTimes(3000).setSleepTime(3000)
-            .setUserAgent(UA2).setDisableCookieManagement(true).setUseGzip(true).setCharset("UTF-8");
+    private Site site = Site.me().setRetryTimes(3).setTimeOut(7000).setCycleRetryTimes(3000).setSleepTime(3000)
+            .setUserAgent(UA2).setDisableCookieManagement(true).setUseGzip(true);
     public static void main(String[] args) {
         new NeteaseNews().start();
     }
     public void start(){
         CompositePageProcessor ntesProcessor = new CompositePageProcessor(site);
         ntesProcessor.setSubPageProcessors(new NeteaseInfo(),new NeteaseList());
-        Spider netease = Spider.create(ntesProcessor).addRequest(getStartUrls()).addPipeline(new ItemPipeLine(ItemType.NewsItem)).thread(4);
+        Spider netease = Spider.create(ntesProcessor).addPipeline(new ItemPipeLine(ItemType.NewsItem)).addRequest(getStartUrls()).thread(4);//
         netease.start();
     }
     public Request[] getStartUrls(){

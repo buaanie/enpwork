@@ -143,6 +143,7 @@ public class Learn {
     WordNeuron word = sentence.get(index);
     int a, c = 0;
     for (a = b; a < window * 2 + 1 - b; a++) {
+
       if (a == window) {
         continue;
       }

@@ -48,6 +48,7 @@ public class Paper implements PageProcessor{
                 page.setSkip(true);
                 return;
             }
+//            System.out.println(content);
             String title = page.getRequest().getExtra("title").toString();
             String type = page.getRequest().getExtra("type").toString();
             String descp = page.getHtml().xpath("/html/head/meta[@name='Description']/text()").toString();

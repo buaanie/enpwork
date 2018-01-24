@@ -34,6 +34,7 @@ public class NeteaseList implements SubPageProcessor {
             r.putExtra("source",temp.getString("source"));
             r.putExtra("time",temp.getString("ptime"));
             r.putExtra("title",temp.getString("title"));
+//            r.setCharset("UTF-8");
             page.addTargetRequest(r);
         }
         page.setSkip(true); //无需保存

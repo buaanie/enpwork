@@ -23,8 +23,8 @@ import static com.crawler.utils.StirngUtil.*;
  */
 public class People implements PageProcessor{
     private static final String url = "http://news.people.com.cn/210801/211150/index.js?_=%s";
-    private final String IGNORE_PAGE = "http://(health|media|game|tv|pic)\\.people\\.com\\.cn/n1/\\d{4}/\\d{4}/\\S+";
-    private Site site = Site.me().setDomain("http://news.people.com.cn/").setRetryTimes(3).setCycleRetryTimes(2000).setSleepTime(3000)
+    private final String IGNORE_PAGE = "http://(health|media|game|tv|pic|homea)\\.people\\.com\\.cn/n1/\\d{4}/\\d{4}/\\S+";
+    private Site site = Site.me().setDomain("http://news.people.com.cn/").setRetryTimes(2).setTimeOut(5000).setCycleRetryTimes(3000).setSleepTime(3000)
             .setUserAgent(UA2).setDisableCookieManagement(true).setUseGzip(true);
 
     public static void main(String[] args) {
@@ -48,8 +48,14 @@ public class People implements PageProcessor{
             String news_type = page.getHtml().xpath("/html/head/title/text()").toString().split("--")[1];
             List<Selectable> news_contents = page.getHtml().xpath("//*[@id='rwb_zw']/p").nodes();
             StringBuffer sb = new StringBuffer();
-            for (Selectable content : news_contents) {
-                if(!content.xpath("/p/allText()").toString().equals(""))
+            if(news_contents.size()!=0){
+                for (Selectable content : news_contents) {
+                    if(!content.xpath("/p/allText()").toString().equals(""))
+                        sb.append(filtJournal(content.xpath("/p/allText()").toString()));
+                }
+            }else{
+                news_contents = page.getHtml().xpath("/html/body//div[@name='text_c']/div[@name='show_text']/p").nodes();
+                for (Selectable content : news_contents)
                     sb.append(filtJournal(content.xpath("/p/allText()").toString()));
             }
             String news_content = sb.toString();
