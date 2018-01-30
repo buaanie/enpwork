@@ -2,6 +2,7 @@ package com.ansj.vec;
 
 import com.event.EventInfo;
 import com.store.CrawlerIndex;
+import com.store.FilesOpt;
 import com.utils.GetIndexDocs;
 import com.utils.Pair;
 import org.ansj.domain.Term;
@@ -24,9 +25,9 @@ import static com.crawler.utils.MathUtil.normalize;
  */
 public class NewsCluster {
     private Word2VEC vec = new Word2VEC();
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmm");
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmm");
     private StopRecognition stopFilter = new StopRecognition();
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static Logger logger = LoggerFactory.getLogger(NewsCluster.class);
     private NewsCluster(){
         stopFilter.insertStopNatures("w","m","mq");
         stopFilter.insertStopWords("也","了","仍","从","以","使","则","却","又","及","对","就","并","很","或","把","是","的","着","给","而","被","让","在","还","比","等","当","与","于","但");
@@ -34,17 +35,24 @@ public class NewsCluster {
     }
     public static void main(String[] args) {
         NewsCluster clusterCalculator = new NewsCluster();
+        FilesOpt file = new FilesOpt();
+        CrawlerIndex event_index  = CrawlerIndex.getIndex();
         Date now = new Date();
         Date end = DateUtils.addDays(now,0);
         Date start = DateUtils.addDays(now,-1);
         List<EventInfo> events = clusterCalculator.getTitlesVecCluster(start.getTime(),end.getTime());
-        System.out.println(events.size()+"--------------");
-//        CrawlerIndex eventIndex = CrawlerIndex.getIndex();
-//        eventIndex.indexEvent1Step(events);
+        //输出到文件，作为备份
+        file.storeEvent1File(events);
+        //保存到es，TODO 注意添加到HBSAE
+        event_index.indexEvent1Step(events);
         for (EventInfo event : events) {
-            clusterCalculator.logger.info(event.getSummary()+"     >>> "+event.getArticleId()+"     >>> "+event.getShow());
+            logger.info(event.getSummary()+"     >>> "+event.getArticleIds()+"     >>> "+event.getShow());
         }
     }
+
+    /*
+    输入首末事件，输出事件的聚类结果
+     */
     public List<EventInfo> getTitlesVecCluster(long timeStart,long timeEnd){
         List<Pair> idTitles = new GetIndexDocs().getPeriodNews(timeStart,timeEnd);
         logger.info("news hits:{}",idTitles.size());
@@ -55,12 +63,10 @@ public class NewsCluster {
             vec.loadJavaModel("./files/vec.mod");
             logger.info("load model finish");
             for (Pair id_title : idTitles) {
-                System.out.println(id_title.getText());
                 List<Term> terms  = ToAnalysis.parse(id_title.getText()).recognition(stopFilter).getTerms();
                 float[] v = new float[250];
                 int count = 0;
                 for (Term term : terms) {
-                    System.out.println(term.getName());
                     if(term.getName().length()>1 && vec.getWordVector(term.getName())!=null) {
                         count++;
                         v = addVec(v, vec.getWordVector(term.getName()));
@@ -82,6 +88,7 @@ public class NewsCluster {
                 }
                 if(sb.toString().contains("sin")||sb.toString().contains("tct")||sb.toString().contains("nts"))
                     hot = sb.toString().split(",").length;
+                //只添加了eventid ,articalids,hot 以及 summary
                 EventInfo event = new EventInfo(eventid+mark,sb.toString(),hot);
                 event.setSummary(idTitles.get(index).getText());
                 resultEvents.add(event);
@@ -93,6 +100,10 @@ public class NewsCluster {
             return resultEvents;
         }
     }
+
+    /*
+    直接计算 title 间的 vec 相似度，250维向量的余弦夹角
+     */
     public Map<Integer,List<Integer>> getTitleVecSimi(List<float[]> titleVec){
         int size = titleVec.size();
         int[] mark = new int[size];

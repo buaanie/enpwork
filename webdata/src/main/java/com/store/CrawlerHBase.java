@@ -145,4 +145,5 @@ public class CrawlerHBase {
 			logger.error(e.getMessage());
 		}
 	}
+
 }

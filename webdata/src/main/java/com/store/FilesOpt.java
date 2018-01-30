@@ -1,16 +1,21 @@
-package com.utils;
+package com.store;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.event.EventInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ACT-NJ on 2017/7/24.
  */
 public class FilesOpt {
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
     private Logger logger = LoggerFactory.getLogger(FilesOpt.class);
 
     public static void main(String[] args) {
@@ -18,6 +23,10 @@ public class FilesOpt {
 //        System.out.println(new FilesOpt().readFile(p,"json"));
         new FilesOpt().mergerFiles(p,".txt");
     }
+
+    /*
+    读取文件，默认使用 json 和 txt 格式
+     */
     public Object readFile(String path,String type){
         File file = new File(path);
         if(file.exists()){
@@ -40,6 +49,9 @@ public class FilesOpt {
         return null;
     }
 
+    /*
+    存储文件，输入为数据和文件名，默认追加模式
+     */
     public void storeFile(String data,String name){
         File file = new File("./log/"+name+".txt");
         boolean append = true;
@@ -69,6 +81,9 @@ public class FilesOpt {
         logger.info("{} 写入信息成功",Thread.currentThread().getName());
     }
 
+    /*
+    按照后缀合并某个路径下的文件
+     */
     private void mergerFiles(String path,String suffer){
         File dir = new File(path);
         if(!dir.exists() || !dir.isDirectory()){
@@ -101,5 +116,14 @@ public class FilesOpt {
             }
         }
         storeFile(sb.toString(),"merge0");
+    }
+
+    public void storeEvent1File(List<EventInfo> events){
+        StringBuilder sb = new StringBuilder();
+        String file_name_daily = sdf.format(new Date())+"-events";
+        for (EventInfo event : events) {
+            sb.append(event.getEventId()+"#"+event.getShow()+"#"+event.getArticleIds()+"#"+event.getSummary()+"\n");
+        }
+        storeFile(sb.toString(),file_name_daily);
     }
 }

@@ -22,7 +22,7 @@ public class SinaInfo implements SubPageProcessor {
     private final DateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd HH:mm", Locale.CHINA);
     @Override
     public MatchOther processPage(Page page) {
-        System.out.print(page.getUrl()+" -- "+ page.getStatusCode()+"-  -");
+//        System.out.print(page.getUrl()+" -- "+ page.getStatusCode()+"-  -");
         String url = page.getUrl().toString();
         String types = page.getRequest().getExtra("type").toString();
         String type = types.split("-")[0];

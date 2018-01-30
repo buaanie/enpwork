@@ -10,7 +10,7 @@ public class EventInfo implements Serializable{
     private String location;    //事件地点
     private String participant;//参与人
     private String keywords;//关键词
-    private String articleId;//新闻ids，以,隔开
+    private String articleIds;//新闻ids，以,隔开
     private String relatedEventId;//相关事件id
     private int etype;  //事件类型
     private int emotion;//事情情感极性
@@ -20,16 +20,16 @@ public class EventInfo implements Serializable{
     public EventInfo(String id){
         this.eventId = eventId;
     }
-    public EventInfo(String eventId,String articleId,int show){
+    public EventInfo(String eventId,String articleIds,int show){
         this.eventId = eventId;
-        this.articleId = articleId;
+        this.articleIds = articleIds;
         this.show = show;
     }
     public String getEventId(){
         return eventId;
     }
-    public String getArticleId(){
-        return articleId;
+    public String getArticleIds(){
+        return articleIds;
     }
     public void setTime(String time){
         this.time = time;

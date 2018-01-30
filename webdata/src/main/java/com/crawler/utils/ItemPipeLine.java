@@ -1,23 +1,16 @@
 package com.crawler.utils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.crawler.beans.CmtUser;
 import com.crawler.beans.NewsCmt;
 import com.crawler.beans.NewsItem;
 import com.crawler.beans.WikiItem;
 import com.store.CrawlerHBase;
 import com.store.CrawlerIndex;
-import com.utils.FilesOpt;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by ACT-NJ on 2017/6/8.

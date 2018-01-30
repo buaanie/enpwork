@@ -23,8 +23,8 @@ import static com.crawler.utils.StirngUtil.*;
  */
 public class People implements PageProcessor{
     private static final String url = "http://news.people.com.cn/210801/211150/index.js?_=%s";
-    private final String IGNORE_PAGE = "http://(health|media|game|tv|pic|homea)\\.people\\.com\\.cn/n1/\\d{4}/\\d{4}/\\S+";
-    private Site site = Site.me().setDomain("http://news.people.com.cn/").setRetryTimes(2).setTimeOut(5000).setCycleRetryTimes(3000).setSleepTime(3000)
+    private final String IGNORE_PAGE = "http://(health|media|game|tv|pic|sports|ent|homea|tc|capital|japan|house|theory|industry|fashion)\\.people\\.com\\.cn/n1/\\d{4}/\\d{4}/\\S+";
+    private Site site = Site.me().setDomain("http://news.people.com.cn/").setRetryTimes(2).setTimeOut(7000).setCycleRetryTimes(3000).setSleepTime(3000)
             .setUserAgent(UA2).setDisableCookieManagement(true).setUseGzip(true);
 
     public static void main(String[] args) {

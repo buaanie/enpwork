@@ -18,6 +18,7 @@ public class StirngUtil {
 
 //    public static final String UA1 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
     public static final String UA1 = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36";
+    public static final String UA1_2 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36";
     public static final String UA2 = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)";
     public static final String TIME_REGEX = "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}";
     public static final String TIME_REGEX2 = "\\d{4}年\\d{2}月\\d{2}日\\d{2}\\:\\d{2}";
@@ -82,7 +83,7 @@ public class StirngUtil {
         p = p.replaceAll(spHead,"").replaceAll(photoHead,"").replaceAll(labelRegex,"");
         return p;
     }
-    public static JSONObject parseJsonp(String jsonp,String mark){
+    public static JSONObject parseJsonp(String jsonp, String mark){
         jsonp = jsonp.replaceAll("\n","");
         int startIndex = 0,endIndex = 0;
         switch (mark){
@@ -94,7 +95,7 @@ public class StirngUtil {
                 break;
             default:break;
         }
-        String json = jsonp.substring(startIndex+1, endIndex);
+        String json = jsonp.substring(startIndex+1, endIndex).replace("…","");
         return JSONObject.parseObject(json);
     }
 }

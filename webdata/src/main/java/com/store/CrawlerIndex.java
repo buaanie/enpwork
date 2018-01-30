@@ -152,6 +152,7 @@ public class CrawlerIndex {
 			}
 		}
 	}
+
 	public void indexEvent1Step(List<EventInfo> events1st){
 		BulkRequestBuilder bqb = client.prepareBulk();
 		try{
@@ -159,7 +160,7 @@ public class CrawlerIndex {
                 XContentBuilder contentBuilder = XContentFactory.jsonBuilder()
                         .startObject()
                         .field("eventid", event.getEventId())
-                        .field("articleid", event.getArticleId())
+                        .field("articleid", event.getArticleIds())
                         .field("show", event.getShow())
                         .field("summary", event.getSummary())
                         .endObject();

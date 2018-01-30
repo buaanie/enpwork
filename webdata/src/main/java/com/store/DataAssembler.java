@@ -16,6 +16,10 @@ import java.util.Map;
 public class DataAssembler {
     private SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");//'z
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    /*
+    根据es 返回的map结果，恢复成NewsItem
+     */
     public NewsItem bindNews(Map<String, Object> map) {
         NewsItem news = new NewsItem();
         if (map.containsKey("id")) {

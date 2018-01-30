@@ -1,8 +1,10 @@
 package com.utils;
 
-import java.io.IOException;
-import java.util.*;
-
+import com.alibaba.fastjson.JSONArray;
+import com.ansj.ner.Boson;
+import com.crawler.beans.NewsItem;
+import com.event.EventInfo;
+import com.store.FilesOpt;
 import com.store.HBaseClient;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.hbase.Cell;
@@ -11,6 +13,14 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
+
 
 /*
 {row key, column( =<family> + <label>), version} ->cell
@@ -29,14 +39,21 @@ public class GetTableRows {
 	private HTable weibo_table;
 	private HTable news_table;
 	private FilesOpt filePersist = null;
-	private Logger logger;
+	private byte[] family = Bytes.toBytes("info");
+	private byte[] title = Bytes.toBytes("title");
+	private byte[] content = Bytes.toBytes("content");
+	private byte[] source = Bytes.toBytes("source");
+	private byte[] time = Bytes.toBytes("time");
+	private byte[] type = Bytes.toBytes("type");
+	private byte[] keywords = Bytes.toBytes("keywords");
+	private static Logger logger;
 	public GetTableRows(){
 		filePersist = new FilesOpt();
 		logger = LoggerFactory.getLogger(GetTableRows.class);
 //		weibo_table = new HTable()
 		try {
 			weibo_table = HBaseClient.getTable("weibosInfo");
-			news_table = HBaseClient.getTable("newsInfo");//newsInfo nnews
+			news_table = HBaseClient.getTable("nnews");//newsInfo nnews
 		} catch (IOException e) {
 			logger.error(e.getMessage());
 		}
@@ -64,6 +81,7 @@ public class GetTableRows {
 			get.getNewsFrom(from);
 	}
 
+	//根据新闻id 批量删除
 	public void deleteRows(List<String> delete_ids) {
 		long count = 0;
 		List<Delete> deletes=new ArrayList<Delete>();
@@ -81,6 +99,7 @@ public class GetTableRows {
 		}
 	}
 
+	//获取某个id的新闻
 	public void getOneRow(String id) {
 		Get scan = new Get(id.getBytes());
 		try {
@@ -107,6 +126,7 @@ public class GetTableRows {
 		}
 	}
 
+	//根据id批量获取某些列，注意更改table
 	public void getRowsByID(List<String> ids){
 		long count = 0;
 		List<Get> gets = new ArrayList<Get>();
@@ -117,10 +137,7 @@ public class GetTableRows {
 		}
 		try {
 			StringBuilder  sb = new StringBuilder ();
-			Result[] result = weibo_table.get(gets);
-			byte[] family = Bytes.toBytes("info");
-			byte[] title = Bytes.toBytes("title");
-			byte[] content = Bytes.toBytes("text");
+			Result[] result = news_table.get(gets);
 			for (Result r : result) {
 				if(r.containsColumn(family,content)) {
                     String s1 = Bytes.toString(r.getValue(family,title));
@@ -183,7 +200,36 @@ public class GetTableRows {
 		}       
 	}
 
+	//获取某段时间以后的新闻
 	public void getNewsFrom(String startRow){
         getRowsPeriod(startRow,null);
+	}
+
+
+	public List<NewsItem> getNews4Event(List<String> articals){
+		long count = 0;
+		List<Get> gets = new ArrayList<Get>();
+		List<NewsItem> news = new ArrayList<>();
+		for(String id:articals){
+			Get g = new Get(id.getBytes());
+			gets.add(g);
+			count++;
+		}
+		try {
+			Result[] result = news_table.get(gets);
+			for (Result r : result) {
+				String id = Bytes.toString(r.getRow());
+				String _time = r.containsColumn(family,time) ? Bytes.toString(r.getValue(family,time)) : "";
+				String _title = r.containsColumn(family,title) ? Bytes.toString(r.getValue(family,title)) : "";
+				String _content = r.containsColumn(family,content) ? Bytes.toString(r.getValue(family,content)) : "";
+				String _source = r.containsColumn(family,source) ? Bytes.toString(r.getValue(family,source)) : "";
+				String _type = r.containsColumn(family,type) ? Bytes.toString(r.getValue(family,source)): "";
+				String _keywords = r.containsColumn(family,keywords) ? Bytes.toString(r.getValue(family,keywords)):"";
+				news.add(new NewsItem(id,_title,_content,_time,_source,_type,_keywords));
+			}
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+		return news;
 	}
 }

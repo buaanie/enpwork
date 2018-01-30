@@ -24,7 +24,7 @@ import static com.crawler.utils.StirngUtil.UA2;
  */
 public class SinaNews {
     public static String url = "http://roll.news.sina.com.cn/interface/rollnews_ch_out_interface.php?col=90,91,92,93&num=100&page=%d&last_time=%s";
-    private static Site site = Site.me().setRetryTimes(2).setTimeOut(7000).setCycleRetryTimes(4000).setSleepTime(4000).setUserAgent(UA2).setDisableCookieManagement(true).setUseGzip(true);
+    private static Site site = Site.me().setRetryTimes(2).setTimeOut(7000).setCycleRetryTimes(4000).setSleepTime(4000).setUserAgent(UA1).setDisableCookieManagement(true).setUseGzip(true);
     public static void main(String[] args) {
         new SinaNews().start();
     }
@@ -34,8 +34,7 @@ public class SinaNews {
         String start = String.format(url,1,now);
 //        Spider sina = Spider.create(sinaProcessor).addUrl("http://news.sina.com.cn/c/nd/2018-01-24/doc-ifyquptv9137099.shtml","http://news.sina.com.cn/c/nd/2018-01-24/doc-ifyqyqni2130834.shtml");
         Request r = new Request(start).setCharset("GBK").putExtra("page",1).putExtra("time",now);
-        System.out.println(r.getUrl());
-        Spider sina = Spider.create(sinaProcessor).addRequest(r).thread(5);//.addPipeline(new ItemPipeLine(ItemType.NewsItem))
+        Spider sina = Spider.create(sinaProcessor).addPipeline(new ItemPipeLine(ItemType.NewsItem)).addRequest(r).thread(5);//
         sina.start();
     }
 }

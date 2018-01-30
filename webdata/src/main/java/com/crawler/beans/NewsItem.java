@@ -49,6 +49,15 @@ public class NewsItem {
 	}
 	public NewsItem(){
     }
+    public NewsItem(String id,  String title, String content, String time, String source, String type, String keywords){
+        this.id = id;
+        this.stringTime = time;
+        this.title = title;
+        this.content = content;
+        this.source = source;
+        this.type = type;
+        this.keywords = keywords;
+    }
     public String getTitle() {
         return title;
     }
